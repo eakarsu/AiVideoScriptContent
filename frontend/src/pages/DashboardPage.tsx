@@ -7,6 +7,26 @@ interface FeatureCounts {
   [key: string]: number;
 }
 
+// Map feature IDs to their dedicated routes
+const featureRoutes: Record<string, string> = {
+  scripts: '/scripts',
+  titles: '/titles',
+  descriptions: '/descriptions',
+  hashtags: '/hashtags',
+  thumbnails: '/thumbnails',
+  hooks: '/hooks',
+  calendar: '/calendar',
+  trends: '/trends',
+  seo: '/seo',
+  personas: '/personas',
+  repurpose: '/repurpose',
+  // These still use generic feature page
+  comments: '/feature/comments',
+  ideas: '/feature/ideas',
+  analytics: '/feature/analytics',
+  competitors: '/feature/competitors',
+};
+
 export default function DashboardPage() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -42,7 +62,8 @@ export default function DashboardPage() {
   }, []);
 
   const handleFeatureClick = (featureId: string) => {
-    navigate(`/feature/${featureId}`);
+    const route = featureRoutes[featureId] || `/feature/${featureId}`;
+    navigate(route);
   };
 
   return (
@@ -54,18 +75,56 @@ export default function DashboardPage() {
             <h1 className="text-2xl font-bold text-gray-900">AI Content Creator</h1>
             <p className="text-sm text-gray-600">Welcome back, {user?.name}</p>
           </div>
-          <button
-            onClick={logout}
-            className="btn-secondary"
-          >
-            Logout
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate('/analytics-dashboard')}
+              className="btn-secondary flex items-center gap-2"
+            >
+              <span>📊</span> Analytics
+            </button>
+            <button
+              onClick={() => navigate('/calendar')}
+              className="btn-secondary flex items-center gap-2"
+            >
+              <span>📅</span> Calendar
+            </button>
+            <button
+              onClick={logout}
+              className="btn-secondary"
+            >
+              Logout
+            </button>
+          </div>
         </div>
       </header>
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
+        {/* Quick Actions */}
+        <div className="mb-8 flex flex-wrap gap-4">
+          <button
+            onClick={() => navigate('/analytics-dashboard')}
+            className="flex items-center gap-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
+          >
+            <span className="text-2xl">📊</span>
+            <div className="text-left">
+              <p className="font-semibold">Analytics Dashboard</p>
+              <p className="text-xs opacity-80">View content performance</p>
+            </div>
+          </button>
+          <button
+            onClick={() => navigate('/calendar')}
+            className="flex items-center gap-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
+          >
+            <span className="text-2xl">📅</span>
+            <div className="text-left">
+              <p className="font-semibold">Content Calendar</p>
+              <p className="text-xs opacity-80">Schedule your content</p>
+            </div>
+          </button>
+        </div>
+
+        <div className="mb-6">
           <h2 className="text-xl font-semibold text-gray-800 mb-2">Your AI Tools</h2>
           <p className="text-gray-600">Select a tool to get started with AI-powered content creation</p>
         </div>
@@ -76,7 +135,7 @@ export default function DashboardPage() {
             <div
               key={feature.id}
               onClick={() => handleFeatureClick(feature.id)}
-              className="feature-card bg-white rounded-xl shadow-md p-6 cursor-pointer border border-gray-100 hover:border-primary-300"
+              className="feature-card bg-white rounded-xl shadow-md p-6 cursor-pointer border border-gray-100 hover:border-primary-300 hover:shadow-lg transition-all"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className={`${feature.color} w-12 h-12 rounded-lg flex items-center justify-center text-2xl`}>
@@ -100,7 +159,15 @@ export default function DashboardPage() {
 
         {/* Quick Stats */}
         <div className="mt-12 bg-white rounded-xl shadow-md p-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">Quick Stats</h3>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-800">Quick Stats</h3>
+            <button
+              onClick={() => navigate('/analytics-dashboard')}
+              className="text-sm text-primary-600 hover:text-primary-700"
+            >
+              View Full Analytics →
+            </button>
+          </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="bg-primary-50 rounded-lg p-4">
               <p className="text-3xl font-bold text-primary-600">
@@ -140,7 +207,7 @@ export default function DashboardPage() {
               3. Generate with AI
             </span>
             <span className="bg-white/20 px-3 py-1 rounded-full text-sm">
-              4. Save & Use
+              4. Save & Schedule
             </span>
           </div>
         </div>

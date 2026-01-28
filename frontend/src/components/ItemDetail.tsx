@@ -70,7 +70,7 @@ export default function ItemDetail({ item, feature, onDelete, onClose, onUpdate 
     setSaving(true);
 
     try {
-      const response = await api.put(`${feature.endpoint}/${item.id}`, { aiOutput });
+      await api.put(`${feature.endpoint}/${item.id}`, { aiOutput });
       onUpdate({ ...item, aiOutput, updatedAt: new Date().toISOString() });
       setHasChanges(false);
     } catch (err: any) {
