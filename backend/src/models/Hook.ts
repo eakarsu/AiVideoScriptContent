@@ -9,6 +9,8 @@ interface HookAttributes {
   hookType: string;
   targetEmotion: string;
   aiOutput: string;
+  status: 'draft' | 'scheduled' | 'published';
+  scheduledAt: Date | null;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -23,6 +25,8 @@ class Hook extends Model<HookAttributes, HookCreationAttributes> implements Hook
   public hookType!: string;
   public targetEmotion!: string;
   public aiOutput!: string;
+  public status!: 'draft' | 'scheduled' | 'published';
+  public scheduledAt!: Date | null;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
@@ -61,6 +65,16 @@ Hook.init(
       type: DataTypes.TEXT,
       allowNull: false,
       field: 'ai_output',
+    },
+    status: {
+      type: DataTypes.ENUM('draft', 'scheduled', 'published'),
+      allowNull: false,
+      defaultValue: 'draft',
+    },
+    scheduledAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      field: 'scheduled_at',
     },
   },
   {

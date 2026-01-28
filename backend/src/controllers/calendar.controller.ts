@@ -5,8 +5,13 @@ import { generateContentCalendar } from '../services/openrouter.service';
 
 export const getAll = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
+    const { status } = req.query;
+    const where: Record<string, unknown> = { userId: req.userId };
+    if (status && ['draft', 'scheduled', 'published'].includes(status as string)) {
+      where.status = status;
+    }
     const items = await Calendar.findAll({
-      where: { userId: req.userId },
+      where,
       order: [['createdAt', 'DESC']],
     });
     res.json(items);
@@ -34,7 +39,7 @@ export const getById = async (req: AuthRequest, res: Response): Promise<void> =>
 
 export const create = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const { niche, platform, frequency, duration, goals, aiOutput } = req.body;
+    const { niche, platform, frequency, duration, goals, aiOutput, status, scheduledAt } = req.body;
     const item = await Calendar.create({
       userId: req.userId!,
       niche,
@@ -43,6 +48,8 @@ export const create = async (req: AuthRequest, res: Response): Promise<void> => 
       duration,
       goals,
       aiOutput,
+      status: status || 'draft',
+      scheduledAt: scheduledAt || null,
     });
     res.status(201).json(item);
   } catch (error) {

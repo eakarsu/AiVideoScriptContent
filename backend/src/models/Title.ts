@@ -9,6 +9,8 @@ interface TitleAttributes {
   style: string;
   keywords: string;
   aiOutput: string;
+  status: 'draft' | 'scheduled' | 'published';
+  scheduledAt: Date | null;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -23,6 +25,8 @@ class Title extends Model<TitleAttributes, TitleCreationAttributes> implements T
   public style!: string;
   public keywords!: string;
   public aiOutput!: string;
+  public status!: 'draft' | 'scheduled' | 'published';
+  public scheduledAt!: Date | null;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
@@ -59,6 +63,16 @@ Title.init(
       type: DataTypes.TEXT,
       allowNull: false,
       field: 'ai_output',
+    },
+    status: {
+      type: DataTypes.ENUM('draft', 'scheduled', 'published'),
+      allowNull: false,
+      defaultValue: 'draft',
+    },
+    scheduledAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      field: 'scheduled_at',
     },
   },
   {

@@ -10,6 +10,8 @@ interface DescriptionAttributes {
   includeLinks: boolean;
   includeCta: boolean;
   aiOutput: string;
+  status: 'draft' | 'scheduled' | 'published';
+  scheduledAt: Date | null;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -25,6 +27,8 @@ class Description extends Model<DescriptionAttributes, DescriptionCreationAttrib
   public includeLinks!: boolean;
   public includeCta!: boolean;
   public aiOutput!: string;
+  public status!: 'draft' | 'scheduled' | 'published';
+  public scheduledAt!: Date | null;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
@@ -68,6 +72,16 @@ Description.init(
       type: DataTypes.TEXT,
       allowNull: false,
       field: 'ai_output',
+    },
+    status: {
+      type: DataTypes.ENUM('draft', 'scheduled', 'published'),
+      allowNull: false,
+      defaultValue: 'draft',
+    },
+    scheduledAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      field: 'scheduled_at',
     },
   },
   {

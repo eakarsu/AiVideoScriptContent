@@ -9,6 +9,8 @@ interface AnalyticsAttributes {
   dataInput: string;
   timeframe: string;
   aiOutput: string;
+  status: 'draft' | 'scheduled' | 'published';
+  scheduledAt: Date | null;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -23,6 +25,8 @@ class Analytics extends Model<AnalyticsAttributes, AnalyticsCreationAttributes> 
   public dataInput!: string;
   public timeframe!: string;
   public aiOutput!: string;
+  public status!: 'draft' | 'scheduled' | 'published';
+  public scheduledAt!: Date | null;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
@@ -61,6 +65,16 @@ Analytics.init(
       type: DataTypes.TEXT,
       allowNull: false,
       field: 'ai_output',
+    },
+    status: {
+      type: DataTypes.ENUM('draft', 'scheduled', 'published'),
+      allowNull: false,
+      defaultValue: 'draft',
+    },
+    scheduledAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      field: 'scheduled_at',
     },
   },
   {

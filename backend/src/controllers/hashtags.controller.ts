@@ -5,8 +5,13 @@ import { generateHashtags } from '../services/openrouter.service';
 
 export const getAll = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
+    const { status } = req.query;
+    const where: Record<string, unknown> = { userId: req.userId };
+    if (status && ['draft', 'scheduled', 'published'].includes(status as string)) {
+      where.status = status;
+    }
     const items = await Hashtag.findAll({
-      where: { userId: req.userId },
+      where,
       order: [['createdAt', 'DESC']],
     });
     res.json(items);
@@ -34,7 +39,7 @@ export const getById = async (req: AuthRequest, res: Response): Promise<void> =>
 
 export const create = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const { topic, platform, niche, count, aiOutput } = req.body;
+    const { topic, platform, niche, count, aiOutput, status, scheduledAt } = req.body;
     const item = await Hashtag.create({
       userId: req.userId!,
       topic,
@@ -42,6 +47,8 @@ export const create = async (req: AuthRequest, res: Response): Promise<void> => 
       niche,
       count,
       aiOutput,
+      status: status || 'draft',
+      scheduledAt: scheduledAt || null,
     });
     res.status(201).json(item);
   } catch (error) {

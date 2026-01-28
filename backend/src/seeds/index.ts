@@ -23,6 +23,25 @@ import {
   Repurpose,
 } from '../models';
 
+// Helper to generate varied statuses and scheduled dates
+const getStatusAndDate = (index: number): { status: 'draft' | 'scheduled' | 'published', scheduledAt: Date | null } => {
+  const today = new Date();
+
+  if (index % 5 === 0) {
+    // Every 5th item: published
+    return { status: 'published' as const, scheduledAt: null };
+  } else if (index % 3 === 0) {
+    // Every 3rd item: scheduled for future dates
+    const futureDate = new Date(today);
+    futureDate.setDate(today.getDate() + (index % 14) + 1); // 1-14 days in future
+    futureDate.setHours(9 + (index % 8), 0, 0, 0); // Various times
+    return { status: 'scheduled' as const, scheduledAt: futureDate };
+  } else {
+    // Rest: draft
+    return { status: 'draft' as const, scheduledAt: null };
+  }
+};
+
 const seedDatabase = async () => {
   try {
     console.log('🌱 Starting database seeding...');
@@ -61,7 +80,7 @@ const seedDatabase = async () => {
       { title: 'Tutorial: Video Editing', topic: 'Complete guide to editing videos for beginners', platform: 'YouTube', duration: '30 minutes', tone: 'Educational and patient', aiOutput: '**Editing Tutorial Script**\n\n[BASICS]\n1. Software overview\n2. Importing footage\n3. Timeline basics\n\n[INTERMEDIATE]\n4. Cuts and transitions\n5. Color correction\n6. Audio editing\n\n[ADVANCED]\n7. Effects and graphics\n8. Export settings' },
     ];
 
-    await Script.bulkCreate(scriptsData.map(item => ({ ...item, userId })));
+    await Script.bulkCreate(scriptsData.map((item, idx) => ({ ...item, userId, ...getStatusAndDate(idx) })));
     console.log('✅ Scripts seeded');
 
     // Seed Titles (15+ items)
@@ -83,7 +102,7 @@ const seedDatabase = async () => {
       { topic: 'Book recommendations', platform: 'YouTube', style: 'Thoughtful', keywords: 'books, reading, recommendations', aiOutput: '1. "Books That Changed My Perspective"\n2. "5 Books Everyone Should Read"\n3. "My Honest Book Reviews 2024"\n4. "Reading Vlog: 10 Books in 30 Days"\n5. "Books I\'ll Never Stop Recommending"' },
     ];
 
-    await Title.bulkCreate(titlesData.map(item => ({ ...item, userId })));
+    await Title.bulkCreate(titlesData.map((item, idx) => ({ ...item, userId, ...getStatusAndDate(idx + 1) })));
     console.log('✅ Titles seeded');
 
     // Seed Descriptions (15+ items)
@@ -105,7 +124,7 @@ const seedDatabase = async () => {
       { videoTitle: 'Apartment Tour', topic: 'Home decor and living', platform: 'YouTube', includeLinks: true, includeCta: true, aiOutput: 'Full tour of my city apartment!\n\nROOMS:\n- Living room\n- Kitchen\n- Bedroom\n- Home office\n- Bathroom\n\nDECOR STYLE: Modern minimalist\nRENT: $2,500/month\n\nAll decor items linked!\n\n#ApartmentTour #HomeDecor #Interior' },
     ];
 
-    await Description.bulkCreate(descriptionsData.map(item => ({ ...item, userId })));
+    await Description.bulkCreate(descriptionsData.map((item, idx) => ({ ...item, userId, ...getStatusAndDate(idx + 2) })));
     console.log('✅ Descriptions seeded');
 
     // Seed Hashtags (15+ items)
@@ -127,7 +146,7 @@ const seedDatabase = async () => {
       { topic: 'Motivation content', platform: 'Instagram', niche: 'Self-improvement', count: 15, aiOutput: '#motivation #inspiration #success #mindset #goals #entrepreneur #hustle #motivational #grind #ambition #positivity #believe #dreams #nevergiveup #successmindset' },
     ];
 
-    await Hashtag.bulkCreate(hashtagsData.map(item => ({ ...item, userId })));
+    await Hashtag.bulkCreate(hashtagsData.map((item, idx) => ({ ...item, userId, ...getStatusAndDate(idx + 3) })));
     console.log('✅ Hashtags seeded');
 
     // Seed Thumbnails (15+ items)
@@ -149,7 +168,7 @@ const seedDatabase = async () => {
       { videoTitle: 'Reaction Video', topic: 'Viral content reactions', style: 'Expressive', colorScheme: 'High contrast', aiOutput: '**Thumbnail Concept**\n\n1. Your most expressive reaction face\n2. Screenshot of video being reacted to\n3. Text: "I CAN\'T BELIEVE THIS"\n4. Arrow pointing to your reaction\n5. Bright, attention-grabbing background' },
     ];
 
-    await Thumbnail.bulkCreate(thumbnailsData.map(item => ({ ...item, userId })));
+    await Thumbnail.bulkCreate(thumbnailsData.map((item, idx) => ({ ...item, userId, ...getStatusAndDate(idx + 4) })));
     console.log('✅ Thumbnails seeded');
 
     // Seed Hooks (15+ items)
@@ -171,7 +190,7 @@ const seedDatabase = async () => {
       { topic: 'Educational content', platform: 'YouTube', hookType: 'Mind-blowing fact', targetEmotion: 'Awe', aiOutput: '1. "Everything you learned about this in school was wrong."\n2. "Scientists just discovered something that changes everything we knew."\n3. "This fact will completely change how you see the world."' },
     ];
 
-    await Hook.bulkCreate(hooksData.map(item => ({ ...item, userId })));
+    await Hook.bulkCreate(hooksData.map((item, idx) => ({ ...item, userId, ...getStatusAndDate(idx + 5) })));
     console.log('✅ Hooks seeded');
 
     // Seed Calendars (15+ items)
@@ -193,7 +212,7 @@ const seedDatabase = async () => {
       { niche: 'Motivation', platform: 'YouTube', frequency: '1 time per week', duration: '1 month', goals: 'Speaking engagements, course sales', aiOutput: '**Motivational Content Plan**\n\nSUNDAY: Weekly inspiration video\n\nTopics:\nWeek 1: Overcoming fear\nWeek 2: Building habits\nWeek 3: Success mindset\nWeek 4: Goal setting\n\nBonus: Monthly live Q&A' },
     ];
 
-    await Calendar.bulkCreate(calendarsData.map(item => ({ ...item, userId })));
+    await Calendar.bulkCreate(calendarsData.map((item, idx) => ({ ...item, userId, ...getStatusAndDate(idx + 6) })));
     console.log('✅ Calendars seeded');
 
     // Seed Trends (15+ items)
@@ -215,7 +234,7 @@ const seedDatabase = async () => {
       { niche: 'Wellness', platform: 'YouTube', timeframe: 'This month', region: 'Global', aiOutput: '**Wellness Trends**\n\n1. Cold plunge content\n2. Breathwork sessions\n3. Sleep optimization\n4. Gut health focus\n5. Digital minimalism\n\nSupplements: Magnesium, adaptogens, probiotics' },
     ];
 
-    await Trend.bulkCreate(trendsData.map(item => ({ ...item, userId })));
+    await Trend.bulkCreate(trendsData.map((item, idx) => ({ ...item, userId, ...getStatusAndDate(idx + 7) })));
     console.log('✅ Trends seeded');
 
     // Seed Comments (15+ items)
@@ -237,7 +256,7 @@ const seedDatabase = async () => {
       { originalComment: 'Best content on the platform!', context: 'Any video', tone: 'Humble and grateful', platform: 'YouTube', aiOutput: 'Wow, that means so much! I\'m just trying to create value for this amazing community. Thank you for being here and for the kind words. You all motivate me to keep improving!' },
     ];
 
-    await Comment.bulkCreate(commentsData.map(item => ({ ...item, userId })));
+    await Comment.bulkCreate(commentsData.map((item, idx) => ({ ...item, userId, ...getStatusAndDate(idx + 8) })));
     console.log('✅ Comments seeded');
 
     // Seed Ideas (15+ items)
@@ -259,7 +278,7 @@ const seedDatabase = async () => {
       { niche: 'Motivation', platform: 'YouTube', contentType: 'Inspirational', targetAudience: 'Ambitious individuals 18-40', aiOutput: '**10 Video Ideas:**\n\n1. "From Rock Bottom to Here"\n2. "Habits of Successful People"\n3. "How I Stay Motivated"\n4. "Goal Setting That Works"\n5. "Overcoming Fear of Failure"\n6. "Morning Routine for Success"\n7. "Life Lessons I Learned the Hard Way"\n8. "Day in My Life: Productivity Edition"\n9. "What No One Tells You About Success"\n10. "Building Discipline: My Journey"' },
     ];
 
-    await Idea.bulkCreate(ideasData.map(item => ({ ...item, userId })));
+    await Idea.bulkCreate(ideasData.map((item, idx) => ({ ...item, userId, ...getStatusAndDate(idx + 9) })));
     console.log('✅ Ideas seeded');
 
     // Seed SEO (15+ items)
@@ -281,7 +300,7 @@ const seedDatabase = async () => {
       { videoTitle: 'Product Review', description: 'Honest review of viral product', platform: 'TikTok', targetKeywords: 'review, product review, honest review', aiOutput: '**SEO Optimization Report**\n\n**Title/Caption:**\n- "Honest review of [Product] - worth the hype?"\n\n**Keywords:**\nreview, honest review, product review, worth it, viral product\n\n**Hashtags:** #review #productreview #honest #worthit #viral' },
     ];
 
-    await Seo.bulkCreate(seoData.map(item => ({ ...item, userId })));
+    await Seo.bulkCreate(seoData.map((item, idx) => ({ ...item, userId, ...getStatusAndDate(idx + 10) })));
     console.log('✅ SEO data seeded');
 
     // Seed Analytics (15+ items)
@@ -303,7 +322,7 @@ const seedDatabase = async () => {
       { platform: 'YouTube', metricType: 'Traffic Sources', dataInput: 'Browse: 40%, Search: 30%, Suggested: 20%, External: 10%', timeframe: 'Last 30 days', aiOutput: '**Traffic Source Analysis**\n\n**Healthy mix!** Good distribution\n\n**Optimization:**\n- Search traffic can be increased\n- Suggested videos is growth opportunity\n\n**Recommendations:**\n1. SEO optimize titles/descriptions\n2. Create series for suggested\n3. Promote on social for external' },
     ];
 
-    await Analytics.bulkCreate(analyticsData.map(item => ({ ...item, userId })));
+    await Analytics.bulkCreate(analyticsData.map((item, idx) => ({ ...item, userId, ...getStatusAndDate(idx + 11) })));
     console.log('✅ Analytics seeded');
 
     // Seed Competitors (15+ items)
@@ -325,7 +344,7 @@ const seedDatabase = async () => {
       { competitorName: 'WellnessJourney', competitorUrl: 'youtube.com/wellnessjourney', platform: 'YouTube', analysisType: 'Community building', aiOutput: '**Competitor Analysis: WellnessJourney**\n\n**Community Features:**\n- Active Discord server\n- Monthly challenges\n- Member spotlights\n- Live Q&As\n\n**Engagement:**\n- 80% comment response rate\n- Community tab active daily\n- Polls for content ideas\n\n**Your Approach:**\n- Start Discord/community\n- Regular live streams\n- Feature community members' },
     ];
 
-    await Competitor.bulkCreate(competitorsData.map(item => ({ ...item, userId })));
+    await Competitor.bulkCreate(competitorsData.map((item, idx) => ({ ...item, userId, ...getStatusAndDate(idx + 12) })));
     console.log('✅ Competitors seeded');
 
     // Seed Personas (15+ items)
@@ -347,7 +366,7 @@ const seedDatabase = async () => {
       { niche: 'Motivation', platform: 'YouTube', demographics: 'Mixed, 18-40, ambitious', interests: 'Self-improvement, success, mindset', aiOutput: '**Audience Persona: Motivated Max**\n\n**Demographics:**\n- Age: 28\n- Gender: Mixed\n- Location: Global\n- Ambitious professional\n\n**Psychographics:**\n- Growth mindset\n- Goal-oriented\n- Action-taker\n\n**Pain Points:**\n- Staying motivated\n- Overcoming setbacks\n- Finding direction\n\n**Content Preferences:**\n- Success stories\n- Practical advice\n- Authentic struggles' },
     ];
 
-    await Persona.bulkCreate(personasData.map(item => ({ ...item, userId })));
+    await Persona.bulkCreate(personasData.map((item, idx) => ({ ...item, userId, ...getStatusAndDate(idx + 13) })));
     console.log('✅ Personas seeded');
 
     // Seed Repurpose (15+ items)
@@ -369,7 +388,7 @@ const seedDatabase = async () => {
       { originalContent: 'Day in my life vlog (15 min)', sourcePlatform: 'YouTube', targetPlatform: 'BeReal/Casual Platforms', contentType: 'Lifestyle', aiOutput: '**Repurposed for Casual Platforms:**\n\n**BeReal-style content:**\n- Screenshot key moments\n- "What my vlog doesn\'t show" authentic moments\n\n**TikTok "Photo dump" trend:**\n- Collection of vlog screenshots\n- Trending sound\n- Casual, authentic vibe\n\n**Caption:**\n"What filming a YouTube video actually looks like vs the final product"' },
     ];
 
-    await Repurpose.bulkCreate(repurposeData.map(item => ({ ...item, userId })));
+    await Repurpose.bulkCreate(repurposeData.map((item, idx) => ({ ...item, userId, ...getStatusAndDate(idx + 14) })));
     console.log('✅ Repurpose data seeded');
 
     console.log('\n🎉 Database seeding completed successfully!');

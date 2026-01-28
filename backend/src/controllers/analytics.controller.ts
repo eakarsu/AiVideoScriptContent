@@ -5,8 +5,13 @@ import { analyzeAnalytics } from '../services/openrouter.service';
 
 export const getAll = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
+    const { status } = req.query;
+    const where: Record<string, unknown> = { userId: req.userId };
+    if (status && ['draft', 'scheduled', 'published'].includes(status as string)) {
+      where.status = status;
+    }
     const items = await Analytics.findAll({
-      where: { userId: req.userId },
+      where,
       order: [['createdAt', 'DESC']],
     });
     res.json(items);
@@ -34,7 +39,7 @@ export const getById = async (req: AuthRequest, res: Response): Promise<void> =>
 
 export const create = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const { platform, metricType, dataInput, timeframe, aiOutput } = req.body;
+    const { platform, metricType, dataInput, timeframe, aiOutput, status, scheduledAt } = req.body;
     const item = await Analytics.create({
       userId: req.userId!,
       platform,
@@ -42,6 +47,8 @@ export const create = async (req: AuthRequest, res: Response): Promise<void> => 
       dataInput,
       timeframe,
       aiOutput,
+      status: status || 'draft',
+      scheduledAt: scheduledAt || null,
     });
     res.status(201).json(item);
   } catch (error) {

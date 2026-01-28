@@ -5,8 +5,13 @@ import { repurposeContent } from '../services/openrouter.service';
 
 export const getAll = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
+    const { status } = req.query;
+    const where: Record<string, unknown> = { userId: req.userId };
+    if (status && ['draft', 'scheduled', 'published'].includes(status as string)) {
+      where.status = status;
+    }
     const items = await Repurpose.findAll({
-      where: { userId: req.userId },
+      where,
       order: [['createdAt', 'DESC']],
     });
     res.json(items);
@@ -34,7 +39,7 @@ export const getById = async (req: AuthRequest, res: Response): Promise<void> =>
 
 export const create = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const { originalContent, sourcePlatform, targetPlatform, contentType, aiOutput } = req.body;
+    const { originalContent, sourcePlatform, targetPlatform, contentType, aiOutput, status, scheduledAt } = req.body;
     const item = await Repurpose.create({
       userId: req.userId!,
       originalContent,
@@ -42,6 +47,8 @@ export const create = async (req: AuthRequest, res: Response): Promise<void> => 
       targetPlatform,
       contentType,
       aiOutput,
+      status: status || 'draft',
+      scheduledAt: scheduledAt || null,
     });
     res.status(201).json(item);
   } catch (error) {
