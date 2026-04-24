@@ -14,6 +14,14 @@ class ApiService {
     return headers;
   }
 
+  private handleUnauthorized(response: Response) {
+    if (response.status === 401) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.href = '/login';
+    }
+  }
+
   async get(endpoint: string) {
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       method: 'GET',
@@ -21,6 +29,7 @@ class ApiService {
     });
 
     if (!response.ok) {
+      this.handleUnauthorized(response);
       const error = await response.json();
       throw { response: { data: error } };
     }
@@ -36,6 +45,7 @@ class ApiService {
     });
 
     if (!response.ok) {
+      this.handleUnauthorized(response);
       const error = await response.json();
       throw { response: { data: error } };
     }
@@ -51,6 +61,7 @@ class ApiService {
     });
 
     if (!response.ok) {
+      this.handleUnauthorized(response);
       const error = await response.json();
       throw { response: { data: error } };
     }
@@ -65,6 +76,7 @@ class ApiService {
     });
 
     if (!response.ok) {
+      this.handleUnauthorized(response);
       const error = await response.json();
       throw { response: { data: error } };
     }
@@ -180,6 +192,97 @@ export const FEATURES = [
     generateFields: ['topic', 'platform', 'hookType'],
     displayField: 'topic',
     secondaryField: 'hookType',
+  },
+  {
+    id: 'captions',
+    name: 'Caption Generator',
+    description: 'Generate engaging captions',
+    icon: '💬',
+    color: 'bg-indigo-500',
+    endpoint: '/captions',
+    fields: [
+      { name: 'videoTitle', label: 'Video Title', type: 'text', required: true },
+      { name: 'videoContent', label: 'Video Content/Description', type: 'textarea', required: true },
+      { name: 'platform', label: 'Platform', type: 'select', options: ['YouTube', 'TikTok', 'Instagram', 'Twitter', 'LinkedIn'], required: true },
+      { name: 'captionStyle', label: 'Caption Style', type: 'select', options: ['Casual', 'Professional', 'Funny', 'Inspirational', 'Educational', 'Storytelling'], required: true },
+      { name: 'includeEmojis', label: 'Include Emojis', type: 'checkbox', required: false },
+    ],
+    generateFields: ['videoTitle', 'videoContent', 'platform', 'captionStyle', 'includeEmojis'],
+    displayField: 'videoTitle',
+    secondaryField: 'platform',
+  },
+  {
+    id: 'ctas',
+    name: 'CTA Optimizer',
+    description: 'Optimize your call-to-actions',
+    icon: '🎯',
+    color: 'bg-orange-500',
+    endpoint: '/ctas',
+    fields: [
+      { name: 'videoTitle', label: 'Content Title', type: 'text', required: true },
+      { name: 'contentType', label: 'Content Type', type: 'select', options: ['Video', 'Short', 'Story', 'Post', 'Live Stream'], required: true },
+      { name: 'platform', label: 'Platform', type: 'select', options: ['YouTube', 'TikTok', 'Instagram', 'Twitter', 'LinkedIn'], required: true },
+      { name: 'goal', label: 'Goal', type: 'select', options: ['Subscribers', 'Engagement', 'Website Traffic', 'Sales', 'Brand Awareness', 'Community Building'], required: true },
+      { name: 'targetAction', label: 'Target Action', type: 'select', options: ['Subscribe', 'Like & Comment', 'Share', 'Click Link', 'Follow', 'Buy Now', 'Sign Up'], required: true },
+    ],
+    generateFields: ['videoTitle', 'contentType', 'platform', 'goal', 'targetAction'],
+    displayField: 'videoTitle',
+    secondaryField: 'goal',
+  },
+  {
+    id: 'viral-predictions',
+    name: 'Viral Predictor',
+    description: 'Predict viral potential',
+    icon: '🚀',
+    color: 'bg-gradient-to-r from-purple-500 to-pink-500',
+    endpoint: '/viral-predictions',
+    fields: [
+      { name: 'videoTitle', label: 'Video Title', type: 'text', required: true },
+      { name: 'videoDescription', label: 'Video Description', type: 'textarea', required: true },
+      { name: 'platform', label: 'Platform', type: 'select', options: ['YouTube', 'TikTok', 'Instagram', 'Twitter'], required: true },
+      { name: 'niche', label: 'Niche', type: 'text', required: true },
+      { name: 'targetAudience', label: 'Target Audience', type: 'text', required: false },
+    ],
+    generateFields: ['videoTitle', 'videoDescription', 'platform', 'niche', 'targetAudience'],
+    displayField: 'videoTitle',
+    secondaryField: 'niche',
+  },
+  {
+    id: 'video-summaries',
+    name: 'Video Summarizer',
+    description: 'Summarize video content',
+    icon: '📄',
+    color: 'bg-teal-500',
+    endpoint: '/video-summaries',
+    fields: [
+      { name: 'videoTitle', label: 'Video Title', type: 'text', required: true },
+      { name: 'videoUrl', label: 'Video URL (optional)', type: 'text', required: false },
+      { name: 'videoTranscript', label: 'Video Transcript/Content', type: 'textarea', required: true },
+      { name: 'summaryLength', label: 'Summary Length', type: 'select', options: ['Brief (1-2 sentences)', 'Short (1 paragraph)', 'Medium (2-3 paragraphs)', 'Detailed (full summary)'], required: true },
+      { name: 'includeKeyPoints', label: 'Include Key Points', type: 'checkbox', required: false },
+    ],
+    generateFields: ['videoTitle', 'videoTranscript', 'summaryLength', 'includeKeyPoints'],
+    displayField: 'videoTitle',
+    secondaryField: 'summaryLength',
+  },
+  {
+    id: 'podcast-transcripts',
+    name: 'Podcast Transcriber',
+    description: 'Transcribe and format podcasts',
+    icon: '🎙️',
+    color: 'bg-rose-500',
+    endpoint: '/podcast-transcripts',
+    fields: [
+      { name: 'podcastTitle', label: 'Podcast Title', type: 'text', required: true },
+      { name: 'podcastUrl', label: 'Podcast URL (optional)', type: 'text', required: false },
+      { name: 'audioContent', label: 'Audio Content/Notes', type: 'textarea', required: true },
+      { name: 'outputFormat', label: 'Output Format', type: 'select', options: ['Plain Text', 'Formatted with Headers', 'Blog Post Style', 'Social Media Ready'], required: true },
+      { name: 'includeTimestamps', label: 'Include Timestamps', type: 'checkbox', required: false },
+      { name: 'includeSpeakerLabels', label: 'Include Speaker Labels', type: 'checkbox', required: false },
+    ],
+    generateFields: ['podcastTitle', 'audioContent', 'outputFormat', 'includeTimestamps', 'includeSpeakerLabels'],
+    displayField: 'podcastTitle',
+    secondaryField: 'outputFormat',
   },
   {
     id: 'calendar',

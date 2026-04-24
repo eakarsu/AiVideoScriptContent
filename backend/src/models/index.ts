@@ -14,6 +14,12 @@ import Analytics from './Analytics';
 import Competitor from './Competitor';
 import Persona from './Persona';
 import Repurpose from './Repurpose';
+import Caption from './Caption';
+import Cta from './Cta';
+import ViralPrediction from './ViralPrediction';
+import VideoSummary from './VideoSummary';
+import PodcastTranscript from './PodcastTranscript';
+import ActivityLog from './ActivityLog';
 
 // Set up associations
 User.hasMany(Script, { foreignKey: 'userId', as: 'scripts' });
@@ -61,6 +67,24 @@ Persona.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 User.hasMany(Repurpose, { foreignKey: 'userId', as: 'repurposes' });
 Repurpose.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 
+User.hasMany(Caption, { foreignKey: 'userId', as: 'captions' });
+Caption.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
+User.hasMany(Cta, { foreignKey: 'userId', as: 'ctas' });
+Cta.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
+User.hasMany(ViralPrediction, { foreignKey: 'userId', as: 'viralPredictions' });
+ViralPrediction.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
+User.hasMany(VideoSummary, { foreignKey: 'userId', as: 'videoSummaries' });
+VideoSummary.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
+User.hasMany(PodcastTranscript, { foreignKey: 'userId', as: 'podcastTranscripts' });
+PodcastTranscript.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
+User.hasMany(ActivityLog, { foreignKey: 'userId', as: 'activityLogs' });
+ActivityLog.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
 export {
   User,
   Script,
@@ -78,4 +102,10 @@ export {
   Competitor,
   Persona,
   Repurpose,
+  Caption,
+  Cta,
+  ViralPrediction,
+  VideoSummary,
+  PodcastTranscript,
+  ActivityLog,
 };

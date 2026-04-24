@@ -3,6 +3,9 @@ import PageLayout from '../components/PageLayout';
 import CalendarView, { CalendarItem } from '../components/CalendarView';
 import Modal from '../components/Modal';
 import DraftPublishModal from '../components/DraftPublishModal';
+import { CardGridSkeleton } from '../components/Skeleton';
+import { useToast } from '../components/Toast';
+import { useConfirm } from '../components/ConfirmDialog';
 import { api, FEATURES } from '../services/api';
 
 interface ContentItem {
@@ -38,6 +41,9 @@ export default function CalendarPage() {
   const [loading, setLoading] = useState(true);
   const [selectedItem, setSelectedItem] = useState<ItemWithFeature | null>(null);
   const [showStatusModal, setShowStatusModal] = useState(false);
+
+  const { addToast } = useToast();
+  const confirm = useConfirm();
 
   useEffect(() => {
     fetchAllContent();
@@ -82,7 +88,7 @@ export default function CalendarPage() {
 
       setCalendarItems(calItems);
     } catch (error) {
-      console.error('Error fetching content:', error);
+      addToast('Failed to load calendar content', 'error');
     } finally {
       setLoading(false);
     }
@@ -106,9 +112,33 @@ export default function CalendarPage() {
         scheduledAt: newDate.toISOString(),
         status: 'scheduled',
       });
+      addToast('Item rescheduled', 'success');
       await fetchAllContent();
     } catch (error) {
-      console.error('Error updating item:', error);
+      addToast('Failed to reschedule item', 'error');
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!selectedItem) return;
+    const feature = FEATURES.find((f) => f.id === selectedItem.featureId);
+    if (!feature) return;
+
+    const ok = await confirm({
+      title: 'Delete Item',
+      message: 'Are you sure you want to delete this item? This action cannot be undone.',
+      confirmLabel: 'Delete',
+      variant: 'danger',
+    });
+    if (!ok) return;
+
+    try {
+      await api.delete(`${feature.endpoint}/${selectedItem.id}`);
+      addToast('Item deleted', 'success');
+      setSelectedItem(null);
+      await fetchAllContent();
+    } catch (error) {
+      addToast('Failed to delete item', 'error');
     }
   };
 
@@ -123,11 +153,12 @@ export default function CalendarPage() {
         status,
         scheduledAt,
       });
+      addToast('Status updated', 'success');
       await fetchAllContent();
       setSelectedItem(null);
       setShowStatusModal(false);
     } catch (error) {
-      console.error('Error updating status:', error);
+      addToast('Failed to update status', 'error');
       throw error;
     }
   };
@@ -138,15 +169,13 @@ export default function CalendarPage() {
     <PageLayout
       title="Content Calendar"
       subtitle="Schedule and manage your content"
-      icon="📅"
+      icon=""
     >
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Calendar */}
         <div className="lg:col-span-3">
           {loading ? (
-            <div className="bg-white rounded-xl shadow-sm p-8 text-center text-gray-500">
-              Loading calendar...
-            </div>
+            <CardGridSkeleton count={3} />
           ) : (
             <CalendarView
               items={calendarItems}
@@ -158,7 +187,7 @@ export default function CalendarPage() {
 
         {/* Sidebar - Unscheduled Items */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-xl shadow-sm p-4">
+          <div className="bg-white rounded-xl border border-gray-100 p-4" style={{ boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.04)' }}>
             <h3 className="font-semibold text-gray-900 mb-4">
               Unscheduled ({unscheduledItems.length})
             </h3>
@@ -190,7 +219,7 @@ export default function CalendarPage() {
           </div>
 
           {/* Legend */}
-          <div className="bg-white rounded-xl shadow-sm p-4 mt-4">
+          <div className="bg-white rounded-xl border border-gray-100 p-4 mt-4" style={{ boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.04)' }}>
             <h3 className="font-semibold text-gray-900 mb-3 text-sm">Content Types</h3>
             <div className="grid grid-cols-2 gap-2">
               {Object.entries(featureColors).slice(0, 6).map(([key, color]) => {
@@ -246,19 +275,27 @@ export default function CalendarPage() {
                 </div>
               </div>
             )}
-            <div className="flex justify-end gap-3 pt-4 border-t">
+            <div className="flex justify-between pt-4 border-t border-gray-100">
               <button
-                onClick={() => setSelectedItem(null)}
-                className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                onClick={handleDelete}
+                className="text-sm text-red-500 hover:text-red-700 font-medium transition-colors"
               >
-                Close
+                Delete
               </button>
-              <button
-                onClick={() => setShowStatusModal(true)}
-                className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700"
-              >
-                Change Status
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setSelectedItem(null)}
+                  className="btn-secondary text-sm"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={() => setShowStatusModal(true)}
+                  className="btn-primary text-sm"
+                >
+                  Change Status
+                </button>
+              </div>
             </div>
           </div>
         </Modal>

@@ -7,9 +7,11 @@ const router = Router();
 router.use(authMiddleware);
 
 router.get('/', controller.getAll);
-router.get('/:id', controller.getById);
 router.post('/', controller.create);
 router.post('/generate', controller.generate);
+router.post('/bulk-delete', controller.bulkDelete);
+router.post('/bulk-status', controller.bulkStatus);
+router.get('/:id', controller.getById);
 router.put('/:id', controller.update);
 router.delete('/:id', controller.remove);
 

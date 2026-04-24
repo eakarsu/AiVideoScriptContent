@@ -1,0 +1,2405 @@
+==========================================
+  AI Content Creator - Startup Script
+==========================================
+
+Step 1: Cleaning up existing processes...
+[0;32m[✓][0m Cleaned up ports 3000 and 3001
+
+Step 2: Checking PostgreSQL...
+[0;32m[✓][0m PostgreSQL is running
+
+Step 3: Setting up database...
+[0;32m[✓][0m Database 'ai_content_creator' ready
+
+Step 4: Installing dependencies...
+  Installing backend dependencies...
+
+up to date, audited 197 packages in 498ms
+
+25 packages are looking for funding
+  run `npm fund` for details
+
+2 vulnerabilities (1 low, 1 moderate)
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+[0;32m[✓][0m Backend dependencies installed
+  Installing frontend dependencies...
+
+up to date, audited 230 packages in 418ms
+
+28 packages are looking for funding
+  run `npm fund` for details
+
+2 moderate severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[0;32m[✓][0m Frontend dependencies installed
+
+Step 5: Seeding database with demo data...
+
+> ai-content-creator-backend@1.0.0 seed
+> ts-node src/seeds/index.ts
+
+🌱 Starting database seeding...
+Executing (default): DROP TABLE IF EXISTS "repurpose" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_repurpose_status";
+Executing (default): DROP TABLE IF EXISTS "personas" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_personas_status";
+Executing (default): DROP TABLE IF EXISTS "competitors" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_competitors_status";
+Executing (default): DROP TABLE IF EXISTS "analytics" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_analytics_status";
+Executing (default): DROP TABLE IF EXISTS "seo_optimizations" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_seo_optimizations_status";
+Executing (default): DROP TABLE IF EXISTS "ideas" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_ideas_status";
+Executing (default): DROP TABLE IF EXISTS "comments" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_comments_status";
+Executing (default): DROP TABLE IF EXISTS "trends" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_trends_status";
+Executing (default): DROP TABLE IF EXISTS "calendars" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_calendars_status";
+Executing (default): DROP TABLE IF EXISTS "hooks" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_hooks_status";
+Executing (default): DROP TABLE IF EXISTS "thumbnails" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_thumbnails_status";
+Executing (default): DROP TABLE IF EXISTS "hashtags" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_hashtags_status";
+Executing (default): DROP TABLE IF EXISTS "descriptions" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_descriptions_status";
+Executing (default): DROP TABLE IF EXISTS "titles" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_titles_status";
+Executing (default): DROP TABLE IF EXISTS "scripts" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_scripts_status";
+Executing (default): DROP TABLE IF EXISTS "users" CASCADE;
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'users' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'scripts' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'titles' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'descriptions' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'hashtags' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'thumbnails' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'hooks' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'calendars' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'trends' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'comments' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'ideas' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'seo_optimizations' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'analytics' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'competitors' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'personas' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): SELECT DISTINCT tc.constraint_name as constraint_name, tc.constraint_schema as constraint_schema, tc.constraint_catalog as constraint_catalog, tc.table_name as table_name,tc.table_schema as table_schema,tc.table_catalog as table_catalog,tc.initially_deferred as initially_deferred,tc.is_deferrable as is_deferrable,kcu.column_name as column_name,ccu.table_schema  AS referenced_table_schema,ccu.table_catalog  AS referenced_table_catalog,ccu.table_name  AS referenced_table_name,ccu.column_name AS referenced_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name = 'repurpose' AND tc.table_catalog = 'ai_content_creator'
+Executing (default): DROP TABLE IF EXISTS "users" CASCADE;
+Executing (default): DROP TABLE IF EXISTS "scripts" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_scripts_status";
+Executing (default): DROP TABLE IF EXISTS "titles" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_titles_status";
+Executing (default): DROP TABLE IF EXISTS "descriptions" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_descriptions_status";
+Executing (default): DROP TABLE IF EXISTS "hashtags" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_hashtags_status";
+Executing (default): DROP TABLE IF EXISTS "thumbnails" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_thumbnails_status";
+Executing (default): DROP TABLE IF EXISTS "hooks" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_hooks_status";
+Executing (default): DROP TABLE IF EXISTS "calendars" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_calendars_status";
+Executing (default): DROP TABLE IF EXISTS "trends" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_trends_status";
+Executing (default): DROP TABLE IF EXISTS "comments" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_comments_status";
+Executing (default): DROP TABLE IF EXISTS "ideas" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_ideas_status";
+Executing (default): DROP TABLE IF EXISTS "seo_optimizations" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_seo_optimizations_status";
+Executing (default): DROP TABLE IF EXISTS "analytics" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_analytics_status";
+Executing (default): DROP TABLE IF EXISTS "competitors" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_competitors_status";
+Executing (default): DROP TABLE IF EXISTS "personas" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_personas_status";
+Executing (default): DROP TABLE IF EXISTS "repurpose" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_repurpose_status";
+Executing (default): DROP TABLE IF EXISTS "users" CASCADE;
+Executing (default): CREATE TABLE IF NOT EXISTS "users" ("id"  SERIAL , "email" VARCHAR(255) NOT NULL UNIQUE, "password" VARCHAR(255) NOT NULL, "name" VARCHAR(255) NOT NULL, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'users' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): DROP TABLE IF EXISTS "scripts" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_scripts_status";
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_scripts_status' GROUP BY 1
+Executing (default): DROP TYPE IF EXISTS "public"."enum_scripts_status"; DO 'BEGIN CREATE TYPE "public"."enum_scripts_status" AS ENUM(''draft'', ''scheduled'', ''published''); EXCEPTION WHEN duplicate_object THEN null; END';
+Executing (default): WITH ranges AS (  SELECT pg_range.rngtypid, pg_type.typname AS rngtypname,         pg_type.typarray AS rngtyparray, pg_range.rngsubtype    FROM pg_range LEFT OUTER JOIN pg_type ON pg_type.oid = pg_range.rngtypid)SELECT pg_type.typname, pg_type.typtype, pg_type.oid, pg_type.typarray,       ranges.rngtypname, ranges.rngtypid, ranges.rngtyparray  FROM pg_type LEFT OUTER JOIN ranges ON pg_type.oid = ranges.rngsubtype WHERE (pg_type.typtype IN('b', 'e'));
+Executing (default): CREATE TABLE IF NOT EXISTS "scripts" ("id"  SERIAL , "user_id" INTEGER NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "title" VARCHAR(255) NOT NULL, "topic" VARCHAR(500) NOT NULL, "platform" VARCHAR(50) NOT NULL, "duration" VARCHAR(50) NOT NULL, "tone" VARCHAR(50) NOT NULL, "ai_output" TEXT NOT NULL, "status" "public"."enum_scripts_status" NOT NULL DEFAULT 'draft', "scheduled_at" TIMESTAMP WITH TIME ZONE, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'scripts' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): DROP TABLE IF EXISTS "titles" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_titles_status";
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_titles_status' GROUP BY 1
+Executing (default): DROP TYPE IF EXISTS "public"."enum_titles_status"; DO 'BEGIN CREATE TYPE "public"."enum_titles_status" AS ENUM(''draft'', ''scheduled'', ''published''); EXCEPTION WHEN duplicate_object THEN null; END';
+Executing (default): WITH ranges AS (  SELECT pg_range.rngtypid, pg_type.typname AS rngtypname,         pg_type.typarray AS rngtyparray, pg_range.rngsubtype    FROM pg_range LEFT OUTER JOIN pg_type ON pg_type.oid = pg_range.rngtypid)SELECT pg_type.typname, pg_type.typtype, pg_type.oid, pg_type.typarray,       ranges.rngtypname, ranges.rngtypid, ranges.rngtyparray  FROM pg_type LEFT OUTER JOIN ranges ON pg_type.oid = ranges.rngsubtype WHERE (pg_type.typtype IN('b', 'e'));
+Executing (default): CREATE TABLE IF NOT EXISTS "titles" ("id"  SERIAL , "user_id" INTEGER NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "topic" VARCHAR(500) NOT NULL, "platform" VARCHAR(50) NOT NULL, "style" VARCHAR(100) NOT NULL, "keywords" VARCHAR(500), "ai_output" TEXT NOT NULL, "status" "public"."enum_titles_status" NOT NULL DEFAULT 'draft', "scheduled_at" TIMESTAMP WITH TIME ZONE, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'titles' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): DROP TABLE IF EXISTS "descriptions" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_descriptions_status";
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_descriptions_status' GROUP BY 1
+Executing (default): DROP TYPE IF EXISTS "public"."enum_descriptions_status"; DO 'BEGIN CREATE TYPE "public"."enum_descriptions_status" AS ENUM(''draft'', ''scheduled'', ''published''); EXCEPTION WHEN duplicate_object THEN null; END';
+Executing (default): WITH ranges AS (  SELECT pg_range.rngtypid, pg_type.typname AS rngtypname,         pg_type.typarray AS rngtyparray, pg_range.rngsubtype    FROM pg_range LEFT OUTER JOIN pg_type ON pg_type.oid = pg_range.rngtypid)SELECT pg_type.typname, pg_type.typtype, pg_type.oid, pg_type.typarray,       ranges.rngtypname, ranges.rngtypid, ranges.rngtyparray  FROM pg_type LEFT OUTER JOIN ranges ON pg_type.oid = ranges.rngsubtype WHERE (pg_type.typtype IN('b', 'e'));
+Executing (default): CREATE TABLE IF NOT EXISTS "descriptions" ("id"  SERIAL , "user_id" INTEGER NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "video_title" VARCHAR(255) NOT NULL, "topic" VARCHAR(500) NOT NULL, "platform" VARCHAR(50) NOT NULL, "include_links" BOOLEAN DEFAULT true, "include_cta" BOOLEAN DEFAULT true, "ai_output" TEXT NOT NULL, "status" "public"."enum_descriptions_status" NOT NULL DEFAULT 'draft', "scheduled_at" TIMESTAMP WITH TIME ZONE, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'descriptions' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): DROP TABLE IF EXISTS "hashtags" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_hashtags_status";
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_hashtags_status' GROUP BY 1
+Executing (default): DROP TYPE IF EXISTS "public"."enum_hashtags_status"; DO 'BEGIN CREATE TYPE "public"."enum_hashtags_status" AS ENUM(''draft'', ''scheduled'', ''published''); EXCEPTION WHEN duplicate_object THEN null; END';
+Executing (default): WITH ranges AS (  SELECT pg_range.rngtypid, pg_type.typname AS rngtypname,         pg_type.typarray AS rngtyparray, pg_range.rngsubtype    FROM pg_range LEFT OUTER JOIN pg_type ON pg_type.oid = pg_range.rngtypid)SELECT pg_type.typname, pg_type.typtype, pg_type.oid, pg_type.typarray,       ranges.rngtypname, ranges.rngtypid, ranges.rngtyparray  FROM pg_type LEFT OUTER JOIN ranges ON pg_type.oid = ranges.rngsubtype WHERE (pg_type.typtype IN('b', 'e'));
+Executing (default): CREATE TABLE IF NOT EXISTS "hashtags" ("id"  SERIAL , "user_id" INTEGER NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "topic" VARCHAR(500) NOT NULL, "platform" VARCHAR(50) NOT NULL, "niche" VARCHAR(100) NOT NULL, "count" INTEGER DEFAULT 10, "ai_output" TEXT NOT NULL, "status" "public"."enum_hashtags_status" NOT NULL DEFAULT 'draft', "scheduled_at" TIMESTAMP WITH TIME ZONE, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'hashtags' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): DROP TABLE IF EXISTS "thumbnails" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_thumbnails_status";
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_thumbnails_status' GROUP BY 1
+Executing (default): DROP TYPE IF EXISTS "public"."enum_thumbnails_status"; DO 'BEGIN CREATE TYPE "public"."enum_thumbnails_status" AS ENUM(''draft'', ''scheduled'', ''published''); EXCEPTION WHEN duplicate_object THEN null; END';
+Executing (default): WITH ranges AS (  SELECT pg_range.rngtypid, pg_type.typname AS rngtypname,         pg_type.typarray AS rngtyparray, pg_range.rngsubtype    FROM pg_range LEFT OUTER JOIN pg_type ON pg_type.oid = pg_range.rngtypid)SELECT pg_type.typname, pg_type.typtype, pg_type.oid, pg_type.typarray,       ranges.rngtypname, ranges.rngtypid, ranges.rngtyparray  FROM pg_type LEFT OUTER JOIN ranges ON pg_type.oid = ranges.rngsubtype WHERE (pg_type.typtype IN('b', 'e'));
+Executing (default): CREATE TABLE IF NOT EXISTS "thumbnails" ("id"  SERIAL , "user_id" INTEGER NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "video_title" VARCHAR(255) NOT NULL, "topic" VARCHAR(500) NOT NULL, "style" VARCHAR(100) NOT NULL, "color_scheme" VARCHAR(100), "ai_output" TEXT NOT NULL, "status" "public"."enum_thumbnails_status" NOT NULL DEFAULT 'draft', "scheduled_at" TIMESTAMP WITH TIME ZONE, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'thumbnails' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): DROP TABLE IF EXISTS "hooks" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_hooks_status";
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_hooks_status' GROUP BY 1
+Executing (default): DROP TYPE IF EXISTS "public"."enum_hooks_status"; DO 'BEGIN CREATE TYPE "public"."enum_hooks_status" AS ENUM(''draft'', ''scheduled'', ''published''); EXCEPTION WHEN duplicate_object THEN null; END';
+Executing (default): WITH ranges AS (  SELECT pg_range.rngtypid, pg_type.typname AS rngtypname,         pg_type.typarray AS rngtyparray, pg_range.rngsubtype    FROM pg_range LEFT OUTER JOIN pg_type ON pg_type.oid = pg_range.rngtypid)SELECT pg_type.typname, pg_type.typtype, pg_type.oid, pg_type.typarray,       ranges.rngtypname, ranges.rngtypid, ranges.rngtyparray  FROM pg_type LEFT OUTER JOIN ranges ON pg_type.oid = ranges.rngsubtype WHERE (pg_type.typtype IN('b', 'e'));
+Executing (default): CREATE TABLE IF NOT EXISTS "hooks" ("id"  SERIAL , "user_id" INTEGER NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "topic" VARCHAR(500) NOT NULL, "platform" VARCHAR(50) NOT NULL, "hook_type" VARCHAR(100) NOT NULL, "target_emotion" VARCHAR(100), "ai_output" TEXT NOT NULL, "status" "public"."enum_hooks_status" NOT NULL DEFAULT 'draft', "scheduled_at" TIMESTAMP WITH TIME ZONE, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'hooks' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): DROP TABLE IF EXISTS "calendars" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_calendars_status";
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_calendars_status' GROUP BY 1
+Executing (default): DROP TYPE IF EXISTS "public"."enum_calendars_status"; DO 'BEGIN CREATE TYPE "public"."enum_calendars_status" AS ENUM(''draft'', ''scheduled'', ''published''); EXCEPTION WHEN duplicate_object THEN null; END';
+Executing (default): WITH ranges AS (  SELECT pg_range.rngtypid, pg_type.typname AS rngtypname,         pg_type.typarray AS rngtyparray, pg_range.rngsubtype    FROM pg_range LEFT OUTER JOIN pg_type ON pg_type.oid = pg_range.rngtypid)SELECT pg_type.typname, pg_type.typtype, pg_type.oid, pg_type.typarray,       ranges.rngtypname, ranges.rngtypid, ranges.rngtyparray  FROM pg_type LEFT OUTER JOIN ranges ON pg_type.oid = ranges.rngsubtype WHERE (pg_type.typtype IN('b', 'e'));
+Executing (default): CREATE TABLE IF NOT EXISTS "calendars" ("id"  SERIAL , "user_id" INTEGER NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "niche" VARCHAR(200) NOT NULL, "platform" VARCHAR(50) NOT NULL, "frequency" VARCHAR(50) NOT NULL, "duration" VARCHAR(50) NOT NULL, "goals" TEXT, "ai_output" TEXT NOT NULL, "status" "public"."enum_calendars_status" NOT NULL DEFAULT 'draft', "scheduled_at" TIMESTAMP WITH TIME ZONE, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'calendars' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): DROP TABLE IF EXISTS "trends" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_trends_status";
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_trends_status' GROUP BY 1
+Executing (default): DROP TYPE IF EXISTS "public"."enum_trends_status"; DO 'BEGIN CREATE TYPE "public"."enum_trends_status" AS ENUM(''draft'', ''scheduled'', ''published''); EXCEPTION WHEN duplicate_object THEN null; END';
+Executing (default): WITH ranges AS (  SELECT pg_range.rngtypid, pg_type.typname AS rngtypname,         pg_type.typarray AS rngtyparray, pg_range.rngsubtype    FROM pg_range LEFT OUTER JOIN pg_type ON pg_type.oid = pg_range.rngtypid)SELECT pg_type.typname, pg_type.typtype, pg_type.oid, pg_type.typarray,       ranges.rngtypname, ranges.rngtypid, ranges.rngtyparray  FROM pg_type LEFT OUTER JOIN ranges ON pg_type.oid = ranges.rngsubtype WHERE (pg_type.typtype IN('b', 'e'));
+Executing (default): CREATE TABLE IF NOT EXISTS "trends" ("id"  SERIAL , "user_id" INTEGER NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "niche" VARCHAR(200) NOT NULL, "platform" VARCHAR(50) NOT NULL, "timeframe" VARCHAR(50) NOT NULL, "region" VARCHAR(100), "ai_output" TEXT NOT NULL, "status" "public"."enum_trends_status" NOT NULL DEFAULT 'draft', "scheduled_at" TIMESTAMP WITH TIME ZONE, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'trends' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): DROP TABLE IF EXISTS "comments" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_comments_status";
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_comments_status' GROUP BY 1
+Executing (default): DROP TYPE IF EXISTS "public"."enum_comments_status"; DO 'BEGIN CREATE TYPE "public"."enum_comments_status" AS ENUM(''draft'', ''scheduled'', ''published''); EXCEPTION WHEN duplicate_object THEN null; END';
+Executing (default): WITH ranges AS (  SELECT pg_range.rngtypid, pg_type.typname AS rngtypname,         pg_type.typarray AS rngtyparray, pg_range.rngsubtype    FROM pg_range LEFT OUTER JOIN pg_type ON pg_type.oid = pg_range.rngtypid)SELECT pg_type.typname, pg_type.typtype, pg_type.oid, pg_type.typarray,       ranges.rngtypname, ranges.rngtypid, ranges.rngtyparray  FROM pg_type LEFT OUTER JOIN ranges ON pg_type.oid = ranges.rngsubtype WHERE (pg_type.typtype IN('b', 'e'));
+Executing (default): CREATE TABLE IF NOT EXISTS "comments" ("id"  SERIAL , "user_id" INTEGER NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "original_comment" TEXT NOT NULL, "context" VARCHAR(500), "tone" VARCHAR(50) NOT NULL, "platform" VARCHAR(50) NOT NULL, "ai_output" TEXT NOT NULL, "status" "public"."enum_comments_status" NOT NULL DEFAULT 'draft', "scheduled_at" TIMESTAMP WITH TIME ZONE, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'comments' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): DROP TABLE IF EXISTS "ideas" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_ideas_status";
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_ideas_status' GROUP BY 1
+Executing (default): DROP TYPE IF EXISTS "public"."enum_ideas_status"; DO 'BEGIN CREATE TYPE "public"."enum_ideas_status" AS ENUM(''draft'', ''scheduled'', ''published''); EXCEPTION WHEN duplicate_object THEN null; END';
+Executing (default): WITH ranges AS (  SELECT pg_range.rngtypid, pg_type.typname AS rngtypname,         pg_type.typarray AS rngtyparray, pg_range.rngsubtype    FROM pg_range LEFT OUTER JOIN pg_type ON pg_type.oid = pg_range.rngtypid)SELECT pg_type.typname, pg_type.typtype, pg_type.oid, pg_type.typarray,       ranges.rngtypname, ranges.rngtypid, ranges.rngtyparray  FROM pg_type LEFT OUTER JOIN ranges ON pg_type.oid = ranges.rngsubtype WHERE (pg_type.typtype IN('b', 'e'));
+Executing (default): CREATE TABLE IF NOT EXISTS "ideas" ("id"  SERIAL , "user_id" INTEGER NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "niche" VARCHAR(200) NOT NULL, "platform" VARCHAR(50) NOT NULL, "content_type" VARCHAR(100) NOT NULL, "target_audience" VARCHAR(200), "ai_output" TEXT NOT NULL, "status" "public"."enum_ideas_status" NOT NULL DEFAULT 'draft', "scheduled_at" TIMESTAMP WITH TIME ZONE, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'ideas' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): DROP TABLE IF EXISTS "seo_optimizations" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_seo_optimizations_status";
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_seo_optimizations_status' GROUP BY 1
+Executing (default): DROP TYPE IF EXISTS "public"."enum_seo_optimizations_status"; DO 'BEGIN CREATE TYPE "public"."enum_seo_optimizations_status" AS ENUM(''draft'', ''scheduled'', ''published''); EXCEPTION WHEN duplicate_object THEN null; END';
+Executing (default): WITH ranges AS (  SELECT pg_range.rngtypid, pg_type.typname AS rngtypname,         pg_type.typarray AS rngtyparray, pg_range.rngsubtype    FROM pg_range LEFT OUTER JOIN pg_type ON pg_type.oid = pg_range.rngtypid)SELECT pg_type.typname, pg_type.typtype, pg_type.oid, pg_type.typarray,       ranges.rngtypname, ranges.rngtypid, ranges.rngtyparray  FROM pg_type LEFT OUTER JOIN ranges ON pg_type.oid = ranges.rngsubtype WHERE (pg_type.typtype IN('b', 'e'));
+Executing (default): CREATE TABLE IF NOT EXISTS "seo_optimizations" ("id"  SERIAL , "user_id" INTEGER NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "video_title" VARCHAR(255) NOT NULL, "description" TEXT, "platform" VARCHAR(50) NOT NULL, "target_keywords" VARCHAR(500), "ai_output" TEXT NOT NULL, "status" "public"."enum_seo_optimizations_status" NOT NULL DEFAULT 'draft', "scheduled_at" TIMESTAMP WITH TIME ZONE, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'seo_optimizations' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): DROP TABLE IF EXISTS "analytics" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_analytics_status";
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_analytics_status' GROUP BY 1
+Executing (default): DROP TYPE IF EXISTS "public"."enum_analytics_status"; DO 'BEGIN CREATE TYPE "public"."enum_analytics_status" AS ENUM(''draft'', ''scheduled'', ''published''); EXCEPTION WHEN duplicate_object THEN null; END';
+Executing (default): WITH ranges AS (  SELECT pg_range.rngtypid, pg_type.typname AS rngtypname,         pg_type.typarray AS rngtyparray, pg_range.rngsubtype    FROM pg_range LEFT OUTER JOIN pg_type ON pg_type.oid = pg_range.rngtypid)SELECT pg_type.typname, pg_type.typtype, pg_type.oid, pg_type.typarray,       ranges.rngtypname, ranges.rngtypid, ranges.rngtyparray  FROM pg_type LEFT OUTER JOIN ranges ON pg_type.oid = ranges.rngsubtype WHERE (pg_type.typtype IN('b', 'e'));
+Executing (default): CREATE TABLE IF NOT EXISTS "analytics" ("id"  SERIAL , "user_id" INTEGER NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "platform" VARCHAR(50) NOT NULL, "metric_type" VARCHAR(100) NOT NULL, "data_input" TEXT NOT NULL, "timeframe" VARCHAR(50) NOT NULL, "ai_output" TEXT NOT NULL, "status" "public"."enum_analytics_status" NOT NULL DEFAULT 'draft', "scheduled_at" TIMESTAMP WITH TIME ZONE, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'analytics' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): DROP TABLE IF EXISTS "competitors" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_competitors_status";
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_competitors_status' GROUP BY 1
+Executing (default): DROP TYPE IF EXISTS "public"."enum_competitors_status"; DO 'BEGIN CREATE TYPE "public"."enum_competitors_status" AS ENUM(''draft'', ''scheduled'', ''published''); EXCEPTION WHEN duplicate_object THEN null; END';
+Executing (default): WITH ranges AS (  SELECT pg_range.rngtypid, pg_type.typname AS rngtypname,         pg_type.typarray AS rngtyparray, pg_range.rngsubtype    FROM pg_range LEFT OUTER JOIN pg_type ON pg_type.oid = pg_range.rngtypid)SELECT pg_type.typname, pg_type.typtype, pg_type.oid, pg_type.typarray,       ranges.rngtypname, ranges.rngtypid, ranges.rngtyparray  FROM pg_type LEFT OUTER JOIN ranges ON pg_type.oid = ranges.rngsubtype WHERE (pg_type.typtype IN('b', 'e'));
+Executing (default): CREATE TABLE IF NOT EXISTS "competitors" ("id"  SERIAL , "user_id" INTEGER NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "competitor_name" VARCHAR(255) NOT NULL, "competitor_url" VARCHAR(500), "platform" VARCHAR(50) NOT NULL, "analysis_type" VARCHAR(100) NOT NULL, "ai_output" TEXT NOT NULL, "status" "public"."enum_competitors_status" NOT NULL DEFAULT 'draft', "scheduled_at" TIMESTAMP WITH TIME ZONE, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'competitors' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): DROP TABLE IF EXISTS "personas" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_personas_status";
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_personas_status' GROUP BY 1
+Executing (default): DROP TYPE IF EXISTS "public"."enum_personas_status"; DO 'BEGIN CREATE TYPE "public"."enum_personas_status" AS ENUM(''draft'', ''scheduled'', ''published''); EXCEPTION WHEN duplicate_object THEN null; END';
+Executing (default): WITH ranges AS (  SELECT pg_range.rngtypid, pg_type.typname AS rngtypname,         pg_type.typarray AS rngtyparray, pg_range.rngsubtype    FROM pg_range LEFT OUTER JOIN pg_type ON pg_type.oid = pg_range.rngtypid)SELECT pg_type.typname, pg_type.typtype, pg_type.oid, pg_type.typarray,       ranges.rngtypname, ranges.rngtypid, ranges.rngtyparray  FROM pg_type LEFT OUTER JOIN ranges ON pg_type.oid = ranges.rngsubtype WHERE (pg_type.typtype IN('b', 'e'));
+Executing (default): CREATE TABLE IF NOT EXISTS "personas" ("id"  SERIAL , "user_id" INTEGER NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "niche" VARCHAR(200) NOT NULL, "platform" VARCHAR(50) NOT NULL, "demographics" TEXT, "interests" TEXT, "ai_output" TEXT NOT NULL, "status" "public"."enum_personas_status" NOT NULL DEFAULT 'draft', "scheduled_at" TIMESTAMP WITH TIME ZONE, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'personas' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): DROP TABLE IF EXISTS "repurpose" CASCADE;
+Executing (default): DROP TYPE IF EXISTS "public"."enum_repurpose_status";
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_repurpose_status' GROUP BY 1
+Executing (default): DROP TYPE IF EXISTS "public"."enum_repurpose_status"; DO 'BEGIN CREATE TYPE "public"."enum_repurpose_status" AS ENUM(''draft'', ''scheduled'', ''published''); EXCEPTION WHEN duplicate_object THEN null; END';
+Executing (default): WITH ranges AS (  SELECT pg_range.rngtypid, pg_type.typname AS rngtypname,         pg_type.typarray AS rngtyparray, pg_range.rngsubtype    FROM pg_range LEFT OUTER JOIN pg_type ON pg_type.oid = pg_range.rngtypid)SELECT pg_type.typname, pg_type.typtype, pg_type.oid, pg_type.typarray,       ranges.rngtypname, ranges.rngtypid, ranges.rngtyparray  FROM pg_type LEFT OUTER JOIN ranges ON pg_type.oid = ranges.rngsubtype WHERE (pg_type.typtype IN('b', 'e'));
+Executing (default): CREATE TABLE IF NOT EXISTS "repurpose" ("id"  SERIAL , "user_id" INTEGER NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "original_content" TEXT NOT NULL, "source_platform" VARCHAR(50) NOT NULL, "target_platform" VARCHAR(50) NOT NULL, "content_type" VARCHAR(100) NOT NULL, "ai_output" TEXT NOT NULL, "status" "public"."enum_repurpose_status" NOT NULL DEFAULT 'draft', "scheduled_at" TIMESTAMP WITH TIME ZONE, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'repurpose' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+✅ Database synchronized
+Executing (default): INSERT INTO "users" ("id","email","password","name","created_at","updated_at") VALUES (DEFAULT,$1,$2,$3,$4,$5) RETURNING "id","email","password","name","created_at","updated_at";
+✅ Demo user created
+Executing (default): INSERT INTO "scripts" ("id","user_id","title","topic","platform","duration","tone","ai_output","status","created_at","updated_at") VALUES (DEFAULT,1,'Morning Routine Vlog','My productive morning routine as a content creator','YouTube','10 minutes','Casual and relatable','**Video Script: Morning Routine**
+
+[INTRO - 0:00]
+Hook: "What if waking up at 5 AM actually changed your life?"
+
+[MAIN CONTENT]
+1. Wake up routine
+2. Meditation practice
+3. Content planning session
+4. Breakfast and journaling
+
+[OUTRO]
+CTA: Subscribe for more productivity tips!','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00'),(DEFAULT,1,'Tech Review: iPhone 15','Comprehensive review of the new iPhone 15 Pro Max','YouTube','15 minutes','Professional and informative','**Tech Review Script**
+
+[INTRO]
+Hook: "Is this the best iPhone ever made?"
+
+[SECTIONS]
+1. Unboxing experience
+2. Design and build quality
+3. Camera deep dive
+4. Performance benchmarks
+5. Battery life test
+
+[CONCLUSION]
+Final verdict and recommendations','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00'),(DEFAULT,1,'Travel Vlog: Tokyo','First time in Tokyo - hidden gems and local food','YouTube','20 minutes','Adventurous and excited','**Tokyo Travel Vlog**
+
+[DAY 1]
+- Arrival and first impressions
+- Shibuya crossing experience
+- Late night ramen hunt
+
+[DAY 2]
+- Hidden temples
+- Local market exploration
+- Street food tour','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00'),(DEFAULT,1,'Cooking Tutorial: Pasta','How to make restaurant-quality pasta at home','YouTube','12 minutes','Friendly and instructional','**Pasta Tutorial Script**
+
+[INGREDIENTS]
+List all ingredients with measurements
+
+[STEPS]
+1. Making fresh pasta dough
+2. Rolling and cutting
+3. Sauce preparation
+4. Final assembly
+
+[TIPS]
+Pro tips for perfect pasta every time','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00'),(DEFAULT,1,'Fitness Challenge','30-day fitness transformation challenge','TikTok','60 seconds','Motivational and energetic','**Fitness Challenge Hook**
+
+Day 1: "I''m starting a 30-day challenge..."
+
+Day 15: Progress update with metrics
+
+Day 30: Final transformation reveal
+
+CTA: Join the challenge!','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00'),(DEFAULT,1,'Study With Me','Real-time study session for productivity','YouTube','2 hours','Calm and focused','**Study Session Format**
+
+[INTRO - 2 min]
+Session goals and timer setup
+
+[POMODORO SESSIONS]
+4x 25-minute focus blocks
+5-minute breaks between
+
+[OUTRO]
+Session recap and encouragement','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00'),(DEFAULT,1,'Gaming Stream Highlights','Best moments from recent gaming streams','YouTube','8 minutes','Fun and entertaining','**Gaming Highlights Script**
+
+[INTRO]
+Quick montage of epic moments
+
+[CLIPS]
+1. Clutch plays
+2. Funny fails
+3. Chat interactions
+4. Victory moments
+
+[OUTRO]
+Stream schedule and subscribe reminder','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00'),(DEFAULT,1,'Budget Tips','How I save $500 every month','TikTok','90 seconds','Practical and helpful','**Money Saving Tips**
+
+Tip 1: Track every expense
+Tip 2: 50/30/20 budget rule
+Tip 3: Cancel unused subscriptions
+Tip 4: Meal prep Sundays
+Tip 5: No-spend weekends
+
+Total savings: $500/month!','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00'),(DEFAULT,1,'Room Tour 2024','Complete tour of my content creation setup','YouTube','18 minutes','Excited and detailed','**Room Tour Script**
+
+[INTRO]
+Overview of the space
+
+[SECTIONS]
+1. Desk setup and monitors
+2. Camera and lighting gear
+3. Audio equipment
+4. Storage and organization
+5. Comfort items
+
+[TOTAL COST]
+Breakdown of investment','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00'),(DEFAULT,1,'Day in My Life','Realistic day as a full-time content creator','YouTube','15 minutes','Authentic and relatable','**Day in My Life Vlog**
+
+[MORNING]
+6:00 AM - Wake up
+7:00 AM - Content planning
+8:00 AM - Filming
+
+[AFTERNOON]
+12:00 PM - Editing
+3:00 PM - Social media
+
+[EVENING]
+Wind down routine','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00'),(DEFAULT,1,'Q&A Video','Answering your most asked questions','YouTube','25 minutes','Personal and engaging','**Q&A Script**
+
+[INTRO]
+Thank fans for questions
+
+[QUESTIONS]
+1. How did you start?
+2. What camera do you use?
+3. How do you stay motivated?
+4. Advice for beginners?
+5. Future plans?
+
+[OUTRO]
+Submit more questions for next time','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00'),(DEFAULT,1,'Storytime: My Journey','How I became a full-time content creator','YouTube','22 minutes','Inspiring and honest','**Storytime Script**
+
+[BEGINNING]
+Life before content creation
+
+[TURNING POINT]
+The moment everything changed
+
+[STRUGGLES]
+Challenges and failures
+
+[SUCCESS]
+Breakthrough moments
+
+[LESSONS]
+What I learned along the way','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00'),(DEFAULT,1,'Product Haul','Amazon favorites under $50','TikTok','3 minutes','Enthusiastic and honest','**Product Haul Script**
+
+[INTRO]
+"These Amazon finds changed my life"
+
+[PRODUCTS]
+1. LED lights - $15
+2. Desk organizer - $20
+3. Ring light - $30
+4. Microphone - $45
+5. Tripod - $25
+
+[LINKS]
+All links in bio!','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00'),(DEFAULT,1,'Behind the Scenes','What filming a video really looks like','YouTube','10 minutes','Raw and authentic','**BTS Script**
+
+[PRE-PRODUCTION]
+Research and scripting
+
+[PRODUCTION]
+Actual filming process
+Bloopers and retakes
+
+[POST-PRODUCTION]
+Editing workflow
+Thumbnail creation
+
+[REALITY]
+The parts nobody shows','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00'),(DEFAULT,1,'Reaction Video','Reacting to viral videos in my niche','YouTube','12 minutes','Entertaining and insightful','**Reaction Video Script**
+
+[INTRO]
+What we''re watching today
+
+[REACTIONS]
+Video 1: Commentary
+Video 2: Analysis
+Video 3: Thoughts
+
+[DISCUSSION]
+Key takeaways and lessons','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00'),(DEFAULT,1,'Tutorial: Video Editing','Complete guide to editing videos for beginners','YouTube','30 minutes','Educational and patient','**Editing Tutorial Script**
+
+[BASICS]
+1. Software overview
+2. Importing footage
+3. Timeline basics
+
+[INTERMEDIATE]
+4. Cuts and transitions
+5. Color correction
+6. Audio editing
+
+[ADVANCED]
+7. Effects and graphics
+8. Export settings','draft','2026-01-26 12:07:41.137 +00:00','2026-01-26 12:07:41.137 +00:00') RETURNING "id","user_id","title","topic","platform","duration","tone","ai_output","status","scheduled_at","created_at","updated_at";
+✅ Scripts seeded
+Executing (default): INSERT INTO "titles" ("id","user_id","topic","platform","style","keywords","ai_output","status","created_at","updated_at") VALUES (DEFAULT,1,'Morning routine productivity','YouTube','Clickbait','morning routine, productivity, wake up early','1. "I Woke Up at 5 AM for 30 Days - Here''s What Happened"
+2. "The Morning Routine That Changed EVERYTHING"
+3. "Why Successful People Wake Up at 5 AM (The Truth)"
+4. "My $0 Morning Routine That Made Me Productive"
+5. "Stop Waking Up Like This (Do This Instead)"','draft','2026-01-26 12:07:41.142 +00:00','2026-01-26 12:07:41.142 +00:00'),(DEFAULT,1,'iPhone 15 review','YouTube','Professional','iPhone 15, tech review, Apple','1. "iPhone 15 Pro Max: 30 Days Later - Honest Review"
+2. "iPhone 15: Everything You Need to Know Before Buying"
+3. "Is iPhone 15 Worth the Upgrade? Complete Analysis"
+4. "iPhone 15 vs 14 Pro: The Definitive Comparison"
+5. "5 Things Nobody Tells You About iPhone 15"','draft','2026-01-26 12:07:41.142 +00:00','2026-01-26 12:07:41.142 +00:00'),(DEFAULT,1,'Budget travel tips','TikTok','Casual','travel, budget, tips','1. "How I Travel for FREE (Real Tips)"
+2. "Travel Hack That Saved Me $1000"
+3. "Stop Wasting Money on Travel"
+4. "POV: You Learned This Travel Hack"
+5. "Rich People Don''t Want You to Know This"','draft','2026-01-26 12:07:41.142 +00:00','2026-01-26 12:07:41.142 +00:00'),(DEFAULT,1,'Home workout routine','YouTube','Motivational','workout, fitness, home exercise','1. "Get Fit in 30 Days - No Gym Required"
+2. "The Only Home Workout You''ll Ever Need"
+3. "I Did 100 Push-ups Every Day for a Month"
+4. "Transform Your Body at Home (Free Workout)"
+5. "No Excuses: 20-Minute Full Body Workout"','draft','2026-01-26 12:07:41.142 +00:00','2026-01-26 12:07:41.142 +00:00'),(DEFAULT,1,'Cooking pasta','YouTube','Educational','cooking, pasta, Italian food','1. "Restaurant Chefs Don''t Want You to See This"
+2. "The Perfect Pasta in Under 15 Minutes"
+3. "Why Your Pasta Tastes Wrong (Fix This)"
+4. "Italian Grandma Teaches Me Real Pasta"
+5. "Michelin Star Pasta at Home"','draft','2026-01-26 12:07:41.142 +00:00','2026-01-26 12:07:41.142 +00:00'),(DEFAULT,1,'Makeup tutorial','TikTok','Trendy','makeup, beauty, tutorial','1. "5-Minute Makeup That Looks Professional"
+2. "This Drugstore Product Changed My Life"
+3. "POV: You Finally Found the Perfect Foundation"
+4. "Makeup Artists HATE This Trick"
+5. "Get Ready With Me: Date Night Edition"','draft','2026-01-26 12:07:41.142 +00:00','2026-01-26 12:07:41.142 +00:00'),(DEFAULT,1,'Study tips','YouTube','Helpful','study, productivity, students','1. "How I Studied Less and Got Better Grades"
+2. "The Study Method That Changed My Life"
+3. "Stop Making These Study Mistakes"
+4. "Study With Me: 3 Hour Session"
+5. "How to Remember Everything You Study"','draft','2026-01-26 12:07:41.142 +00:00','2026-01-26 12:07:41.142 +00:00'),(DEFAULT,1,'Gaming setup','YouTube','Enthusiastic','gaming, setup, PC','1. "My Dream Gaming Setup Tour 2024"
+2. "Building the Ultimate Gaming PC on a Budget"
+3. "This $500 Setup Beats $5000 Builds"
+4. "Gaming Setup Makeover: Before vs After"
+5. "5 Must-Have Gaming Accessories"','draft','2026-01-26 12:07:41.142 +00:00','2026-01-26 12:07:41.142 +00:00'),(DEFAULT,1,'Fashion haul','TikTok','Fun','fashion, haul, clothing','1. "SHEIN Haul: Was It Worth It?"
+2. "I Spent $100 at Zara - Here''s What I Got"
+3. "Building a Capsule Wardrobe"
+4. "Outfit Ideas for Every Occasion"
+5. "These Clothes Changed My Style"','draft','2026-01-26 12:07:41.142 +00:00','2026-01-26 12:07:41.142 +00:00'),(DEFAULT,1,'Money saving tips','YouTube','Practical','money, saving, finance','1. "How I Save $1000 Every Month"
+2. "Financial Habits of Millionaires"
+3. "Stop Being Broke: Do This Instead"
+4. "The 50/30/20 Rule Explained"
+5. "I Tried Living on $50 for a Week"','draft','2026-01-26 12:07:41.142 +00:00','2026-01-26 12:07:41.142 +00:00'),(DEFAULT,1,'Coffee recipes','TikTok','Aesthetic','coffee, recipes, drinks','1. "Starbucks Baristas Don''t Want You to Know"
+2. "Make Cafe-Quality Coffee at Home"
+3. "This Iced Coffee Recipe Went Viral"
+4. "5 Coffee Recipes You Need to Try"
+5. "The Perfect Morning Coffee Ritual"','draft','2026-01-26 12:07:41.142 +00:00','2026-01-26 12:07:41.142 +00:00'),(DEFAULT,1,'Pet content','YouTube','Cute','pets, dogs, cats','1. "My Dog''s Morning Routine"
+2. "Things Only Pet Owners Understand"
+3. "Testing Viral Pet Products on My Cat"
+4. "A Day in My Pet''s Life"
+5. "My Pet''s Reaction to [Trend]"','draft','2026-01-26 12:07:41.142 +00:00','2026-01-26 12:07:41.142 +00:00'),(DEFAULT,1,'Life advice','YouTube','Inspirational','advice, life, motivation','1. "What I Wish I Knew at 20"
+2. "Life Advice That Actually Works"
+3. "Things Nobody Tells You About Adulthood"
+4. "How to Stop Caring What People Think"
+5. "The Truth About Success Nobody Shares"','draft','2026-01-26 12:07:41.142 +00:00','2026-01-26 12:07:41.142 +00:00'),(DEFAULT,1,'DIY projects','YouTube','Creative','DIY, crafts, projects','1. "Amazing DIY Projects Under $20"
+2. "Transform Your Room With These DIYs"
+3. "I Tried 5 Viral DIY Projects"
+4. "DIY That Looks Store-Bought"
+5. "Easy Crafts for Beginners"','draft','2026-01-26 12:07:41.142 +00:00','2026-01-26 12:07:41.142 +00:00'),(DEFAULT,1,'Book recommendations','YouTube','Thoughtful','books, reading, recommendations','1. "Books That Changed My Perspective"
+2. "5 Books Everyone Should Read"
+3. "My Honest Book Reviews 2024"
+4. "Reading Vlog: 10 Books in 30 Days"
+5. "Books I''ll Never Stop Recommending"','draft','2026-01-26 12:07:41.142 +00:00','2026-01-26 12:07:41.142 +00:00') RETURNING "id","user_id","topic","platform","style","keywords","ai_output","status","scheduled_at","created_at","updated_at";
+✅ Titles seeded
+Executing (default): INSERT INTO "descriptions" ("id","user_id","video_title","topic","platform","include_links","include_cta","ai_output","status","created_at","updated_at") VALUES (DEFAULT,1,'Morning Routine 2024','Productivity morning routine','YouTube',true,true,'Start your day right with my complete morning routine! In this video, I share the habits that transformed my productivity.
+
+TIMESTAMPS:
+0:00 - Wake up routine
+2:30 - Morning meditation
+5:00 - Journaling practice
+8:00 - Workout session
+12:00 - Breakfast prep
+
+PRODUCTS MENTIONED:
+- Journal: [link]
+- Meditation app: [link]
+
+#morningroutine #productivity #lifestyle','draft','2026-01-26 12:07:41.146 +00:00','2026-01-26 12:07:41.146 +00:00'),(DEFAULT,1,'iPhone 15 Review','Tech review and analysis','YouTube',true,true,'Is the iPhone 15 Pro Max worth upgrading to? After 30 days of use, here''s my honest review.
+
+TIMESTAMPS:
+0:00 - Introduction
+1:30 - Unboxing
+4:00 - Design changes
+8:00 - Camera test
+15:00 - Performance
+20:00 - Final verdict
+
+SPECS & LINKS:
+- Apple Store: [link]
+
+#iPhone15 #TechReview #Apple','draft','2026-01-26 12:07:41.146 +00:00','2026-01-26 12:07:41.146 +00:00'),(DEFAULT,1,'Tokyo Travel Vlog','Japan travel guide','YouTube',true,true,'Join me on an adventure through Tokyo! From hidden temples to amazing street food.
+
+PLACES VISITED:
+- Shibuya Crossing
+- Senso-ji Temple
+- Tsukiji Market
+- Harajuku District
+
+TRAVEL TIPS:
+- Best time to visit
+- Budget breakdown
+- Must-try foods
+
+#Tokyo #Japan #TravelVlog','draft','2026-01-26 12:07:41.146 +00:00','2026-01-26 12:07:41.146 +00:00'),(DEFAULT,1,'Pasta Recipe','Italian cooking tutorial','YouTube',true,true,'Learn to make restaurant-quality pasta at home with this easy recipe!
+
+INGREDIENTS:
+- 400g flour
+- 4 eggs
+- Salt
+- Olive oil
+
+TIMESTAMPS:
+0:00 - Ingredients
+2:00 - Making dough
+8:00 - Rolling technique
+12:00 - Sauce prep
+
+#Cooking #Pasta #ItalianFood','draft','2026-01-26 12:07:41.146 +00:00','2026-01-26 12:07:41.146 +00:00'),(DEFAULT,1,'Home Workout','No equipment fitness','YouTube',true,true,'No gym? No problem! This 20-minute workout requires zero equipment.
+
+WORKOUT STRUCTURE:
+- Warm up: 3 min
+- Main workout: 15 min
+- Cool down: 2 min
+
+EXERCISES:
+1. Jumping jacks
+2. Push-ups
+3. Squats
+4. Planks
+5. Burpees
+
+#Fitness #HomeWorkout #NoEquipment','draft','2026-01-26 12:07:41.146 +00:00','2026-01-26 12:07:41.146 +00:00'),(DEFAULT,1,'Room Tour 2024','Content creator setup','YouTube',true,true,'Complete tour of my content creation studio and setup!
+
+GEAR LIST:
+- Camera: Sony A7IV
+- Microphone: Shure SM7B
+- Lights: Elgato Key Light
+- Desk: IKEA BEKANT
+
+TOTAL SETUP COST: $5,000
+
+Links to everything below!
+
+#RoomTour #Setup #Creator','draft','2026-01-26 12:07:41.146 +00:00','2026-01-26 12:07:41.146 +00:00'),(DEFAULT,1,'Budget Tips','Personal finance advice','TikTok',false,true,'Money-saving tips that actually work! Save $500+ monthly with these simple changes.
+
+TIPS COVERED:
+1. Track expenses
+2. Budget apps
+3. Meal planning
+4. Cancel subscriptions
+5. No-spend challenges
+
+Follow for more finance tips!
+
+#MoneyTips #Budgeting #Finance','draft','2026-01-26 12:07:41.146 +00:00','2026-01-26 12:07:41.146 +00:00'),(DEFAULT,1,'Study Session','Productivity for students','YouTube',true,true,'Study with me in real-time! 2-hour focused study session.
+
+SESSION FORMAT:
+- 4x 25-minute focus blocks
+- 5-minute breaks
+- Background music: lo-fi
+
+STUDY TIPS:
+- Pomodoro technique
+- Note-taking methods
+- Focus strategies
+
+#StudyWithMe #Student #Productivity','draft','2026-01-26 12:07:41.146 +00:00','2026-01-26 12:07:41.146 +00:00'),(DEFAULT,1,'Skincare Routine','Beauty and self-care','TikTok',true,true,'My complete skincare routine for clear skin!
+
+MORNING:
+1. Cleanser
+2. Toner
+3. Serum
+4. Moisturizer
+5. SPF
+
+NIGHT:
+1. Double cleanse
+2. Treatment
+3. Night cream
+
+All products linked!
+
+#Skincare #Beauty #Routine','draft','2026-01-26 12:07:41.146 +00:00','2026-01-26 12:07:41.146 +00:00'),(DEFAULT,1,'Gaming Setup Tour','Gaming equipment review','YouTube',true,true,'My ultimate gaming setup tour 2024!
+
+SPECS:
+- PC: RTX 4090, i9
+- Monitor: 4K 144Hz
+- Keyboard: Custom mechanical
+- Mouse: Logitech G Pro
+
+TOTAL COST: $8,000
+
+All links below!
+
+#Gaming #Setup #PCGaming','draft','2026-01-26 12:07:41.146 +00:00','2026-01-26 12:07:41.146 +00:00'),(DEFAULT,1,'Vlog: Week in My Life','Lifestyle content','YouTube',true,true,'A realistic week in my life as a content creator!
+
+THIS WEEK:
+- Monday: Planning content
+- Tuesday: Filming day
+- Wednesday: Editing
+- Thursday: Meetings
+- Friday: Self-care
+
+Follow along with my journey!
+
+#WeekInMyLife #Vlog #Creator','draft','2026-01-26 12:07:41.146 +00:00','2026-01-26 12:07:41.146 +00:00'),(DEFAULT,1,'Coffee Shop Work','Remote work lifestyle','YouTube',true,true,'Working from different coffee shops in my city!
+
+SHOPS VISITED:
+1. Starbucks Reserve
+2. Local indie cafe
+3. Hotel lobby
+4. Library cafe
+
+TIPS:
+- Best seating spots
+- WiFi speeds
+- Noise levels
+
+#RemoteWork #CoffeeShop #WFH','draft','2026-01-26 12:07:41.146 +00:00','2026-01-26 12:07:41.146 +00:00'),(DEFAULT,1,'Unboxing Haul','Product reviews','YouTube',true,true,'Unboxing my latest tech and lifestyle purchases!
+
+IN THIS HAUL:
+1. New camera lens
+2. Desk accessories
+3. Smart home devices
+4. Organization items
+
+First impressions and honest thoughts!
+
+#Unboxing #Haul #Tech','draft','2026-01-26 12:07:41.146 +00:00','2026-01-26 12:07:41.146 +00:00'),(DEFAULT,1,'Workout Challenge','Fitness transformation','TikTok',false,true,'30-day workout challenge results!
+
+STARTING STATS:
+Weight: 180 lbs
+Body fat: 25%
+
+FINAL STATS:
+Weight: 170 lbs
+Body fat: 20%
+
+Workout plan in bio!
+
+#WorkoutChallenge #Fitness #Transformation','draft','2026-01-26 12:07:41.146 +00:00','2026-01-26 12:07:41.146 +00:00'),(DEFAULT,1,'Apartment Tour','Home decor and living','YouTube',true,true,'Full tour of my city apartment!
+
+ROOMS:
+- Living room
+- Kitchen
+- Bedroom
+- Home office
+- Bathroom
+
+DECOR STYLE: Modern minimalist
+RENT: $2,500/month
+
+All decor items linked!
+
+#ApartmentTour #HomeDecor #Interior','draft','2026-01-26 12:07:41.146 +00:00','2026-01-26 12:07:41.146 +00:00') RETURNING "id","user_id","video_title","topic","platform","include_links","include_cta","ai_output","status","scheduled_at","created_at","updated_at";
+✅ Descriptions seeded
+Executing (default): INSERT INTO "hashtags" ("id","user_id","topic","platform","niche","count","ai_output","status","created_at","updated_at") VALUES (DEFAULT,1,'Morning routine content','TikTok','Lifestyle',15,'#morningroutine #productivity #lifestyle #grwm #routine #healthy #wellness #selfcare #motivation #fyp #viral #trending #dailyroutine #morningmotivation #habits','draft','2026-01-26 12:07:41.148 +00:00','2026-01-26 12:07:41.148 +00:00'),(DEFAULT,1,'Tech reviews','YouTube','Technology',15,'#tech #technology #review #gadgets #techreview #apple #iphone #android #smartphone #unboxing #techyoutuber #techtok #newtech #gadgetreview #techie','draft','2026-01-26 12:07:41.148 +00:00','2026-01-26 12:07:41.148 +00:00'),(DEFAULT,1,'Travel content','Instagram','Travel',15,'#travel #wanderlust #travelphotography #travelgram #explore #adventure #vacation #travelblogger #instatravel #traveling #tourism #trip #traveler #traveltheworld #travelholic','draft','2026-01-26 12:07:41.148 +00:00','2026-01-26 12:07:41.148 +00:00'),(DEFAULT,1,'Fitness content','TikTok','Fitness',15,'#fitness #workout #gym #fit #motivation #health #training #exercise #fitnessmotivation #bodybuilding #healthy #lifestyle #muscle #fitfam #gains','draft','2026-01-26 12:07:41.148 +00:00','2026-01-26 12:07:41.148 +00:00'),(DEFAULT,1,'Food content','Instagram','Food',15,'#food #foodie #foodporn #instafood #yummy #delicious #foodphotography #foodstagram #cooking #recipe #homemade #foodblogger #dinner #lunch #tasty','draft','2026-01-26 12:07:41.148 +00:00','2026-01-26 12:07:41.148 +00:00'),(DEFAULT,1,'Beauty tutorials','TikTok','Beauty',15,'#beauty #makeup #skincare #beautytips #makeupartist #cosmetics #mua #beautyblogger #skincareroutine #makeuptutorial #glam #beautyhacks #makeuplover #beautyguru #skincaretips','draft','2026-01-26 12:07:41.148 +00:00','2026-01-26 12:07:41.148 +00:00'),(DEFAULT,1,'Gaming streams','YouTube','Gaming',15,'#gaming #gamer #games #videogames #game #playstation #xbox #pc #twitch #streamer #gamingcommunity #esports #gameplay #gamers #pcgaming','draft','2026-01-26 12:07:41.148 +00:00','2026-01-26 12:07:41.148 +00:00'),(DEFAULT,1,'Fashion content','Instagram','Fashion',15,'#fashion #style #ootd #fashionblogger #outfit #fashionista #streetstyle #instafashion #fashionstyle #lookoftheday #whatiwore #styleinspo #fashionable #trendy #fashionweek','draft','2026-01-26 12:07:41.148 +00:00','2026-01-26 12:07:41.148 +00:00'),(DEFAULT,1,'Study content','YouTube','Education',15,'#study #studywithme #studygram #studymotivation #student #studytips #studying #education #school #university #college #learning #studentlife #studyblr #notes','draft','2026-01-26 12:07:41.148 +00:00','2026-01-26 12:07:41.148 +00:00'),(DEFAULT,1,'DIY projects','Pinterest','Crafts',15,'#diy #crafts #handmade #homedecor #creative #craft #doityourself #homemade #art #design #decor #diycrafts #diyideas #diyproject #maker','draft','2026-01-26 12:07:41.148 +00:00','2026-01-26 12:07:41.148 +00:00'),(DEFAULT,1,'Pet content','TikTok','Pets',15,'#pet #dog #cat #pets #dogsofinstagram #catsofinstagram #puppy #kitten #petlover #doglife #catlife #petsofinstagram #doglover #catlover #cute','draft','2026-01-26 12:07:41.148 +00:00','2026-01-26 12:07:41.148 +00:00'),(DEFAULT,1,'Music content','YouTube','Music',15,'#music #musician #singer #guitar #piano #song #cover #singing #musicproduction #songwriter #band #rock #pop #hiphop #musicvideo','draft','2026-01-26 12:07:41.148 +00:00','2026-01-26 12:07:41.148 +00:00'),(DEFAULT,1,'Art content','Instagram','Art',15,'#art #artist #artwork #drawing #illustration #painting #digitalart #artistsoninstagram #sketch #creative #design #arte #instaart #artoftheday #artistic','draft','2026-01-26 12:07:41.148 +00:00','2026-01-26 12:07:41.148 +00:00'),(DEFAULT,1,'Finance tips','TikTok','Finance',15,'#finance #money #investing #wealth #financialfreedom #stocks #crypto #personalfinance #budget #savings #moneytips #financetips #invest #wealthbuilding #financialliteracy','draft','2026-01-26 12:07:41.148 +00:00','2026-01-26 12:07:41.148 +00:00'),(DEFAULT,1,'Motivation content','Instagram','Self-improvement',15,'#motivation #inspiration #success #mindset #goals #entrepreneur #hustle #motivational #grind #ambition #positivity #believe #dreams #nevergiveup #successmindset','draft','2026-01-26 12:07:41.148 +00:00','2026-01-26 12:07:41.148 +00:00') RETURNING "id","user_id","topic","platform","niche","count","ai_output","status","scheduled_at","created_at","updated_at";
+✅ Hashtags seeded
+Executing (default): INSERT INTO "thumbnails" ("id","user_id","video_title","topic","style","color_scheme","ai_output","status","created_at","updated_at") VALUES (DEFAULT,1,'Morning Routine 2024','Productivity morning habits','Clean and minimal','Blue and white','**Thumbnail Concept**
+
+1. Split screen: "5 AM" on one side, energetic pose on other
+2. Large text: "CHANGED MY LIFE"
+3. Clock graphic showing 5:00 AM
+4. Bright, warm lighting to convey energy
+5. Coffee cup prop for relatability','draft','2026-01-26 12:07:41.151 +00:00','2026-01-26 12:07:41.151 +00:00'),(DEFAULT,1,'iPhone 15 Review','Tech product review','Professional tech','Black and silver','**Thumbnail Concept**
+
+1. iPhone 15 at center with reflection effect
+2. Your face with surprised/impressed expression
+3. Text: "WORTH IT?" in bold
+4. Rating stars graphic (4.5/5)
+5. Clean dark background with subtle gradients','draft','2026-01-26 12:07:41.151 +00:00','2026-01-26 12:07:41.151 +00:00'),(DEFAULT,1,'Tokyo Travel Vlog','Japan adventure','Vibrant travel','Red and pink (cherry blossom)','**Thumbnail Concept**
+
+1. Famous Tokyo landmark in background
+2. You in foreground with excited expression
+3. Cherry blossom overlay
+4. Text: "TOKYO" in Japanese-inspired font
+5. Map pin graphic element','draft','2026-01-26 12:07:41.151 +00:00','2026-01-26 12:07:41.151 +00:00'),(DEFAULT,1,'Pasta Recipe','Italian cooking','Appetizing food','Warm red and yellow','**Thumbnail Concept**
+
+1. Close-up of steaming pasta dish
+2. Fork twirling pasta in action shot
+3. Italian flag colors subtly incorporated
+4. Text: "RESTAURANT QUALITY"
+5. Parmesan being grated (action shot)','draft','2026-01-26 12:07:41.151 +00:00','2026-01-26 12:07:41.151 +00:00'),(DEFAULT,1,'Fitness Transformation','30-day challenge','Before/After','Green and orange','**Thumbnail Concept**
+
+1. Before/after split image
+2. Arrow showing transformation direction
+3. "30 DAYS" text prominently displayed
+4. Measurements or stats overlay
+5. Motivational pose in after image','draft','2026-01-26 12:07:41.151 +00:00','2026-01-26 12:07:41.151 +00:00'),(DEFAULT,1,'Budget Tips','Money saving','Eye-catching finance','Green (money)','**Thumbnail Concept**
+
+1. Stack of cash or coins visual
+2. Your shocked face looking at money
+3. Text: "$500/MONTH"
+4. Piggy bank graphic
+5. Dollar signs floating in background','draft','2026-01-26 12:07:41.151 +00:00','2026-01-26 12:07:41.151 +00:00'),(DEFAULT,1,'Room Tour','Setup showcase','Aesthetic tech','RGB/Neon','**Thumbnail Concept**
+
+1. Wide shot of complete setup with RGB lighting
+2. Text: "DREAM SETUP"
+3. Price tag graphic "$5000"
+4. Before/after corner comparison
+5. Equipment icons highlighting key items','draft','2026-01-26 12:07:41.151 +00:00','2026-01-26 12:07:41.151 +00:00'),(DEFAULT,1,'Storytime','Personal journey','Emotional/dramatic','Warm tones','**Thumbnail Concept**
+
+1. Emotional facial expression (thoughtful)
+2. Text: "THE TRUTH..."
+3. Old photo in corner (throwback element)
+4. Soft, emotional lighting
+5. Subtle tear or emotion indicator','draft','2026-01-26 12:07:41.151 +00:00','2026-01-26 12:07:41.151 +00:00'),(DEFAULT,1,'Gaming Video','Epic gameplay','Dynamic gaming','Game-specific colors','**Thumbnail Concept**
+
+1. Epic in-game screenshot
+2. Your reaction face overlaid
+3. "INSANE!" or "NO WAY" text
+4. Game logo included
+5. Victory/achievement graphic','draft','2026-01-26 12:07:41.151 +00:00','2026-01-26 12:07:41.151 +00:00'),(DEFAULT,1,'Makeup Tutorial','Beauty transformation','Glamorous','Pink and gold','**Thumbnail Concept**
+
+1. Half face bare, half with makeup
+2. Dramatic eye close-up
+3. Text: "5 MINUTE GLAM"
+4. Product placement (subtle)
+5. Sparkle/glitter overlay effects','draft','2026-01-26 12:07:41.151 +00:00','2026-01-26 12:07:41.151 +00:00'),(DEFAULT,1,'Workout Routine','Exercise tutorial','Energetic fitness','Bold red/black','**Thumbnail Concept**
+
+1. Action shot mid-exercise
+2. Sweat/effort visible
+3. Text: "NO GYM NEEDED"
+4. Timer graphic "20 MIN"
+5. Energy lines/motion blur effect','draft','2026-01-26 12:07:41.151 +00:00','2026-01-26 12:07:41.151 +00:00'),(DEFAULT,1,'Unboxing','Product reveal','Mystery/excitement','Brand colors','**Thumbnail Concept**
+
+1. Hands opening box from above
+2. Light/glow coming from inside box
+3. Question marks around box
+4. Text: "FINALLY!"
+5. Product partially visible','draft','2026-01-26 12:07:41.151 +00:00','2026-01-26 12:07:41.151 +00:00'),(DEFAULT,1,'Q&A Video','Fan questions','Personal/friendly','Bright and inviting','**Thumbnail Concept**
+
+1. You with thinking/curious expression
+2. Question mark graphics floating
+3. Text: "I ANSWERED EVERYTHING"
+4. Comment/social media icons
+5. Friendly, approachable lighting','draft','2026-01-26 12:07:41.151 +00:00','2026-01-26 12:07:41.151 +00:00'),(DEFAULT,1,'Day in My Life','Daily vlog','Lifestyle aesthetic','Soft pastels','**Thumbnail Concept**
+
+1. Split into sections showing different activities
+2. Golden hour lighting
+3. Text: "24 HOURS"
+4. Clock/time element
+5. Cozy, relatable vibe','draft','2026-01-26 12:07:41.151 +00:00','2026-01-26 12:07:41.151 +00:00'),(DEFAULT,1,'Reaction Video','Viral content reactions','Expressive','High contrast','**Thumbnail Concept**
+
+1. Your most expressive reaction face
+2. Screenshot of video being reacted to
+3. Text: "I CAN''T BELIEVE THIS"
+4. Arrow pointing to your reaction
+5. Bright, attention-grabbing background','draft','2026-01-26 12:07:41.151 +00:00','2026-01-26 12:07:41.151 +00:00') RETURNING "id","user_id","video_title","topic","style","color_scheme","ai_output","status","scheduled_at","created_at","updated_at";
+✅ Thumbnails seeded
+Executing (default): INSERT INTO "hooks" ("id","user_id","topic","platform","hook_type","target_emotion","ai_output","status","created_at","updated_at") VALUES (DEFAULT,1,'Morning routine productivity','YouTube','Question','Curiosity','1. "What if I told you that one habit could change your entire life?"
+2. "Have you ever wondered why successful people wake up at 5 AM?"
+3. "What''s the first thing you do when you wake up? Because this changed everything for me..."','draft','2026-01-26 12:07:41.154 +00:00','2026-01-26 12:07:41.154 +00:00'),(DEFAULT,1,'Tech review','YouTube','Bold statement','Intrigue','1. "This is either the best phone ever made, or Apple made a huge mistake."
+2. "After 30 days with this phone, I need to tell you something important."
+3. "Forget everything you''ve heard about this phone. Here''s the truth."','draft','2026-01-26 12:07:41.154 +00:00','2026-01-26 12:07:41.154 +00:00'),(DEFAULT,1,'Travel content','TikTok','Storytelling','Adventure','1. "I got lost in Tokyo at 2 AM... and it was the best thing that ever happened to me."
+2. "Nobody told me this about Japan before I went..."
+3. "This random stranger in Tokyo changed my entire trip."','draft','2026-01-26 12:07:41.154 +00:00','2026-01-26 12:07:41.154 +00:00'),(DEFAULT,1,'Fitness transformation','TikTok','Shock value','Motivation','1. "I did this ONE exercise every day for 30 days. Look what happened."
+2. "They said I couldn''t transform in 30 days. I proved them wrong."
+3. "The exercise that doctors don''t want you to know about..."','draft','2026-01-26 12:07:41.154 +00:00','2026-01-26 12:07:41.154 +00:00'),(DEFAULT,1,'Money saving tips','YouTube','Promise','Hope','1. "By the end of this video, you''ll know exactly how to save $500 every month."
+2. "I''m about to show you the exact system that got me out of debt."
+3. "This video contains information that could change your financial life forever."','draft','2026-01-26 12:07:41.154 +00:00','2026-01-26 12:07:41.154 +00:00'),(DEFAULT,1,'Cooking tutorial','YouTube','Challenge','Confidence','1. "If you can follow these 5 steps, you can cook better than most restaurants."
+2. "Chefs charge $50 for this. You''re about to learn it for free."
+3. "I guarantee you''ve been making pasta wrong your entire life."','draft','2026-01-26 12:07:41.154 +00:00','2026-01-26 12:07:41.154 +00:00'),(DEFAULT,1,'Beauty tutorial','TikTok','Relatable','Connection','1. "If you''ve ever felt like makeup tutorials are impossible to follow, this is for you."
+2. "I used to spend 2 hours on my makeup. Now it takes 10 minutes."
+3. "POV: You finally found a makeup routine that actually works."','draft','2026-01-26 12:07:41.154 +00:00','2026-01-26 12:07:41.154 +00:00'),(DEFAULT,1,'Study tips','YouTube','Authority','Trust','1. "As someone who graduated top of their class, these are the study methods that actually work."
+2. "After studying hundreds of research papers, I found the perfect study technique."
+3. "Scientists discovered this study method is 50% more effective."','draft','2026-01-26 12:07:41.154 +00:00','2026-01-26 12:07:41.154 +00:00'),(DEFAULT,1,'Gaming content','YouTube','Excitement','Anticipation','1. "What you''re about to see is probably the craziest play I''ve ever made."
+2. "I''ve been gaming for 10 years and I''ve never seen anything like this."
+3. "The clutch that broke the internet..."','draft','2026-01-26 12:07:41.154 +00:00','2026-01-26 12:07:41.154 +00:00'),(DEFAULT,1,'Lifestyle vlog','YouTube','Vulnerability','Empathy','1. "I need to be honest with you about something I''ve been hiding..."
+2. "This is the video I never wanted to make, but I need to."
+3. "I''ve been struggling with something, and I think you might be too."','draft','2026-01-26 12:07:41.154 +00:00','2026-01-26 12:07:41.154 +00:00'),(DEFAULT,1,'DIY projects','TikTok','Demonstration','Amazement','1. "Watch me turn $10 worth of materials into a $200 piece of furniture."
+2. "Everyone told me this was impossible. I did it anyway."
+3. "This DIY hack is about to change your entire home."','draft','2026-01-26 12:07:41.154 +00:00','2026-01-26 12:07:41.154 +00:00'),(DEFAULT,1,'Fashion content','TikTok','Transformation','Inspiration','1. "Watch how I turned this $20 outfit into a $500 look."
+2. "From basic to stunning in 3 easy steps..."
+3. "The outfit hack that fashion brands don''t want you to know."','draft','2026-01-26 12:07:41.154 +00:00','2026-01-26 12:07:41.154 +00:00'),(DEFAULT,1,'Motivation','YouTube','Story','Inspiration','1. "Two years ago, I was broke, alone, and ready to give up. Today..."
+2. "The moment I hit rock bottom was the moment everything changed."
+3. "If I had given up then, I never would have experienced this."','draft','2026-01-26 12:07:41.154 +00:00','2026-01-26 12:07:41.154 +00:00'),(DEFAULT,1,'Product review','TikTok','Controversy','Curiosity','1. "Everyone is buying this product. Here''s why you shouldn''t."
+2. "I''m about to say something that might make this brand hate me."
+3. "The truth about this viral product that nobody is talking about."','draft','2026-01-26 12:07:41.154 +00:00','2026-01-26 12:07:41.154 +00:00'),(DEFAULT,1,'Educational content','YouTube','Mind-blowing fact','Awe','1. "Everything you learned about this in school was wrong."
+2. "Scientists just discovered something that changes everything we knew."
+3. "This fact will completely change how you see the world."','draft','2026-01-26 12:07:41.154 +00:00','2026-01-26 12:07:41.154 +00:00') RETURNING "id","user_id","topic","platform","hook_type","target_emotion","ai_output","status","scheduled_at","created_at","updated_at";
+✅ Hooks seeded
+Executing (default): INSERT INTO "calendars" ("id","user_id","niche","platform","frequency","duration","goals","ai_output","status","created_at","updated_at") VALUES (DEFAULT,1,'Tech reviews','YouTube','3 times per week','1 month','Grow subscriber base, establish authority','**Weekly Content Calendar**
+
+MONDAY: Product review/unboxing
+WEDNESDAY: Tutorial/How-to
+FRIDAY: News/Updates recap
+
+Week 1: Smartphone focus
+Week 2: Laptop focus
+Week 3: Accessories
+Week 4: Monthly best-of compilation','draft','2026-01-26 12:07:41.156 +00:00','2026-01-26 12:07:41.156 +00:00'),(DEFAULT,1,'Fitness','TikTok','Daily','1 month','Build community, increase engagement','**Daily Content Plan**
+
+MONDAY: Workout routine
+TUESDAY: Nutrition tips
+WEDNESDAY: Transformation stories
+THURSDAY: Exercise tutorials
+FRIDAY: Q&A
+SATURDAY: Challenge content
+SUNDAY: Motivational content','draft','2026-01-26 12:07:41.156 +00:00','2026-01-26 12:07:41.156 +00:00'),(DEFAULT,1,'Cooking','YouTube','2 times per week','1 month','Recipe collection, cookbook promo','**Bi-weekly Schedule**
+
+TUESDAY: Quick weeknight recipes
+SATURDAY: Special occasion cooking
+
+Themes:
+Week 1: Italian cuisine
+Week 2: Asian fusion
+Week 3: Healthy eating
+Week 4: Comfort food','draft','2026-01-26 12:07:41.156 +00:00','2026-01-26 12:07:41.156 +00:00'),(DEFAULT,1,'Beauty','Instagram','5 times per week','2 weeks','Brand partnerships, product launches','**Content Mix**
+
+MON: Tutorial reels
+TUE: Product review posts
+WED: GRWM stories
+THU: Skin care routine
+FRI: Trending looks
+
+Story Schedule:
+Daily: Behind the scenes
+Weekly: Q&A sessions','draft','2026-01-26 12:07:41.156 +00:00','2026-01-26 12:07:41.156 +00:00'),(DEFAULT,1,'Gaming','YouTube','4 times per week','1 month','Stream growth, community building','**Gaming Calendar**
+
+MON: Let''s Play series
+WED: Game reviews
+FRI: Stream highlights
+SUN: Community gaming
+
+Monthly Specials:
+- Week 2: New release coverage
+- Week 4: Retro gaming','draft','2026-01-26 12:07:41.156 +00:00','2026-01-26 12:07:41.156 +00:00'),(DEFAULT,1,'Travel','YouTube','1 time per week','3 months','Destination guides, sponsorships','**Travel Content Plan**
+
+Month 1: Domestic destinations
+Month 2: International adventures
+Month 3: Budget travel series
+
+Weekly Format:
+- Destination vlogs
+- Travel tips
+- Cost breakdowns','draft','2026-01-26 12:07:41.156 +00:00','2026-01-26 12:07:41.156 +00:00'),(DEFAULT,1,'Finance','TikTok','Daily','2 weeks','Educational reach, course promo','**Financial Education Calendar**
+
+Daily Topics:
+MON: Investing basics
+TUE: Budgeting tips
+WED: Debt payoff strategies
+THU: Side hustle ideas
+FRI: Money myths debunked
+SAT: Success stories
+SUN: Weekly market recap','draft','2026-01-26 12:07:41.156 +00:00','2026-01-26 12:07:41.156 +00:00'),(DEFAULT,1,'Lifestyle','YouTube','2 times per week','1 month','Authentic connection, brand building','**Lifestyle Content Mix**
+
+WEDNESDAY: Vlogs/Day in life
+SUNDAY: Self-improvement content
+
+Monthly Themes:
+Week 1: Productivity
+Week 2: Self-care
+Week 3: Home organization
+Week 4: Reflection/goals','draft','2026-01-26 12:07:41.156 +00:00','2026-01-26 12:07:41.156 +00:00'),(DEFAULT,1,'Education','YouTube','3 times per week','1 month','Course launch, authority building','**Educational Content Plan**
+
+MON: Deep dive tutorials
+WED: Quick tips/tricks
+FRI: Q&A/Student showcase
+
+Series Ideas:
+- Beginner fundamentals
+- Advanced techniques
+- Case studies','draft','2026-01-26 12:07:41.156 +00:00','2026-01-26 12:07:41.156 +00:00'),(DEFAULT,1,'Fashion','Instagram','4 times per week','1 month','Style influence, affiliate sales','**Fashion Calendar**
+
+MON: OOTD posts
+WED: Trend analysis reels
+FRI: Styling tips
+SUN: Haul/Try-on
+
+Stories:
+- Daily outfit inspo
+- Shopping adventures
+- Style polls','draft','2026-01-26 12:07:41.156 +00:00','2026-01-26 12:07:41.156 +00:00'),(DEFAULT,1,'Music','YouTube','2 times per week','1 month','Cover visibility, original releases','**Music Content Schedule**
+
+TUESDAY: Cover songs
+SATURDAY: Original music/Behind scenes
+
+Monthly Goals:
+- 4 cover videos
+- 2 original tracks
+- 4 studio vlogs
+- 2 collaboration features','draft','2026-01-26 12:07:41.156 +00:00','2026-01-26 12:07:41.156 +00:00'),(DEFAULT,1,'Pet content','TikTok','Daily','2 weeks','Viral potential, brand deals','**Pet Content Calendar**
+
+Content Types:
+- Morning routines
+- Training sessions
+- Funny moments
+- Product reviews
+- Day in the life
+
+Trending Content:
+- React to trends
+- Challenge participation','draft','2026-01-26 12:07:41.156 +00:00','2026-01-26 12:07:41.156 +00:00'),(DEFAULT,1,'DIY/Crafts','Pinterest','5 times per week','1 month','Pin engagement, blog traffic','**DIY Content Plan**
+
+Daily Pin Schedule:
+- 2 project pins
+- 1 tip pin
+- 2 repins
+
+Project Categories:
+Week 1: Home decor
+Week 2: Organization
+Week 3: Seasonal crafts
+Week 4: Budget DIYs','draft','2026-01-26 12:07:41.156 +00:00','2026-01-26 12:07:41.156 +00:00'),(DEFAULT,1,'Photography','Instagram','3 times per week','1 month','Portfolio building, client acquisition','**Photography Calendar**
+
+MON: Portfolio shots
+WED: Behind the scenes
+FRI: Editing tutorials
+
+Content Mix:
+- Landscape
+- Portrait
+- Street photography
+- Editing tips','draft','2026-01-26 12:07:41.156 +00:00','2026-01-26 12:07:41.156 +00:00'),(DEFAULT,1,'Motivation','YouTube','1 time per week','1 month','Speaking engagements, course sales','**Motivational Content Plan**
+
+SUNDAY: Weekly inspiration video
+
+Topics:
+Week 1: Overcoming fear
+Week 2: Building habits
+Week 3: Success mindset
+Week 4: Goal setting
+
+Bonus: Monthly live Q&A','draft','2026-01-26 12:07:41.156 +00:00','2026-01-26 12:07:41.156 +00:00') RETURNING "id","user_id","niche","platform","frequency","duration","goals","ai_output","status","scheduled_at","created_at","updated_at";
+✅ Calendars seeded
+Executing (default): INSERT INTO "trends" ("id","user_id","niche","platform","timeframe","region","ai_output","status","created_at","updated_at") VALUES (DEFAULT,1,'Technology','YouTube','This week','Global','**Current Tech Trends**
+
+1. AI tools and ChatGPT alternatives
+2. Foldable phones and new releases
+3. Gaming hardware updates
+4. Smart home automation
+5. Wearable tech innovations
+
+Emerging: Spatial computing, AR glasses','draft','2026-01-26 12:07:41.161 +00:00','2026-01-26 12:07:41.161 +00:00'),(DEFAULT,1,'Fitness','TikTok','This month','US','**Fitness Trends**
+
+1. 12-3-30 treadmill workout
+2. Hot girl walks
+3. Pilates renaissance
+4. Carnivore diet discussions
+5. Hybrid athlete training
+
+Viral Challenges: 75 Hard, 30-day planks','draft','2026-01-26 12:07:41.161 +00:00','2026-01-26 12:07:41.161 +00:00'),(DEFAULT,1,'Beauty','Instagram','This week','Global','**Beauty Trends**
+
+1. Clean girl aesthetic
+2. Glass skin routines
+3. Strawberry girl makeup
+4. Hair slugging
+5. Mob wife aesthetic
+
+Products: Skin tints, lip oils, hair treatments','draft','2026-01-26 12:07:41.161 +00:00','2026-01-26 12:07:41.161 +00:00'),(DEFAULT,1,'Fashion','TikTok','This month','US','**Fashion Trends**
+
+1. Quiet luxury
+2. Coquette style
+3. Normcore revival
+4. Platform shoes
+5. Oversized everything
+
+Colors: Burgundy, olive green, camel','draft','2026-01-26 12:07:41.161 +00:00','2026-01-26 12:07:41.161 +00:00'),(DEFAULT,1,'Food','YouTube','This week','Global','**Food Trends**
+
+1. Dubai chocolate bars
+2. Protein-focused recipes
+3. Air fryer everything
+4. Cottage cheese creations
+5. Korean corn dogs
+
+Diets: Mediterranean, carnivore debates','draft','2026-01-26 12:07:41.161 +00:00','2026-01-26 12:07:41.161 +00:00'),(DEFAULT,1,'Gaming','YouTube','This month','Global','**Gaming Trends**
+
+1. New AAA releases
+2. Indie game discoveries
+3. Speedrunning communities
+4. Cozy gaming content
+5. VR gaming growth
+
+Platforms: Steam Deck, PS5, retro gaming','draft','2026-01-26 12:07:41.161 +00:00','2026-01-26 12:07:41.161 +00:00'),(DEFAULT,1,'Finance','TikTok','This week','US','**Finance Trends**
+
+1. FIRE movement content
+2. Dividend investing
+3. Side hustle culture
+4. No-spend challenges
+5. AI stock trading
+
+Topics: Real estate, crypto recovery, recession prep','draft','2026-01-26 12:07:41.161 +00:00','2026-01-26 12:07:41.161 +00:00'),(DEFAULT,1,'Self-improvement','YouTube','This month','Global','**Self-improvement Trends**
+
+1. Dopamine detox
+2. 5 AM club content
+3. Atomic habits discussions
+4. Monk mode challenges
+5. Stoicism content
+
+Formats: Long-form essays, day in life','draft','2026-01-26 12:07:41.161 +00:00','2026-01-26 12:07:41.161 +00:00'),(DEFAULT,1,'Travel','Instagram','This month','Global','**Travel Trends**
+
+1. Solo travel content
+2. Budget backpacking
+3. Digital nomad lifestyle
+4. Off-season travel
+5. Sustainable tourism
+
+Destinations: Japan, Portugal, Bali, Mexico','draft','2026-01-26 12:07:41.161 +00:00','2026-01-26 12:07:41.161 +00:00'),(DEFAULT,1,'Music','TikTok','This week','Global','**Music Trends**
+
+1. Trending sounds
+2. Cover song challenges
+3. Music production content
+4. Remix culture
+5. AI music tools
+
+Genres: Electronic, indie pop, nostalgic hits','draft','2026-01-26 12:07:41.161 +00:00','2026-01-26 12:07:41.161 +00:00'),(DEFAULT,1,'Pet content','TikTok','This week','Global','**Pet Content Trends**
+
+1. Pet reaction videos
+2. Training transformations
+3. Talking pet buttons
+4. Pet fashion
+5. Rescue stories
+
+Popular: Dogs, cats, exotic pets','draft','2026-01-26 12:07:41.161 +00:00','2026-01-26 12:07:41.161 +00:00'),(DEFAULT,1,'Education','YouTube','This month','Global','**Educational Trends**
+
+1. AI tutorials
+2. Coding bootcamp content
+3. Language learning
+4. History deep dives
+5. Science explainers
+
+Formats: Short tutorials, documentary style','draft','2026-01-26 12:07:41.161 +00:00','2026-01-26 12:07:41.161 +00:00'),(DEFAULT,1,'Comedy','TikTok','This week','US','**Comedy Trends**
+
+1. Relatable content
+2. Sketch comedy
+3. Observational humor
+4. Trend participation with twist
+5. Character-based content
+
+Styles: Deadpan, absurdist, self-deprecating','draft','2026-01-26 12:07:41.161 +00:00','2026-01-26 12:07:41.161 +00:00'),(DEFAULT,1,'Home decor','Instagram','This month','Global','**Home Decor Trends**
+
+1. Japandi style
+2. Curved furniture
+3. Terracotta tones
+4. Maximalism return
+5. Vintage revival
+
+DIY: Thrift flips, room makeovers','draft','2026-01-26 12:07:41.161 +00:00','2026-01-26 12:07:41.161 +00:00'),(DEFAULT,1,'Wellness','YouTube','This month','Global','**Wellness Trends**
+
+1. Cold plunge content
+2. Breathwork sessions
+3. Sleep optimization
+4. Gut health focus
+5. Digital minimalism
+
+Supplements: Magnesium, adaptogens, probiotics','draft','2026-01-26 12:07:41.161 +00:00','2026-01-26 12:07:41.161 +00:00') RETURNING "id","user_id","niche","platform","timeframe","region","ai_output","status","scheduled_at","created_at","updated_at";
+✅ Trends seeded
+Executing (default): INSERT INTO "comments" ("id","user_id","original_comment","context","tone","platform","ai_output","status","created_at","updated_at") VALUES (DEFAULT,1,'This video changed my life! Thank you so much!','Motivational content video','Grateful and warm','YouTube','Thank you so much for sharing this! Comments like yours are exactly why I create content. I''m so happy this resonated with you. Keep pushing forward - you''ve got this! Would love to hear about your journey in my next video''s comments!','draft','2026-01-26 12:07:41.164 +00:00','2026-01-26 12:07:41.164 +00:00'),(DEFAULT,1,'Can you do a tutorial on editing?','Behind the scenes video','Helpful and encouraging','YouTube','Great suggestion! I''ve actually been planning an editing tutorial series. I''ll add this to my content calendar! In the meantime, I use DaVinci Resolve - it''s free and amazing for beginners. Stay tuned!','draft','2026-01-26 12:07:41.164 +00:00','2026-01-26 12:07:41.164 +00:00'),(DEFAULT,1,'This is wrong, you don''t know what you''re talking about','Educational/review video','Professional and respectful','YouTube','I appreciate you sharing your perspective! I''d love to learn more about your experience with this. Could you share what specifically you''d approach differently? Always looking to improve and provide accurate information to the community.','draft','2026-01-26 12:07:41.164 +00:00','2026-01-26 12:07:41.164 +00:00'),(DEFAULT,1,'What camera do you use?','Any video','Informative','YouTube','Great question! I''m currently using the Sony A7IV with a 24-70mm lens. For my TikToks, I just use my iPhone 15 Pro. I have a full gear list in my video description! Let me know if you have any other questions.','draft','2026-01-26 12:07:41.164 +00:00','2026-01-26 12:07:41.164 +00:00'),(DEFAULT,1,'First!','Any video','Playful and engaging','YouTube','And a great first commenter you are! Thanks for being here early and supporting the channel. What did you think of the video? Would love to hear your thoughts!','draft','2026-01-26 12:07:41.164 +00:00','2026-01-26 12:07:41.164 +00:00'),(DEFAULT,1,'I''ve been following you since you had 100 subscribers!','Milestone video','Appreciative','YouTube','Wow, you''re a real OG! I can''t thank you enough for being on this journey with me from the beginning. You''ve literally watched me grow, and that means everything. Here''s to many more milestones together!','draft','2026-01-26 12:07:41.164 +00:00','2026-01-26 12:07:41.164 +00:00'),(DEFAULT,1,'This video was too long','Tutorial video','Understanding but confident','YouTube','Thanks for the feedback! I know longer videos aren''t for everyone. I''ve added timestamps in the description so you can jump to the sections most relevant to you. I also have shorter versions on my TikTok if that''s more your style!','draft','2026-01-26 12:07:41.164 +00:00','2026-01-26 12:07:41.164 +00:00'),(DEFAULT,1,'Can we collab?','Any video','Professional but friendly','Instagram','Hey! Always open to collaborations with creators who share similar values. Send me a DM with your channel/content and some ideas you have in mind. Let''s see if we can create something awesome together!','draft','2026-01-26 12:07:41.164 +00:00','2026-01-26 12:07:41.164 +00:00'),(DEFAULT,1,'When''s your next upload?','Any video','Excited','YouTube','So glad you''re looking forward to more content! I upload every Tuesday and Friday. Hit the notification bell so you don''t miss the next one - I''ve got something really special coming up!','draft','2026-01-26 12:07:41.164 +00:00','2026-01-26 12:07:41.164 +00:00'),(DEFAULT,1,'This is literally me every morning lol','Relatable content','Fun and relatable','TikTok','Haha, we''re all the same! The morning struggle is REAL. At least we''re in this together! Drop a coffee emoji if you can''t function without caffeine like me.','draft','2026-01-26 12:07:41.164 +00:00','2026-01-26 12:07:41.164 +00:00'),(DEFAULT,1,'You should try [product/technique]','Tutorial/review','Open and interested','YouTube','Oh interesting suggestion! I''ve heard about that but haven''t tried it yet. I''ll definitely look into it for a future video. Have you tried it personally? Would love to hear your experience!','draft','2026-01-26 12:07:41.164 +00:00','2026-01-26 12:07:41.164 +00:00'),(DEFAULT,1,'This was so helpful, saved for later!','Educational content','Encouraging','Instagram','Yes! Save it and come back whenever you need a refresher. I''m so glad this was helpful! Feel free to DM me if you have any questions when you try implementing this.','draft','2026-01-26 12:07:41.164 +00:00','2026-01-26 12:07:41.164 +00:00'),(DEFAULT,1,'You copied [other creator]','Any video','Calm and professional','TikTok','I understand why you might think that! Actually, this is a pretty common topic/trend that many creators cover. I try to bring my own perspective and style to everything I create. I have respect for all creators in this space!','draft','2026-01-26 12:07:41.164 +00:00','2026-01-26 12:07:41.164 +00:00'),(DEFAULT,1,'The audio quality could be better','Any video','Receptive to feedback','YouTube','You''re right, and I appreciate the honest feedback! I''ve actually just upgraded my audio setup, so future videos should sound much better. Thanks for helping me improve!','draft','2026-01-26 12:07:41.164 +00:00','2026-01-26 12:07:41.164 +00:00'),(DEFAULT,1,'Best content on the platform!','Any video','Humble and grateful','YouTube','Wow, that means so much! I''m just trying to create value for this amazing community. Thank you for being here and for the kind words. You all motivate me to keep improving!','draft','2026-01-26 12:07:41.164 +00:00','2026-01-26 12:07:41.164 +00:00') RETURNING "id","user_id","original_comment","context","tone","platform","ai_output","status","scheduled_at","created_at","updated_at";
+✅ Comments seeded
+Executing (default): INSERT INTO "ideas" ("id","user_id","niche","platform","content_type","target_audience","ai_output","status","created_at","updated_at") VALUES (DEFAULT,1,'Technology','YouTube','Review','Tech enthusiasts 18-35','**10 Video Ideas:**
+
+1. "I Used Only [New Product] for 30 Days"
+2. "Tech I Regret Buying vs Best Purchases"
+3. "Building My Dream Setup on a Budget"
+4. "$100 vs $1000 - Is Expensive Tech Worth It?"
+5. "Unpopular Tech Opinions"
+6. "Tech That Changed My Life This Year"
+7. "Reacting to My First Tech Video"
+8. "What''s In My Tech Bag 2024"
+9. "Tech Fails I''ve Made So You Don''t Have To"
+10. "Future Tech That Will Change Everything"','draft','2026-01-26 12:07:41.166 +00:00','2026-01-26 12:07:41.166 +00:00'),(DEFAULT,1,'Fitness','TikTok','Tutorial','Fitness beginners 18-30','**10 Video Ideas:**
+
+1. "Exercises You''re Doing Wrong"
+2. "5-Minute Ab Routine That Actually Works"
+3. "Foods That Are Secretly Killing Your Gains"
+4. "My Transformation Timeline"
+5. "Gym Mistakes I Made as a Beginner"
+6. "What I Eat in a Day (Realistic)"
+7. "Morning Routine for Maximum Energy"
+8. "Recovery Day Essentials"
+9. "Budget Supplements That Work"
+10. "Workout Split That Changed My Body"','draft','2026-01-26 12:07:41.166 +00:00','2026-01-26 12:07:41.166 +00:00'),(DEFAULT,1,'Cooking','YouTube','Recipe','Home cooks 25-45','**10 Video Ideas:**
+
+1. "5 Meals I Make Every Week"
+2. "Recreating My Grandma''s Secret Recipe"
+3. "Restaurant vs Homemade Challenge"
+4. "1 Ingredient 5 Ways"
+5. "Meal Prep Sunday: Full Week"
+6. "Kitchen Tools That Changed My Cooking"
+7. "Cooking for a Professional Chef"
+8. "Budget Meals Under $5"
+9. "Taste Testing Viral Recipes"
+10. "My Biggest Kitchen Fails"','draft','2026-01-26 12:07:41.166 +00:00','2026-01-26 12:07:41.166 +00:00'),(DEFAULT,1,'Beauty','Instagram','Tutorial','Beauty enthusiasts 16-35','**10 Content Ideas:**
+
+1. "Drugstore Dupes for High-End Products"
+2. "Get Ready With Me: Different Occasions"
+3. "Skincare Routine AM/PM"
+4. "Products I''ve Used Up and Repurchased"
+5. "Makeup Bag Declutter"
+6. "Recreating Celebrity Looks"
+7. "Brutally Honest Product Reviews"
+8. "Makeup Through the Decades"
+9. "What I''d Buy at Sephora With $100"
+10. "Common Makeup Mistakes & Fixes"','draft','2026-01-26 12:07:41.166 +00:00','2026-01-26 12:07:41.166 +00:00'),(DEFAULT,1,'Gaming','YouTube','Entertainment','Gamers 16-30','**10 Video Ideas:**
+
+1. "Ranking Every Game I Played This Year"
+2. "I Tried to Speedrun [Game]"
+3. "Playing Games Based on Your Suggestions"
+4. "Evolution of [Game Series]"
+5. "My Gaming Setup Tour + Upgrades"
+6. "Playing My Childhood Games Again"
+7. "Challenge Runs: Beating Games the Hard Way"
+8. "Unpopular Gaming Opinions"
+9. "Best & Worst Games of the Year"
+10. "Playing With Subscribers"','draft','2026-01-26 12:07:41.166 +00:00','2026-01-26 12:07:41.166 +00:00'),(DEFAULT,1,'Finance','TikTok','Educational','Young professionals 22-35','**10 Video Ideas:**
+
+1. "Money Rules I Follow"
+2. "How I Budget My Salary"
+3. "Investment Mistakes to Avoid"
+4. "Side Hustles That Actually Pay"
+5. "Unpopular Money Opinions"
+6. "Breaking Down My Monthly Expenses"
+7. "Financial Goals at Every Age"
+8. "Building Credit the Right Way"
+9. "Apps That Save Me Money"
+10. "Questions to Ask Before Big Purchases"','draft','2026-01-26 12:07:41.166 +00:00','2026-01-26 12:07:41.166 +00:00'),(DEFAULT,1,'Travel','YouTube','Vlog','Travel enthusiasts 25-40','**10 Video Ideas:**
+
+1. "Traveling [Destination] on $50/Day"
+2. "Things I Wish I Knew Before Visiting"
+3. "Hidden Gems Tourists Don''t Know"
+4. "Packing Guide for [Type of Trip]"
+5. "Travel Fails & What I Learned"
+6. "Trying Local Food in [Destination]"
+7. "Day in My Life: Digital Nomad"
+8. "Hostel vs Hotel Experience"
+9. "Solo Travel Tips for Beginners"
+10. "My Travel Photography Setup"','draft','2026-01-26 12:07:41.166 +00:00','2026-01-26 12:07:41.166 +00:00'),(DEFAULT,1,'Lifestyle','YouTube','Vlog','Young adults 18-30','**10 Video Ideas:**
+
+1. "Realistic Week in My Life"
+2. "Apartment/Room Tour & Organization"
+3. "My Productive Morning Routine"
+4. "Life Update: Where I''ve Been"
+5. "Things I Stopped Buying"
+6. "How I Stay Organized"
+7. "Self-Care Sunday Routine"
+8. "Adulting 101: What I''ve Learned"
+9. "Day in My Life: Work Edition"
+10. "Monthly Reset Routine"','draft','2026-01-26 12:07:41.166 +00:00','2026-01-26 12:07:41.166 +00:00'),(DEFAULT,1,'Education','YouTube','Tutorial','Students and learners','**10 Video Ideas:**
+
+1. "Study With Me: Real Time"
+2. "Note-Taking Methods Compared"
+3. "How I Learn Anything Fast"
+4. "Apps That Changed How I Study"
+5. "Exam Preparation Strategy"
+6. "Study Routine That Got Me A''s"
+7. "Learning [Skill] from Scratch"
+8. "Time Management for Students"
+9. "How to Stay Focused While Studying"
+10. "Student Life Tips I Wish I Knew"','draft','2026-01-26 12:07:41.166 +00:00','2026-01-26 12:07:41.166 +00:00'),(DEFAULT,1,'Fashion','TikTok','Style','Fashion-forward 16-30','**10 Video Ideas:**
+
+1. "Building a Capsule Wardrobe"
+2. "Styling 1 Item 5 Ways"
+3. "Thrift Haul Try-On"
+4. "My Most Worn Pieces"
+5. "Fashion Trends I Love/Hate"
+6. "Get Dressed With Me"
+7. "Closet Organization & Declutter"
+8. "Outfit Ideas for [Season/Event]"
+9. "Rating My Old Outfits"
+10. "Shopping My Own Closet"','draft','2026-01-26 12:07:41.166 +00:00','2026-01-26 12:07:41.166 +00:00'),(DEFAULT,1,'Music','YouTube','Performance','Music lovers 16-35','**10 Video Ideas:**
+
+1. "Learning [Song] in 24 Hours"
+2. "Reacting to My First Cover"
+3. "Writing a Song in 1 Day"
+4. "Music Production Setup Tour"
+5. "Covering Songs You Requested"
+6. "Musical Journey Storytime"
+7. "Trying Different Music Genres"
+8. "Mashup of Popular Songs"
+9. "Behind the Scenes: Recording"
+10. "Acoustic Versions of Pop Hits"','draft','2026-01-26 12:07:41.166 +00:00','2026-01-26 12:07:41.166 +00:00'),(DEFAULT,1,'Pet content','TikTok','Entertainment','Pet owners 18-45','**10 Video Ideas:**
+
+1. "Day in My Pet''s Life"
+2. "Testing Viral Pet Products"
+3. "Training Progress Compilation"
+4. "Pet''s Reaction to [Trend]"
+5. "Morning Routine With My Pet"
+6. "What My Pet Does When I''m Gone"
+7. "Pet Food Taste Test"
+8. "DIY Pet Projects"
+9. "Pet Adoption Story"
+10. "Things Only Pet Owners Understand"','draft','2026-01-26 12:07:41.166 +00:00','2026-01-26 12:07:41.166 +00:00'),(DEFAULT,1,'DIY/Crafts','YouTube','Tutorial','Creative hobbyists 25-45','**10 Video Ideas:**
+
+1. "Room Makeover on a Budget"
+2. "Thrift Flip: Furniture Edition"
+3. "5-Minute Crafts (That Actually Work)"
+4. "DIY Home Decor Ideas"
+5. "Organizing Craft Supplies"
+6. "Testing Viral DIY Hacks"
+7. "Seasonal Decorations DIY"
+8. "Beginner-Friendly Projects"
+9. "DIY Gift Ideas"
+10. "Failed DIYs & What Went Wrong"','draft','2026-01-26 12:07:41.166 +00:00','2026-01-26 12:07:41.166 +00:00'),(DEFAULT,1,'Health','YouTube','Educational','Health-conscious 25-45','**10 Video Ideas:**
+
+1. "What I Eat in a Week"
+2. "Morning Routine for Energy"
+3. "Supplements I Take & Why"
+4. "Sleep Optimization Tips"
+5. "Mental Health Check-In"
+6. "Healthy Habits That Changed My Life"
+7. "Grocery Haul & Meal Planning"
+8. "Hydration Challenge Results"
+9. "Realistic Self-Care Day"
+10. "Health Myths Debunked"','draft','2026-01-26 12:07:41.166 +00:00','2026-01-26 12:07:41.166 +00:00'),(DEFAULT,1,'Motivation','YouTube','Inspirational','Ambitious individuals 18-40','**10 Video Ideas:**
+
+1. "From Rock Bottom to Here"
+2. "Habits of Successful People"
+3. "How I Stay Motivated"
+4. "Goal Setting That Works"
+5. "Overcoming Fear of Failure"
+6. "Morning Routine for Success"
+7. "Life Lessons I Learned the Hard Way"
+8. "Day in My Life: Productivity Edition"
+9. "What No One Tells You About Success"
+10. "Building Discipline: My Journey"','draft','2026-01-26 12:07:41.166 +00:00','2026-01-26 12:07:41.166 +00:00') RETURNING "id","user_id","niche","platform","content_type","target_audience","ai_output","status","scheduled_at","created_at","updated_at";
+✅ Ideas seeded
+Executing (default): INSERT INTO "seo_optimizations" ("id","user_id","video_title","description","platform","target_keywords","ai_output","status","created_at","updated_at") VALUES (DEFAULT,1,'Morning Routine 2024','My productive morning routine for success','YouTube','morning routine, productivity, wake up early','**SEO Optimization Report**
+
+**Title Suggestions:**
+- "5 AM Morning Routine That Changed My Life | 2024 Productivity"
+
+**Keywords to Include:**
+Primary: morning routine 2024
+Secondary: productive morning, wake up early, success habits
+
+**Tags:** morning routine, productivity tips, 5am club, morning motivation, daily routine','draft','2026-01-26 12:07:41.168 +00:00','2026-01-26 12:07:41.168 +00:00'),(DEFAULT,1,'iPhone Review','Complete review of the new iPhone','YouTube','iPhone 15 review, Apple, tech review','**SEO Optimization Report**
+
+**Title Suggestions:**
+- "iPhone 15 Pro Max Review - 30 Days Later | Honest Opinion"
+
+**Keywords:**
+Primary: iPhone 15 review
+Secondary: iPhone 15 Pro Max, Apple review, should I upgrade
+
+**Tags:** iPhone 15, tech review, Apple, smartphone, iPhone comparison','draft','2026-01-26 12:07:41.168 +00:00','2026-01-26 12:07:41.168 +00:00'),(DEFAULT,1,'Pasta Recipe','Easy homemade pasta tutorial','YouTube','pasta recipe, homemade pasta, Italian cooking','**SEO Optimization Report**
+
+**Title Suggestions:**
+- "Restaurant-Quality Pasta at Home | Easy Recipe"
+
+**Keywords:**
+Primary: homemade pasta recipe
+Secondary: easy pasta, Italian cooking, pasta from scratch
+
+**Tags:** pasta recipe, cooking tutorial, Italian food, homemade, easy recipes','draft','2026-01-26 12:07:41.168 +00:00','2026-01-26 12:07:41.168 +00:00'),(DEFAULT,1,'Workout Routine','Full body workout no equipment','YouTube','home workout, no equipment, fitness','**SEO Optimization Report**
+
+**Title Suggestions:**
+- "20-Minute Full Body Workout | No Equipment Needed"
+
+**Keywords:**
+Primary: home workout no equipment
+Secondary: full body workout, at home exercise, bodyweight workout
+
+**Tags:** workout, fitness, home exercise, no gym, full body','draft','2026-01-26 12:07:41.168 +00:00','2026-01-26 12:07:41.168 +00:00'),(DEFAULT,1,'Budget Tips','How to save money monthly','YouTube','save money, budgeting, personal finance','**SEO Optimization Report**
+
+**Title Suggestions:**
+- "How I Save $500 Every Month | Realistic Budget Tips"
+
+**Keywords:**
+Primary: how to save money
+Secondary: budgeting tips, personal finance, money saving
+
+**Tags:** budgeting, save money, personal finance, money tips, frugal living','draft','2026-01-26 12:07:41.168 +00:00','2026-01-26 12:07:41.168 +00:00'),(DEFAULT,1,'Room Tour','My content creation setup','YouTube','room tour, setup tour, creator setup','**SEO Optimization Report**
+
+**Title Suggestions:**
+- "Dream Content Creator Setup Tour 2024 | Room Tour"
+
+**Keywords:**
+Primary: room tour 2024
+Secondary: setup tour, creator setup, desk setup
+
+**Tags:** room tour, setup, desk setup, content creator, home office','draft','2026-01-26 12:07:41.168 +00:00','2026-01-26 12:07:41.168 +00:00'),(DEFAULT,1,'Makeup Tutorial','Easy everyday makeup look','YouTube','makeup tutorial, everyday makeup, easy makeup','**SEO Optimization Report**
+
+**Title Suggestions:**
+- "5-Minute Everyday Makeup Tutorial | Natural Look"
+
+**Keywords:**
+Primary: everyday makeup tutorial
+Secondary: natural makeup, easy makeup look, quick makeup
+
+**Tags:** makeup tutorial, everyday makeup, natural look, beauty, cosmetics','draft','2026-01-26 12:07:41.168 +00:00','2026-01-26 12:07:41.168 +00:00'),(DEFAULT,1,'Study Tips','How to study effectively for exams','YouTube','study tips, exam preparation, student tips','**SEO Optimization Report**
+
+**Title Suggestions:**
+- "Study Tips That Actually Work | How to Get A''s"
+
+**Keywords:**
+Primary: study tips
+Secondary: how to study, exam preparation, effective studying
+
+**Tags:** study tips, student, exam prep, productivity, learning','draft','2026-01-26 12:07:41.168 +00:00','2026-01-26 12:07:41.168 +00:00'),(DEFAULT,1,'Travel Vlog','First time visiting Japan','YouTube','Japan travel, Tokyo vlog, travel guide','**SEO Optimization Report**
+
+**Title Suggestions:**
+- "Japan Travel Vlog | First Time in Tokyo 2024"
+
+**Keywords:**
+Primary: Japan travel vlog
+Secondary: Tokyo guide, Japan trip, visiting Japan
+
+**Tags:** Japan, Tokyo, travel vlog, Japan travel, Asia trip','draft','2026-01-26 12:07:41.168 +00:00','2026-01-26 12:07:41.168 +00:00'),(DEFAULT,1,'Gaming Video','Best plays compilation','YouTube','gaming, gameplay, best moments','**SEO Optimization Report**
+
+**Title Suggestions:**
+- "[Game Name] Best Moments | Insane Plays Compilation"
+
+**Keywords:**
+Primary: [game] gameplay
+Secondary: best plays, gaming moments, highlights
+
+**Tags:** gaming, gameplay, best moments, highlights, [game name]','draft','2026-01-26 12:07:41.168 +00:00','2026-01-26 12:07:41.168 +00:00'),(DEFAULT,1,'Skincare Routine','My skincare routine for clear skin','TikTok','skincare routine, clear skin, skincare tips','**SEO Optimization Report**
+
+**Title/Caption:**
+- "Skincare routine that CLEARED my skin"
+
+**Keywords:**
+skincare, clear skin, glass skin, skincare routine, glow up
+
+**Hashtags:** #skincare #clearskin #skincareroutine #glowup #beautytok','draft','2026-01-26 12:07:41.168 +00:00','2026-01-26 12:07:41.168 +00:00'),(DEFAULT,1,'Cooking Hack','Kitchen hacks that save time','TikTok','cooking hacks, kitchen tips, time saving','**SEO Optimization Report**
+
+**Title/Caption:**
+- "Kitchen hack that changed my life"
+
+**Keywords:**
+cooking hack, kitchen tip, time saver, food hack, cooking tip
+
+**Hashtags:** #cookinghack #kitchenhacks #foodtok #cooking #lifehack','draft','2026-01-26 12:07:41.168 +00:00','2026-01-26 12:07:41.168 +00:00'),(DEFAULT,1,'Fashion Haul','Try on clothing haul','YouTube','clothing haul, try on haul, fashion','**SEO Optimization Report**
+
+**Title Suggestions:**
+- "Massive Try-On Clothing Haul | [Store Name] 2024"
+
+**Keywords:**
+Primary: clothing haul
+Secondary: try on haul, fashion haul, new clothes
+
+**Tags:** haul, clothing, fashion, try on, shopping haul','draft','2026-01-26 12:07:41.168 +00:00','2026-01-26 12:07:41.168 +00:00'),(DEFAULT,1,'Day in My Life','Realistic day as content creator','YouTube','day in my life, vlog, content creator life','**SEO Optimization Report**
+
+**Title Suggestions:**
+- "Day in My Life as a Full-Time Content Creator | Realistic Vlog"
+
+**Keywords:**
+Primary: day in my life
+Secondary: content creator, vlog, daily routine
+
+**Tags:** day in my life, vlog, content creator, daily routine, lifestyle','draft','2026-01-26 12:07:41.168 +00:00','2026-01-26 12:07:41.168 +00:00'),(DEFAULT,1,'Product Review','Honest review of viral product','TikTok','review, product review, honest review','**SEO Optimization Report**
+
+**Title/Caption:**
+- "Honest review of [Product] - worth the hype?"
+
+**Keywords:**
+review, honest review, product review, worth it, viral product
+
+**Hashtags:** #review #productreview #honest #worthit #viral','draft','2026-01-26 12:07:41.168 +00:00','2026-01-26 12:07:41.168 +00:00') RETURNING "id","user_id","video_title","description","platform","target_keywords","ai_output","status","scheduled_at","created_at","updated_at";
+✅ SEO data seeded
+Executing (default): INSERT INTO "analytics" ("id","user_id","platform","metric_type","data_input","timeframe","ai_output","status","created_at","updated_at") VALUES (DEFAULT,1,'YouTube','Views','Last video: 50K views, Avg views: 30K, Best video: 200K views','Last 30 days','**Analytics Insights**
+
+**Performance:** Your last video outperformed your average by 67%!
+
+**Patterns:**
+- Videos posted on Tuesday perform 40% better
+- 10-15 minute videos get best retention
+
+**Recommendations:**
+1. Analyze your 200K video - replicate elements
+2. Post more content similar to your recent hit
+3. Optimize upload time to 6 PM','draft','2026-01-26 12:07:41.172 +00:00','2026-01-26 12:07:41.172 +00:00'),(DEFAULT,1,'TikTok','Engagement','Avg likes: 5K, Avg comments: 200, Avg shares: 500','Last 7 days','**Engagement Analysis**
+
+**Strong Points:**
+- Share rate is above average
+- Comment engagement is healthy
+
+**Areas to Improve:**
+- Increase CTA for comments
+- Use more trending sounds
+
+**Recommendations:**
+1. Ask questions in captions
+2. Respond to comments quickly
+3. Create duet-able content','draft','2026-01-26 12:07:41.172 +00:00','2026-01-26 12:07:41.172 +00:00'),(DEFAULT,1,'Instagram','Followers','Gained 2K followers, Lost 500, Net: +1500','Last 30 days','**Follower Analysis**
+
+**Growth Rate:** +1500/month is solid growth!
+
+**Insights:**
+- Reels driving most new followers
+- Story engagement affects retention
+
+**Recommendations:**
+1. Post more Reels content
+2. Use Stories to engage existing followers
+3. Collaborate with similar-sized accounts','draft','2026-01-26 12:07:41.172 +00:00','2026-01-26 12:07:41.172 +00:00'),(DEFAULT,1,'YouTube','Watch Time','Total: 50K hours, Avg per video: 3K hours, Retention: 45%','Last 30 days','**Watch Time Analysis**
+
+**Good:** 45% retention is above average
+
+**Observations:**
+- First 30 seconds crucial for retention
+- Drop-off at 6-minute mark
+
+**Recommendations:**
+1. Stronger hooks in first 30 seconds
+2. Add pattern interrupts at 6-minute mark
+3. Keep videos under 12 minutes initially','draft','2026-01-26 12:07:41.172 +00:00','2026-01-26 12:07:41.172 +00:00'),(DEFAULT,1,'TikTok','For You Page','FYP views: 80%, Followers: 20%','Last 7 days','**FYP Performance**
+
+**Great news:** 80% of views from FYP indicates strong algorithm favor!
+
+**Strategy:**
+- Your content is discovery-friendly
+- Focus on converting viewers to followers
+
+**Recommendations:**
+1. Add follow CTAs
+2. Create series content
+3. Post at peak times (7-9 PM)','draft','2026-01-26 12:07:41.172 +00:00','2026-01-26 12:07:41.172 +00:00'),(DEFAULT,1,'YouTube','CTR','Avg CTR: 6%, Best CTR: 12%, Lowest CTR: 2%','Last 30 days','**Click-Through Rate Analysis**
+
+**Performance:** 6% CTR is good (benchmark: 4-10%)
+
+**Patterns:**
+- 12% CTR video: Strong thumbnail + title combo
+- 2% CTR: Likely poor thumbnail
+
+**Recommendations:**
+1. A/B test thumbnails
+2. Use faces in thumbnails
+3. Add contrast and bright colors','draft','2026-01-26 12:07:41.172 +00:00','2026-01-26 12:07:41.172 +00:00'),(DEFAULT,1,'Instagram','Reach','Reels reach: 50K, Posts: 10K, Stories: 5K','Last 7 days','**Reach Analysis**
+
+**Clear winner:** Reels get 5x the reach!
+
+**Strategy Shift:**
+- Prioritize Reels content
+- Use posts for community building
+- Stories for engagement
+
+**Recommendations:**
+1. Create more Reels (3-5/week)
+2. Repurpose TikToks to Reels
+3. Use trending audio','draft','2026-01-26 12:07:41.172 +00:00','2026-01-26 12:07:41.172 +00:00'),(DEFAULT,1,'YouTube','Subscribers','Gained: 5000, Lost: 500, Net: +4500','Last 30 days','**Subscriber Analysis**
+
+**Excellent growth!** +4500/month
+
+**Sources:**
+- Video suggestions: 60%
+- Search: 25%
+- External: 15%
+
+**Recommendations:**
+1. Create searchable content (tutorials)
+2. Add end screens for subscriptions
+3. Cross-promote on other platforms','draft','2026-01-26 12:07:41.172 +00:00','2026-01-26 12:07:41.172 +00:00'),(DEFAULT,1,'TikTok','Completion Rate','Avg completion: 65%, Best: 90%, Lowest: 30%','Last 7 days','**Completion Rate Analysis**
+
+**Strong performance:** 65% average is great!
+
+**Patterns:**
+- 90% video: Short, punchy, pattern interrupts
+- 30% video: Slow intro, too long
+
+**Recommendations:**
+1. Keep videos under 30 seconds initially
+2. Hook in first 1 second
+3. Use text overlays for retention','draft','2026-01-26 12:07:41.172 +00:00','2026-01-26 12:07:41.172 +00:00'),(DEFAULT,1,'YouTube','Revenue','RPM: $4.50, Total revenue: $2250, Highest RPM video: $8.00','Last 30 days','**Revenue Analysis**
+
+**Earnings:** $2250/month at $4.50 RPM
+
+**Insights:**
+- Finance/tech content gets higher RPM
+- Longer watch time = better RPM
+
+**Recommendations:**
+1. Create more high-RPM topic content
+2. Increase video length for more ad slots
+3. Consider membership/sponsorships','draft','2026-01-26 12:07:41.172 +00:00','2026-01-26 12:07:41.172 +00:00'),(DEFAULT,1,'Instagram','Profile Visits','Profile visits: 10K, Link clicks: 500, Bio link CTR: 5%','Last 7 days','**Profile Traffic Analysis**
+
+**Bio link CTR:** 5% is average
+
+**Improvements:**
+- Clearer CTA in bio
+- Update link regularly
+- Reference link in content
+
+**Recommendations:**
+1. Use link-in-bio tool
+2. Add link CTA in captions
+3. Update bio weekly','draft','2026-01-26 12:07:41.172 +00:00','2026-01-26 12:07:41.172 +00:00'),(DEFAULT,1,'TikTok','Profile Views','Profile views: 25K, Follow rate: 8%','Last 7 days','**Profile Conversion Analysis**
+
+**Follow rate:** 8% is solid!
+
+**Optimization:**
+- Bio is working but could improve
+- Profile video should hook viewers
+
+**Recommendations:**
+1. Create a strong pinned video
+2. Use bio to establish credibility
+3. Add clear content promise','draft','2026-01-26 12:07:41.172 +00:00','2026-01-26 12:07:41.172 +00:00'),(DEFAULT,1,'YouTube','Comments','Avg comments: 200, Response rate: 50%, Sentiment: 85% positive','Last 30 days','**Comment Analysis**
+
+**Engagement:** Good comment volume!
+
+**Areas to improve:**
+- Increase response rate to 80%+
+- Address negative comments professionally
+
+**Recommendations:**
+1. Pin best comments
+2. Ask specific questions
+3. Heart all comments in first hour','draft','2026-01-26 12:07:41.172 +00:00','2026-01-26 12:07:41.172 +00:00'),(DEFAULT,1,'Instagram','Saves','Avg saves: 500, Best: 2000, Save rate: 3%','Last 7 days','**Saves Analysis**
+
+**Strong indicator:** Saves show valuable content!
+
+**Patterns:**
+- Educational posts get most saves
+- Carousel posts perform well
+
+**Recommendations:**
+1. Create more saveable content
+2. Add "Save this for later"
+3. Use carousels for tutorials','draft','2026-01-26 12:07:41.172 +00:00','2026-01-26 12:07:41.172 +00:00'),(DEFAULT,1,'YouTube','Traffic Sources','Browse: 40%, Search: 30%, Suggested: 20%, External: 10%','Last 30 days','**Traffic Source Analysis**
+
+**Healthy mix!** Good distribution
+
+**Optimization:**
+- Search traffic can be increased
+- Suggested videos is growth opportunity
+
+**Recommendations:**
+1. SEO optimize titles/descriptions
+2. Create series for suggested
+3. Promote on social for external','draft','2026-01-26 12:07:41.172 +00:00','2026-01-26 12:07:41.172 +00:00') RETURNING "id","user_id","platform","metric_type","data_input","timeframe","ai_output","status","scheduled_at","created_at","updated_at";
+✅ Analytics seeded
+Executing (default): INSERT INTO "competitors" ("id","user_id","competitor_name","competitor_url","platform","analysis_type","ai_output","status","created_at","updated_at") VALUES (DEFAULT,1,'TechChannel','youtube.com/techchannel','YouTube','Content strategy','**Competitor Analysis: TechChannel**
+
+**Content Strategy:**
+- Posts 3x/week consistently
+- Mix of reviews, tutorials, news
+- High production value
+
+**Strengths:**
+- Strong SEO titles
+- Engaging thumbnails
+- Active community
+
+**Opportunities:**
+- Less consistent on shorts
+- Slower to cover news
+- Could improve engagement','draft','2026-01-26 12:07:41.174 +00:00','2026-01-26 12:07:41.174 +00:00'),(DEFAULT,1,'FitLife','tiktok.com/@fitlife','TikTok','Engagement analysis','**Competitor Analysis: FitLife**
+
+**Engagement Metrics:**
+- Avg likes: 50K
+- Comment rate: 2%
+- Share rate: 1.5%
+
+**Strengths:**
+- Consistent posting
+- Trending sound usage
+- Relatable content
+
+**Opportunities:**
+- Less educational content
+- Could improve hooks
+- Missing collab opportunities','draft','2026-01-26 12:07:41.174 +00:00','2026-01-26 12:07:41.174 +00:00'),(DEFAULT,1,'CookWithMe','youtube.com/cookwithme','YouTube','Content gaps','**Competitor Analysis: CookWithMe**
+
+**Content Gaps Identified:**
+- No budget cooking content
+- Missing meal prep videos
+- Limited cultural cuisine variety
+
+**Your Opportunity:**
+- Budget-friendly recipes niche
+- Quick weeknight meals
+- International cuisine fusion
+
+**Action Items:**
+1. Create budget cooking series
+2. Target "quick recipes" keywords
+3. Collaborate with food brands','draft','2026-01-26 12:07:41.174 +00:00','2026-01-26 12:07:41.174 +00:00'),(DEFAULT,1,'BeautyGuru','instagram.com/beautyguru','Instagram','Posting strategy','**Competitor Analysis: BeautyGuru**
+
+**Posting Schedule:**
+- Feed posts: 5x/week
+- Reels: 2x/day
+- Stories: 10+/day
+
+**Content Mix:**
+- 40% tutorials
+- 30% reviews
+- 20% GRWM
+- 10% personal
+
+**Learnings:**
+- Reels drive most growth
+- Stories maintain engagement
+- Tutorials get most saves','draft','2026-01-26 12:07:41.174 +00:00','2026-01-26 12:07:41.174 +00:00'),(DEFAULT,1,'GamePro','youtube.com/gamepro','YouTube','Growth strategy','**Competitor Analysis: GamePro**
+
+**Growth Tactics:**
+- New release coverage
+- Stream highlights
+- Community events
+
+**Growth Rate:** +50K subs/month
+
+**Key Strategies:**
+- First to post on new games
+- Strong Discord community
+- Regular collaborations
+
+**Your Differentiation:**
+- Focus on indie games
+- Deeper game analysis
+- Unique editing style','draft','2026-01-26 12:07:41.174 +00:00','2026-01-26 12:07:41.174 +00:00'),(DEFAULT,1,'MoneyTalks','tiktok.com/@moneytalks','TikTok','Content format','**Competitor Analysis: MoneyTalks**
+
+**Content Formats:**
+- Quick tips (15-30s): 60%
+- Storytime (60s+): 25%
+- Greenscreen: 15%
+
+**What Works:**
+- Numbered lists
+- Text overlays
+- Trending sounds
+
+**Your Opportunity:**
+- More in-depth content
+- Personal finance stories
+- Interactive content','draft','2026-01-26 12:07:41.174 +00:00','2026-01-26 12:07:41.174 +00:00'),(DEFAULT,1,'TravelDiary','youtube.com/traveldiary','YouTube','Production quality','**Competitor Analysis: TravelDiary**
+
+**Production Quality:**
+- 4K footage
+- Professional color grading
+- Cinematic b-roll
+- Licensed music
+
+**Equipment:**
+- Sony A7IV
+- DJI drone
+- Gimbal
+
+**Your Approach:**
+- Match quality where possible
+- Focus on authentic storytelling
+- Unique destinations','draft','2026-01-26 12:07:41.174 +00:00','2026-01-26 12:07:41.174 +00:00'),(DEFAULT,1,'StyleIcon','instagram.com/styleicon','Instagram','Brand partnerships','**Competitor Analysis: StyleIcon**
+
+**Brand Partnerships:**
+- Works with: Zara, H&M, Revolve
+- Avg partnership: 2/month
+- Mix of paid and gifted
+
+**Pricing Estimate:**
+- Feed post: $2-5K
+- Reel: $5-10K
+- Story: $500-1K
+
+**Your Strategy:**
+- Start with smaller brands
+- Build portfolio
+- Focus on alignment','draft','2026-01-26 12:07:41.174 +00:00','2026-01-26 12:07:41.174 +00:00'),(DEFAULT,1,'StudyTips','tiktok.com/@studytips','TikTok','Viral content','**Competitor Analysis: StudyTips**
+
+**Viral Content Patterns:**
+- "Things I wish I knew" format
+- Relatable student moments
+- Study aesthetic content
+
+**Viral Hits:**
+- 1M+ views on study routines
+- High saves on tip content
+- Duets perform well
+
+**Replicate:**
+- Use similar formats
+- Add your unique perspective
+- Jump on trending sounds','draft','2026-01-26 12:07:41.174 +00:00','2026-01-26 12:07:41.174 +00:00'),(DEFAULT,1,'DIYKing','youtube.com/diyking','YouTube','Thumbnail strategy','**Competitor Analysis: DIYKing**
+
+**Thumbnail Style:**
+- Before/after splits
+- Bright, high contrast
+- Faces with expressions
+- Bold text overlay
+
+**CTR Indicators:**
+- Clear transformation shown
+- Curiosity gap in text
+- Consistent branding
+
+**Apply:**
+- Use similar composition
+- Test bright backgrounds
+- Add your brand colors','draft','2026-01-26 12:07:41.174 +00:00','2026-01-26 12:07:41.174 +00:00'),(DEFAULT,1,'PetLife','tiktok.com/@petlife','TikTok','Audience engagement','**Competitor Analysis: PetLife**
+
+**Engagement Tactics:**
+- Reply to every comment
+- Ask questions in captions
+- User-generated content features
+
+**Community Building:**
+- Pet name hashtag
+- Weekly challenges
+- Fan art features
+
+**Your Strategy:**
+- Create community hashtag
+- Regular Q&A content
+- Feature follower pets','draft','2026-01-26 12:07:41.174 +00:00','2026-01-26 12:07:41.174 +00:00'),(DEFAULT,1,'MotivateMe','youtube.com/motivateme','YouTube','Content calendar','**Competitor Analysis: MotivateMe**
+
+**Content Calendar:**
+- Sunday: Weekly motivation
+- Tuesday: Success stories
+- Thursday: Practical tips
+
+**Seasonal Content:**
+- New Year goal setting
+- Back to school motivation
+- Year-end reflection
+
+**Your Calendar:**
+- Find unique posting days
+- Create signature series
+- Plan seasonal content early','draft','2026-01-26 12:07:41.174 +00:00','2026-01-26 12:07:41.174 +00:00'),(DEFAULT,1,'MusicVibes','youtube.com/musicvibes','YouTube','Revenue streams','**Competitor Analysis: MusicVibes**
+
+**Revenue Streams:**
+- AdSense: 40%
+- Sponsorships: 30%
+- Merch: 15%
+- Courses: 15%
+
+**Monetization:**
+- Instrument reviews (affiliate)
+- Production courses
+- Sample pack sales
+
+**Your Opportunities:**
+- Create digital products
+- Offer lessons
+- Build affiliate partnerships','draft','2026-01-26 12:07:41.174 +00:00','2026-01-26 12:07:41.174 +00:00'),(DEFAULT,1,'HomeDecorPro','instagram.com/homedecorpro','Instagram','Hashtag strategy','**Competitor Analysis: HomeDecorPro**
+
+**Hashtag Strategy:**
+- Uses 25-30 hashtags
+- Mix of sizes (small to large)
+- Niche + broad mix
+
+**Top Hashtags:**
+#homedecor #interiordesign #homeinspo #decorating #homedesign
+
+**Your Strategy:**
+- Research niche hashtags
+- Create branded hashtag
+- Rotate hashtag groups','draft','2026-01-26 12:07:41.174 +00:00','2026-01-26 12:07:41.174 +00:00'),(DEFAULT,1,'WellnessJourney','youtube.com/wellnessjourney','YouTube','Community building','**Competitor Analysis: WellnessJourney**
+
+**Community Features:**
+- Active Discord server
+- Monthly challenges
+- Member spotlights
+- Live Q&As
+
+**Engagement:**
+- 80% comment response rate
+- Community tab active daily
+- Polls for content ideas
+
+**Your Approach:**
+- Start Discord/community
+- Regular live streams
+- Feature community members','draft','2026-01-26 12:07:41.174 +00:00','2026-01-26 12:07:41.174 +00:00') RETURNING "id","user_id","competitor_name","competitor_url","platform","analysis_type","ai_output","status","scheduled_at","created_at","updated_at";
+✅ Competitors seeded
+Executing (default): INSERT INTO "personas" ("id","user_id","niche","platform","demographics","interests","ai_output","status","created_at","updated_at") VALUES (DEFAULT,1,'Technology','YouTube','Male, 25-34, urban, employed','Gadgets, programming, gaming','**Audience Persona: Tech Tom**
+
+**Demographics:**
+- Age: 28
+- Gender: Male
+- Location: Urban city
+- Income: $60-90K
+- Education: Bachelor''s degree
+
+**Psychographics:**
+- Early adopter
+- Value-conscious but willing to pay for quality
+- Research-heavy before purchases
+
+**Pain Points:**
+- Too many options
+- Time to research
+- FOMO on new tech
+
+**Content Preferences:**
+- In-depth reviews
+- Comparisons
+- Honest opinions','draft','2026-01-26 12:07:41.176 +00:00','2026-01-26 12:07:41.176 +00:00'),(DEFAULT,1,'Fitness','TikTok','Female, 18-28, active lifestyle','Workouts, nutrition, wellness','**Audience Persona: Fitness Fiona**
+
+**Demographics:**
+- Age: 24
+- Gender: Female
+- Location: Suburban
+- Income: $35-55K
+
+**Psychographics:**
+- Health-conscious
+- Socially motivated
+- Progress-focused
+
+**Pain Points:**
+- Time constraints
+- Gym intimidation
+- Conflicting advice
+
+**Content Preferences:**
+- Quick workouts
+- Before/after results
+- Relatable struggles','draft','2026-01-26 12:07:41.176 +00:00','2026-01-26 12:07:41.176 +00:00'),(DEFAULT,1,'Cooking','YouTube','Mixed, 30-45, families','Recipes, meal planning, kitchen tips','**Audience Persona: Cooking Carla**
+
+**Demographics:**
+- Age: 35
+- Gender: Female (60%)
+- Location: Suburban
+- Family: Has kids
+
+**Psychographics:**
+- Time-strapped
+- Budget-conscious
+- Health-aware
+
+**Pain Points:**
+- "What''s for dinner?"
+- Picky eaters
+- Limited time
+
+**Content Preferences:**
+- Quick recipes
+- Budget meals
+- Kid-friendly options','draft','2026-01-26 12:07:41.176 +00:00','2026-01-26 12:07:41.176 +00:00'),(DEFAULT,1,'Beauty','Instagram','Female, 16-30, trend-conscious','Makeup, skincare, fashion','**Audience Persona: Beauty Bella**
+
+**Demographics:**
+- Age: 22
+- Gender: Female
+- Location: Urban
+- Student/Early career
+
+**Psychographics:**
+- Trend-aware
+- Brand-loyal
+- Social proof driven
+
+**Pain Points:**
+- Product overload
+- Budget limits
+- Finding what works
+
+**Content Preferences:**
+- Tutorials
+- Honest reviews
+- Drugstore dupes','draft','2026-01-26 12:07:41.176 +00:00','2026-01-26 12:07:41.176 +00:00'),(DEFAULT,1,'Gaming','YouTube','Male, 16-28, students/young professionals','Video games, esports, streaming','**Audience Persona: Gamer Gary**
+
+**Demographics:**
+- Age: 20
+- Gender: Male (75%)
+- Location: Global
+- Student/Part-time work
+
+**Psychographics:**
+- Community-oriented
+- Competitive
+- Entertainment-focused
+
+**Pain Points:**
+- Game selection
+- Building skills
+- Finding gaming friends
+
+**Content Preferences:**
+- Gameplay
+- Reviews
+- Tips and tricks','draft','2026-01-26 12:07:41.176 +00:00','2026-01-26 12:07:41.176 +00:00'),(DEFAULT,1,'Finance','TikTok','Mixed, 22-35, working professionals','Investing, budgeting, side hustles','**Audience Persona: Finance Freddie**
+
+**Demographics:**
+- Age: 27
+- Gender: Mixed
+- Location: Urban
+- Income: $40-80K
+
+**Psychographics:**
+- Future-oriented
+- Anxiety about money
+- Wants simplicity
+
+**Pain Points:**
+- Financial overwhelm
+- Where to start
+- Trust issues with advice
+
+**Content Preferences:**
+- Simple explanations
+- Actionable steps
+- Real results','draft','2026-01-26 12:07:41.176 +00:00','2026-01-26 12:07:41.176 +00:00'),(DEFAULT,1,'Travel','YouTube','Mixed, 25-40, adventure seekers','Travel, photography, experiences','**Audience Persona: Travel Taylor**
+
+**Demographics:**
+- Age: 30
+- Gender: Mixed
+- Location: Urban
+- Income: $50-100K
+
+**Psychographics:**
+- Experience-driven
+- Instagram-aware
+- Planning-oriented
+
+**Pain Points:**
+- Trip planning stress
+- Budget concerns
+- Hidden gems finding
+
+**Content Preferences:**
+- Destination guides
+- Budget tips
+- Authentic experiences','draft','2026-01-26 12:07:41.176 +00:00','2026-01-26 12:07:41.176 +00:00'),(DEFAULT,1,'Lifestyle','YouTube','Female, 20-35, aspirational','Home, wellness, productivity','**Audience Persona: Lifestyle Lily**
+
+**Demographics:**
+- Age: 26
+- Gender: Female
+- Location: Urban/Suburban
+- Income: $40-70K
+
+**Psychographics:**
+- Self-improvement focused
+- Aesthetic-driven
+- Routine-loving
+
+**Pain Points:**
+- Work-life balance
+- Organization
+- Feeling behind
+
+**Content Preferences:**
+- Routines
+- Organization
+- Day in life','draft','2026-01-26 12:07:41.176 +00:00','2026-01-26 12:07:41.176 +00:00'),(DEFAULT,1,'Education','YouTube','Mixed, 16-25, students','Learning, productivity, career','**Audience Persona: Student Sam**
+
+**Demographics:**
+- Age: 19
+- Gender: Mixed
+- Location: Global
+- Student
+
+**Psychographics:**
+- Achievement-oriented
+- Stressed
+- Future-focused
+
+**Pain Points:**
+- Study effectiveness
+- Time management
+- Exam anxiety
+
+**Content Preferences:**
+- Study tips
+- Motivation
+- Real experiences','draft','2026-01-26 12:07:41.176 +00:00','2026-01-26 12:07:41.176 +00:00'),(DEFAULT,1,'Fashion','Instagram','Female, 18-35, style-conscious','Fashion, shopping, trends','**Audience Persona: Fashion Frankie**
+
+**Demographics:**
+- Age: 25
+- Gender: Female (80%)
+- Location: Urban
+- Disposable income for fashion
+
+**Psychographics:**
+- Trend-aware
+- Sustainability-conscious
+- Expressive through style
+
+**Pain Points:**
+- Trend overload
+- Budget vs. style
+- Sustainable options
+
+**Content Preferences:**
+- Outfit ideas
+- Styling tips
+- Shopping guides','draft','2026-01-26 12:07:41.176 +00:00','2026-01-26 12:07:41.176 +00:00'),(DEFAULT,1,'Music','YouTube','Mixed, 16-35, music enthusiasts','Music, instruments, production','**Audience Persona: Music Mike**
+
+**Demographics:**
+- Age: 22
+- Gender: Mixed
+- Location: Global
+- Some musical background
+
+**Psychographics:**
+- Creative
+- Passionate
+- Aspiring musician
+
+**Pain Points:**
+- Learning curve
+- Equipment costs
+- Standing out
+
+**Content Preferences:**
+- Covers
+- Tutorials
+- Behind the scenes','draft','2026-01-26 12:07:41.176 +00:00','2026-01-26 12:07:41.176 +00:00'),(DEFAULT,1,'Pet content','TikTok','Mixed, 18-45, pet owners','Pets, animals, pet care','**Audience Persona: Pet Parent Pat**
+
+**Demographics:**
+- Age: 30
+- Gender: Mixed
+- Location: Suburban
+- Pet owner
+
+**Psychographics:**
+- Treats pets as family
+- Seeks community
+- Product-curious
+
+**Pain Points:**
+- Pet behavior
+- Finding good products
+- Pet health info
+
+**Content Preferences:**
+- Cute/funny content
+- Product reviews
+- Training tips','draft','2026-01-26 12:07:41.176 +00:00','2026-01-26 12:07:41.176 +00:00'),(DEFAULT,1,'DIY/Crafts','Pinterest','Female, 25-45, homeowners','Home decor, crafts, organization','**Audience Persona: DIY Diana**
+
+**Demographics:**
+- Age: 35
+- Gender: Female (85%)
+- Location: Suburban
+- Homeowner
+
+**Psychographics:**
+- Creative
+- Budget-conscious
+- Satisfaction from making
+
+**Pain Points:**
+- Project complexity
+- Time investment
+- Tool requirements
+
+**Content Preferences:**
+- Step-by-step tutorials
+- Before/after
+- Budget-friendly','draft','2026-01-26 12:07:41.176 +00:00','2026-01-26 12:07:41.176 +00:00'),(DEFAULT,1,'Health','YouTube','Mixed, 30-50, health-focused','Wellness, nutrition, fitness','**Audience Persona: Health Hannah**
+
+**Demographics:**
+- Age: 38
+- Gender: Mixed
+- Location: Urban/Suburban
+- Middle income
+
+**Psychographics:**
+- Prevention-focused
+- Research-oriented
+- Holistic approach
+
+**Pain Points:**
+- Conflicting info
+- Sustainable habits
+- Time for self-care
+
+**Content Preferences:**
+- Evidence-based
+- Practical tips
+- Real talk','draft','2026-01-26 12:07:41.176 +00:00','2026-01-26 12:07:41.176 +00:00'),(DEFAULT,1,'Motivation','YouTube','Mixed, 18-40, ambitious','Self-improvement, success, mindset','**Audience Persona: Motivated Max**
+
+**Demographics:**
+- Age: 28
+- Gender: Mixed
+- Location: Global
+- Ambitious professional
+
+**Psychographics:**
+- Growth mindset
+- Goal-oriented
+- Action-taker
+
+**Pain Points:**
+- Staying motivated
+- Overcoming setbacks
+- Finding direction
+
+**Content Preferences:**
+- Success stories
+- Practical advice
+- Authentic struggles','draft','2026-01-26 12:07:41.176 +00:00','2026-01-26 12:07:41.176 +00:00') RETURNING "id","user_id","niche","platform","demographics","interests","ai_output","status","scheduled_at","created_at","updated_at";
+✅ Personas seeded
+Executing (default): INSERT INTO "repurpose" ("id","user_id","original_content","source_platform","target_platform","content_type","ai_output","status","created_at","updated_at") VALUES (DEFAULT,1,'Full 20-minute YouTube tutorial on morning routines','YouTube','TikTok','Tutorial','**Repurposed Content for TikTok:**
+
+**Clip 1 (60s):** Best morning routine tip - the 1-minute rule
+**Clip 2 (30s):** Morning routine mistakes (hook: "Stop doing this!")
+**Clip 3 (45s):** My 5 AM wake-up secret
+
+**Format:**
+- Vertical video
+- Fast-paced edits
+- Text overlays
+- Trending sound if applicable
+
+**Captions:**
+"This one habit changed my mornings #morningroutine #productivity #fyp"','draft','2026-01-26 12:07:41.179 +00:00','2026-01-26 12:07:41.179 +00:00'),(DEFAULT,1,'10-minute product review video','YouTube','Instagram Reels','Review','**Repurposed for Instagram Reels:**
+
+**Reel 1 (30s):** Quick verdict + key features
+**Reel 2 (60s):** Pros and cons breakdown
+**Reel 3 (30s):** "Watch before you buy" hook
+
+**Format:**
+- 9:16 aspect ratio
+- Captions on screen
+- Clear CTA at end
+
+**Caption:**
+"Honest review: Is [product] worth it? Full video on YouTube!"','draft','2026-01-26 12:07:41.179 +00:00','2026-01-26 12:07:41.179 +00:00'),(DEFAULT,1,'Behind-the-scenes vlog (15 min)','YouTube','TikTok','Vlog','**Repurposed for TikTok:**
+
+**Clip 1:** "POV: Day in my life as a creator"
+**Clip 2:** "The part of content creation nobody shows"
+**Clip 3:** Funny blooper compilation
+
+**Format:**
+- Raw, authentic clips
+- Trending sounds
+- Relatable hooks
+
+**Caption:**
+"Creator life isn''t always glamorous #contentcreator #bts"','draft','2026-01-26 12:07:41.179 +00:00','2026-01-26 12:07:41.179 +00:00'),(DEFAULT,1,'Educational thread about investing','Twitter','TikTok','Educational','**Repurposed for TikTok:**
+
+**Format:** Talking head with text overlays
+
+**Script:**
+"Here are 5 investing mistakes I made so you don''t have to:
+1. [point + visual]
+2. [point + visual]..."
+
+**Style:**
+- Greenscreen with graphics
+- Each point = 10-15 seconds
+- Save/share CTA
+
+**Caption:**
+"Wish I knew this earlier #investing #moneytok #financialliteracy"','draft','2026-01-26 12:07:41.179 +00:00','2026-01-26 12:07:41.179 +00:00'),(DEFAULT,1,'Long-form blog post about productivity','Blog','Instagram Carousel','Article','**Repurposed for Instagram Carousel:**
+
+**Slide 1:** Hook title "7 Productivity Habits That Changed My Life"
+**Slides 2-8:** One habit per slide with visual
+**Slide 9:** Summary + CTA
+
+**Design:**
+- Consistent branding
+- Easy-to-read fonts
+- Swipe prompts
+
+**Caption:**
+"Save this for your next productive week! Which one will you try first? [Full article link in bio]"','draft','2026-01-26 12:07:41.179 +00:00','2026-01-26 12:07:41.179 +00:00'),(DEFAULT,1,'Podcast episode (45 min interview)','Podcast','YouTube','Interview','**Repurposed for YouTube:**
+
+**Full video:** Podcast with video recording
+**Shorts/Clips:**
+- Best quote moments (60s each)
+- Controversial takes
+- Practical tips
+
+**Enhancements:**
+- Add visual elements
+- Chapter markers
+- Animated captions
+
+**Title:** "[Guest Name] on [Topic] | Full Interview"
+**Shorts:** "The advice that changed [Guest]''s career"','draft','2026-01-26 12:07:41.179 +00:00','2026-01-26 12:07:41.179 +00:00'),(DEFAULT,1,'Instagram Reel viral dance/trend','Instagram','YouTube Shorts','Trend','**Repurposed for YouTube Shorts:**
+
+**Direct repost:**
+- Add YouTube-specific text
+- Adjust caption for YouTube audience
+- Include channel subscribe CTA
+
+**Extended version:**
+- Behind-the-scenes of creating the Reel
+- Tutorial on the trend
+
+**Caption/Title:**
+"I tried the [trend] #shorts #viral"','draft','2026-01-26 12:07:41.179 +00:00','2026-01-26 12:07:41.179 +00:00'),(DEFAULT,1,'How-to guide (20 min tutorial)','YouTube','LinkedIn','Tutorial','**Repurposed for LinkedIn:**
+
+**Format 1: Text Post**
+"5 key takeaways from my new tutorial on [topic]:
+
+1. [Insight]
+2. [Insight]
+3. [Insight]
+4. [Insight]
+5. [Insight]
+
+Full tutorial: [link]
+
+What would you add? Comment below!"
+
+**Format 2: Video Clip**
+- 2-3 minute highlight reel
+- Professional tone
+- Add captions','draft','2026-01-26 12:07:41.179 +00:00','2026-01-26 12:07:41.179 +00:00'),(DEFAULT,1,'Recipe video (10 min)','YouTube','Pinterest','Recipe','**Repurposed for Pinterest:**
+
+**Pin 1:** Recipe infographic (vertical)
+**Pin 2:** Step-by-step process shots
+**Pin 3:** Final dish with recipe card
+
+**Format:**
+- 2:3 aspect ratio
+- Text overlay with recipe name
+- Clear, bright food photography
+
+**Description:**
+"Easy [Recipe Name] - ready in 30 minutes! This delicious meal is perfect for [occasion]. Get the full recipe with video tutorial. #recipes #cooking #food"','draft','2026-01-26 12:07:41.179 +00:00','2026-01-26 12:07:41.179 +00:00'),(DEFAULT,1,'Motivational speech (5 min)','YouTube','Instagram','Motivational','**Repurposed for Instagram:**
+
+**Reel 1 (60s):** Most powerful 60 seconds
+**Reel 2 (30s):** Key quote with visuals
+**Carousel:** Quote graphics with speech excerpts
+
+**Format:**
+- Dramatic music
+- Captions for sound-off
+- Emotional pacing
+
+**Caption:**
+"The reminder you needed today. Save this. [Full speech link in bio] #motivation #inspiration #mindset"','draft','2026-01-26 12:07:41.179 +00:00','2026-01-26 12:07:41.179 +00:00'),(DEFAULT,1,'Q&A session (30 min)','YouTube Live','TikTok','Q&A','**Repurposed for TikTok:**
+
+**Format:** Question + Answer clips
+
+**Clip structure:**
+- Show question on screen
+- Your answer (30-60s)
+- Engaging hook
+
+**Series:** "Answering your questions" series
+
+**Caption:**
+"You asked, I answered! Part 1 #qanda #[niche]tok"','draft','2026-01-26 12:07:41.179 +00:00','2026-01-26 12:07:41.179 +00:00'),(DEFAULT,1,'Transformation story (personal journey)','YouTube','Twitter Thread','Story','**Repurposed for Twitter/X Thread:**
+
+**Thread structure:**
+
+1/ Hook: "2 years ago, I [starting point]. Today, I [achievement]. Here''s what I learned: (thread)"
+
+2/ The beginning - where I started
+
+3/ The turning point
+
+4/ The struggle
+
+5/ The breakthrough
+
+6/ Key lessons
+
+7/ Call to action
+
+**Tips:**
+- Number each tweet
+- Include images/screenshots
+- End with engagement question','draft','2026-01-26 12:07:41.179 +00:00','2026-01-26 12:07:41.179 +00:00'),(DEFAULT,1,'Workout routine (20 min)','YouTube','Instagram Stories','Fitness','**Repurposed for Instagram Stories:**
+
+**Story series:**
+1. "New workout alert" intro
+2-6. One exercise per story (10s each)
+7. Full workout available (swipe up/link)
+
+**Format:**
+- 15-second clips max
+- Text overlay with reps
+- Music overlay
+- "Tap to pause" for instructions
+
+**Highlight:** Save to "Workouts" highlight','draft','2026-01-26 12:07:41.179 +00:00','2026-01-26 12:07:41.179 +00:00'),(DEFAULT,1,'Product comparison (15 min)','YouTube','Email Newsletter','Review','**Repurposed for Email Newsletter:**
+
+**Subject:** "[Product A] vs [Product B] - My Honest Take"
+
+**Content:**
+- Summary of key differences
+- Winner for different use cases
+- Embedded video clip
+- Link to full video
+
+**Format:**
+- Bullet points
+- Comparison table
+- Clear recommendation
+
+**CTA:** "Watch the full breakdown on YouTube"','draft','2026-01-26 12:07:41.179 +00:00','2026-01-26 12:07:41.179 +00:00'),(DEFAULT,1,'Day in my life vlog (15 min)','YouTube','BeReal/Casual Platforms','Lifestyle','**Repurposed for Casual Platforms:**
+
+**BeReal-style content:**
+- Screenshot key moments
+- "What my vlog doesn''t show" authentic moments
+
+**TikTok "Photo dump" trend:**
+- Collection of vlog screenshots
+- Trending sound
+- Casual, authentic vibe
+
+**Caption:**
+"What filming a YouTube video actually looks like vs the final product"','draft','2026-01-26 12:07:41.179 +00:00','2026-01-26 12:07:41.179 +00:00') RETURNING "id","user_id","original_content","source_platform","target_platform","content_type","ai_output","status","scheduled_at","created_at","updated_at";
+✅ Repurpose data seeded
+
+🎉 Database seeding completed successfully!
+
+📝 Demo credentials:
+   Email: demo@creator.ai
+   Password: demo123
+[0;32m[✓][0m Database seeded with demo data
+
+Step 6: Starting backend server...
+
+> ai-content-creator-backend@1.0.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 07:07:41 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.3)
+Executing (default): SELECT 1+1 AS result
+✅ Database connection established successfully.
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users'
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'users' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'scripts'
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_scripts_status' GROUP BY 1
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'scripts' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'titles'
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_titles_status' GROUP BY 1
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'titles' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'descriptions'
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_descriptions_status' GROUP BY 1
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'descriptions' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'hashtags'
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_hashtags_status' GROUP BY 1
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'hashtags' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'thumbnails'
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_thumbnails_status' GROUP BY 1
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'thumbnails' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'hooks'
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_hooks_status' GROUP BY 1
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'hooks' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'calendars'
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_calendars_status' GROUP BY 1
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'calendars' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'trends'
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_trends_status' GROUP BY 1
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'trends' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'comments'
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_comments_status' GROUP BY 1
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'comments' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'ideas'
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_ideas_status' GROUP BY 1
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'ideas' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'seo_optimizations'
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_seo_optimizations_status' GROUP BY 1
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'seo_optimizations' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'analytics'
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_analytics_status' GROUP BY 1
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'analytics' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'competitors'
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_competitors_status' GROUP BY 1
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'competitors' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'personas'
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_personas_status' GROUP BY 1
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'personas' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+Executing (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'repurpose'
+Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel ORDER BY enumsortorder) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public' AND t.typname='enum_repurpose_status' GROUP BY 1
+Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'repurpose' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+✅ Database synchronized successfully.
+🚀 Server running on http://localhost:3001
+📊 Health check: http://localhost:3001/api/health
+[0;32m[✓][0m Backend server starting on http://localhost:3001
+
+Step 7: Starting frontend server...
+
+> ai-content-creator-frontend@1.0.0 dev
+> vite
+
+
+  VITE v5.4.21  ready in 189 ms
+
+  ➜  Local:   http://localhost:3000/
+  ➜  Network: use --host to expose
+[0;32m[✓][0m Frontend server starting on http://localhost:3000
+
+==========================================
+  Application Started Successfully!
+==========================================
+
+  Frontend: http://localhost:3000
+  Backend:  http://localhost:3001
+
+  Demo Login:
+    Email:    demo@creator.ai
+    Password: demo123
+
+  Press Ctrl+C to stop all servers
+==========================================
+
+
+Shutting down servers...
+[0;32m[✓][0m Servers stopped

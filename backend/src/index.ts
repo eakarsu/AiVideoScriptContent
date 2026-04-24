@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import rateLimit from 'express-rate-limit';
 
 // Load environment variables
 dotenv.config({ path: path.join(__dirname, '../../.env') });
@@ -26,14 +27,52 @@ import analyticsRoutes from './routes/analytics.routes';
 import competitorsRoutes from './routes/competitors.routes';
 import personasRoutes from './routes/personas.routes';
 import repurposeRoutes from './routes/repurpose.routes';
+// New feature routes
+import captionsRoutes from './routes/captions.routes';
+import ctasRoutes from './routes/ctas.routes';
+import viralPredictionsRoutes from './routes/viral-predictions.routes';
+import videoSummariesRoutes from './routes/video-summaries.routes';
+import podcastTranscriptsRoutes from './routes/podcast-transcripts.routes';
+import activityRoutes from './routes/activity.routes';
 
 const app = express();
 const PORT = process.env.BACKEND_PORT || 3001;
+
+// Rate limiters
+const generalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many requests, please try again later' },
+});
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many auth attempts, please try again later' },
+});
+
+const aiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many AI generation requests, please try again later' },
+});
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Apply general rate limit to all API routes
+app.use('/api/', generalLimiter);
+
+// Apply stricter rate limit to auth routes
+app.use('/api/auth', authLimiter);
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -52,6 +91,16 @@ app.use('/api/analytics', analyticsRoutes);
 app.use('/api/competitors', competitorsRoutes);
 app.use('/api/personas', personasRoutes);
 app.use('/api/repurpose', repurposeRoutes);
+// New feature routes
+app.use('/api/captions', captionsRoutes);
+app.use('/api/ctas', ctasRoutes);
+app.use('/api/viral-predictions', viralPredictionsRoutes);
+app.use('/api/video-summaries', videoSummariesRoutes);
+app.use('/api/podcast-transcripts', podcastTranscriptsRoutes);
+app.use('/api/activity-logs', activityRoutes);
+
+// Apply AI rate limit to all generate endpoints
+app.use('*/generate', aiLimiter);
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -69,8 +118,8 @@ const startServer = async () => {
     await syncDatabase();
 
     app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`);
-      console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
+      console.log(`Server running on http://localhost:${PORT}`);
+      console.log(`Health check: http://localhost:${PORT}/api/health`);
     });
   } catch (error) {
     console.error('Failed to start server:', error);

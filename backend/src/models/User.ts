@@ -7,17 +7,27 @@ interface UserAttributes {
   email: string;
   password: string;
   name: string;
+  role: 'user' | 'admin' | 'editor';
+  twoFactorSecret: string | null;
+  twoFactorEnabled: boolean;
+  resetToken: string | null;
+  resetTokenExpiry: Date | null;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
+interface UserCreationAttributes extends Optional<UserAttributes, 'id' | 'role' | 'twoFactorSecret' | 'twoFactorEnabled' | 'resetToken' | 'resetTokenExpiry'> {}
 
 class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
   public id!: number;
   public email!: string;
   public password!: string;
   public name!: string;
+  public role!: 'user' | 'admin' | 'editor';
+  public twoFactorSecret!: string | null;
+  public twoFactorEnabled!: boolean;
+  public resetToken!: string | null;
+  public resetTokenExpiry!: Date | null;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
@@ -48,6 +58,28 @@ User.init(
     name: {
       type: DataTypes.STRING(255),
       allowNull: false,
+    },
+    role: {
+      type: DataTypes.ENUM('user', 'admin', 'editor'),
+      allowNull: false,
+      defaultValue: 'user',
+    },
+    twoFactorSecret: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    twoFactorEnabled: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+    resetToken: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    resetTokenExpiry: {
+      type: DataTypes.DATE,
+      allowNull: true,
     },
   },
   {
