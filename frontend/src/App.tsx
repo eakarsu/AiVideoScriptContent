@@ -45,6 +45,7 @@ import GapNoBulkContentSchedulingPublishing from './pages/GapNoBulkContentSchedu
 import GapNoCollaborationCommentingOnScripts from './pages/GapNoCollaborationCommentingOnScripts'
 import GapNoABTestingFramework from './pages/GapNoABTestingFramework'
 import GapNoPerformanceAnalyticsDashboard from './pages/GapNoPerformanceAnalyticsDashboard'
+import CustomViewsPage from './pages/CustomViewsPage'
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, loading } = useAuth();
@@ -66,6 +67,9 @@ function PrivateRoute({ children }: { children: React.ReactNode }) {
 
   return isAuthenticated ? <>{children}</> : <Navigate to="/login" />;
 }
+
+// Alias: legacy batch-08 mounts use <ProtectedRoute>; map it to PrivateRoute.
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => <PrivateRoute>{children}</PrivateRoute>;
 
 function App() {
   return (
@@ -108,6 +112,7 @@ function App() {
             <Route path="/comments" element={<PrivateRoute><CommentsPage /></PrivateRoute>} />
             <Route path="/competitors" element={<PrivateRoute><CompetitorsPage /></PrivateRoute>} />
             <Route path="/analytics-dashboard" element={<PrivateRoute><AnalyticsDashboardPage /></PrivateRoute>} />
+            <Route path="/custom-views" element={<PrivateRoute><CustomViewsPage /></PrivateRoute>} />
 
             {/* Generic feature page fallback */}
             <Route path="/feature/:featureId" element={<PrivateRoute><FeaturePage /></PrivateRoute>} />

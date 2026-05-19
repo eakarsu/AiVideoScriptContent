@@ -117,6 +117,9 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// Custom Views (mounted BEFORE notFoundHandler so endpoints are reachable)
+app.use('/api/custom-views', require('./routes/customViews'));
+
 // Error handling
 app.use(notFoundHandler);
 app.use(errorHandler);
