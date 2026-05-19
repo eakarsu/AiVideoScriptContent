@@ -34,6 +34,14 @@ import viralPredictionsRoutes from './routes/viral-predictions.routes';
 import videoSummariesRoutes from './routes/video-summaries.routes';
 import podcastTranscriptsRoutes from './routes/podcast-transcripts.routes';
 import activityRoutes from './routes/activity.routes';
+// Apply pass 5 backlog
+import extrasRoutes from './routes/extras.routes';
+import viralcontentpredictorRoutes from './routes/viral-content-predictor.routes';
+import multiplatformoptimizerRoutes from './routes/multi-platform-optimizer.routes';
+import trendforecasterRoutes from './routes/trend-forecaster.routes';
+import audiencesentimentanalyzerRoutes from './routes/audience-sentiment-analyzer.routes';
+import contentgapanalyzerRoutes from './routes/content-gap-analyzer.routes';
+import platformpublishingRoutes from './routes/platform-publishing.routes';
 
 const app = express();
 const PORT = process.env.BACKEND_PORT || 3001;
@@ -98,6 +106,8 @@ app.use('/api/viral-predictions', viralPredictionsRoutes);
 app.use('/api/video-summaries', videoSummariesRoutes);
 app.use('/api/podcast-transcripts', podcastTranscriptsRoutes);
 app.use('/api/activity-logs', activityRoutes);
+app.use('/api/extras', extrasRoutes);
+app.use('/api/viral-content-predictor', viralcontentpredictorRoutes); app.use('/api/multi-platform-optimizer', multiplatformoptimizerRoutes); app.use('/api/trend-forecaster', trendforecasterRoutes); app.use('/api/audience-sentiment-analyzer', audiencesentimentanalyzerRoutes); app.use('/api/content-gap-analyzer', contentgapanalyzerRoutes); app.use('/api/platform-publishing', platformpublishingRoutes);
 
 // Apply AI rate limit to all generate endpoints
 app.use('*/generate', aiLimiter);
@@ -106,6 +116,9 @@ app.use('*/generate', aiLimiter);
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
+
+// Custom Views (mounted BEFORE notFoundHandler so endpoints are reachable)
+app.use('/api/custom-views', require('./routes/customViews'));
 
 // Error handling
 app.use(notFoundHandler);
@@ -117,7 +130,18 @@ const startServer = async () => {
     await connectDatabase();
     await syncDatabase();
 
-    app.listen(PORT, () => {
+    
+// === Batch 08 Gaps & Frontend Mounts ===
+app.use('/api/gap-tsv-reports-0-ai-but-routes-suggest-under-reported', require('./routes/gapTsvReports0AiButRoutesSuggestUnderReported'));
+app.use('/api/gap-no-vision-based-thumbnail-scoring', require('./routes/gapNoVisionBasedThumbnailScoring'));
+app.use('/api/gap-no-multimodal-script-to-storyboard-generator', require('./routes/gapNoMultimodalScriptToStoryboardGenerator'));
+app.use('/api/gap-limited-platform-api-integration-youtube-tiktok-instagram-beyond-stub', require('./routes/gapLimitedPlatformApiIntegrationYoutubeTiktokInstagramBeyondStub'));
+app.use('/api/gap-no-bulk-content-scheduling-publishing', require('./routes/gapNoBulkContentSchedulingPublishing'));
+app.use('/api/gap-no-collaboration-commenting-on-scripts', require('./routes/gapNoCollaborationCommentingOnScripts'));
+app.use('/api/gap-no-a-b-testing-framework', require('./routes/gapNoABTestingFramework'));
+app.use('/api/gap-no-performance-analytics-dashboard', require('./routes/gapNoPerformanceAnalyticsDashboard'));
+
+app.listen(PORT, () => {
       console.log(`Server running on http://localhost:${PORT}`);
       console.log(`Health check: http://localhost:${PORT}/api/health`);
     });

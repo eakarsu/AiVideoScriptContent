@@ -137,6 +137,7 @@ const mainNav: NavItem[] = [
   { path: '/dashboard', label: 'Dashboard', icon: icons.dashboard },
   { path: '/analytics-dashboard', label: 'Analytics', icon: icons.analytics },
   { path: '/calendar', label: 'Calendar', icon: icons.calendar },
+  { path: '/custom-views', label: 'Script Views', icon: icons.scripts },
 ];
 
 const contentNav: NavItem[] = [

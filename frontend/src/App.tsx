@@ -30,6 +30,22 @@ import PodcastTranscriptsPage from './pages/PodcastTranscriptsPage';
 import IdeasPage from './pages/IdeasPage';
 import CommentsPage from './pages/CommentsPage';
 import CompetitorsPage from './pages/CompetitorsPage';
+// === Batch 08 Gaps & Frontend Mounts ===
+import CfViralContentPredictorScoringOnHooksTrends from './pages/CfViralContentPredictorScoringOnHooksTrends'
+import CfMultiPlatformOptimizerGeneratingPlatformSpecificVersions from './pages/CfMultiPlatformOptimizerGeneratingPlatformSpecificVersions'
+import CfTrendForecasterPredictingEmergingTrends12 from './pages/CfTrendForecasterPredictingEmergingTrends12'
+import CfAudienceSentimentAnalyzerPredictingCommentSentiment from './pages/CfAudienceSentimentAnalyzerPredictingCommentSentiment'
+import CfContentGapAnalyzerSurfacingOpportunitiesFromCompetitor from './pages/CfContentGapAnalyzerSurfacingOpportunitiesFromCompetitor'
+import CfDirectYoutubeTiktokInstagramApiPublishingWith from './pages/CfDirectYoutubeTiktokInstagramApiPublishingWith'
+import GapTsvReports0AiButRoutesSuggest from './pages/GapTsvReports0AiButRoutesSuggest'
+import GapNoVisionBasedThumbnailScoring from './pages/GapNoVisionBasedThumbnailScoring'
+import GapNoMultimodalScriptToStoryboardGenerator from './pages/GapNoMultimodalScriptToStoryboardGenerator'
+import GapLimitedPlatformApiIntegrationYoutubeTiktokInstagram from './pages/GapLimitedPlatformApiIntegrationYoutubeTiktokInstagram'
+import GapNoBulkContentSchedulingPublishing from './pages/GapNoBulkContentSchedulingPublishing'
+import GapNoCollaborationCommentingOnScripts from './pages/GapNoCollaborationCommentingOnScripts'
+import GapNoABTestingFramework from './pages/GapNoABTestingFramework'
+import GapNoPerformanceAnalyticsDashboard from './pages/GapNoPerformanceAnalyticsDashboard'
+import CustomViewsPage from './pages/CustomViewsPage'
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, loading } = useAuth();
@@ -51,6 +67,9 @@ function PrivateRoute({ children }: { children: React.ReactNode }) {
 
   return isAuthenticated ? <>{children}</> : <Navigate to="/login" />;
 }
+
+// Alias: legacy batch-08 mounts use <ProtectedRoute>; map it to PrivateRoute.
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => <PrivateRoute>{children}</PrivateRoute>;
 
 function App() {
   return (
@@ -93,11 +112,27 @@ function App() {
             <Route path="/comments" element={<PrivateRoute><CommentsPage /></PrivateRoute>} />
             <Route path="/competitors" element={<PrivateRoute><CompetitorsPage /></PrivateRoute>} />
             <Route path="/analytics-dashboard" element={<PrivateRoute><AnalyticsDashboardPage /></PrivateRoute>} />
+            <Route path="/custom-views" element={<PrivateRoute><CustomViewsPage /></PrivateRoute>} />
 
             {/* Generic feature page fallback */}
             <Route path="/feature/:featureId" element={<PrivateRoute><FeaturePage /></PrivateRoute>} />
             <Route path="/" element={<Navigate to="/dashboard" />} />
-            <Route path="*" element={<Navigate to="/dashboard" />} />
+            {/* // === Batch 08 Gaps & Frontend Mounts === */}
+      <Route path="/cf-viral-content-predictor-scoring-on-hooks-trends-length" element={<ProtectedRoute><CfViralContentPredictorScoringOnHooksTrends /></ProtectedRoute>} />
+      <Route path="/cf-multi-platform-optimizer-generating-platform-specific-versions" element={<ProtectedRoute><CfMultiPlatformOptimizerGeneratingPlatformSpecificVersions /></ProtectedRoute>} />
+      <Route path="/cf-trend-forecaster-predicting-emerging-trends-1-2-weeks-ahead" element={<ProtectedRoute><CfTrendForecasterPredictingEmergingTrends12 /></ProtectedRoute>} />
+      <Route path="/cf-audience-sentiment-analyzer-predicting-comment-sentiment" element={<ProtectedRoute><CfAudienceSentimentAnalyzerPredictingCommentSentiment /></ProtectedRoute>} />
+      <Route path="/cf-content-gap-analyzer-surfacing-opportunities-from-competitor-data" element={<ProtectedRoute><CfContentGapAnalyzerSurfacingOpportunitiesFromCompetitor /></ProtectedRoute>} />
+      <Route path="/cf-direct-youtube-tiktok-instagram-api-publishing-with-scheduling" element={<ProtectedRoute><CfDirectYoutubeTiktokInstagramApiPublishingWith /></ProtectedRoute>} />
+      <Route path="/gap-tsv-reports-0-ai-but-routes-suggest-under-reported" element={<ProtectedRoute><GapTsvReports0AiButRoutesSuggest /></ProtectedRoute>} />
+      <Route path="/gap-no-vision-based-thumbnail-scoring" element={<ProtectedRoute><GapNoVisionBasedThumbnailScoring /></ProtectedRoute>} />
+      <Route path="/gap-no-multimodal-script-to-storyboard-generator" element={<ProtectedRoute><GapNoMultimodalScriptToStoryboardGenerator /></ProtectedRoute>} />
+      <Route path="/gap-limited-platform-api-integration-youtube-tiktok-instagram-beyond-stub" element={<ProtectedRoute><GapLimitedPlatformApiIntegrationYoutubeTiktokInstagram /></ProtectedRoute>} />
+      <Route path="/gap-no-bulk-content-scheduling-publishing" element={<ProtectedRoute><GapNoBulkContentSchedulingPublishing /></ProtectedRoute>} />
+      <Route path="/gap-no-collaboration-commenting-on-scripts" element={<ProtectedRoute><GapNoCollaborationCommentingOnScripts /></ProtectedRoute>} />
+      <Route path="/gap-no-a-b-testing-framework" element={<ProtectedRoute><GapNoABTestingFramework /></ProtectedRoute>} />
+      <Route path="/gap-no-performance-analytics-dashboard" element={<ProtectedRoute><GapNoPerformanceAnalyticsDashboard /></ProtectedRoute>} />
+      <Route path="*" element={<Navigate to="/dashboard" />} />
           </Routes>
         </ConfirmProvider>
       </ToastProvider>
