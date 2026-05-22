@@ -30,6 +30,9 @@ import PodcastTranscriptsPage from './pages/PodcastTranscriptsPage';
 import IdeasPage from './pages/IdeasPage';
 import CommentsPage from './pages/CommentsPage';
 import CompetitorsPage from './pages/CompetitorsPage';
+import CodexCustomVizFeature from './pages/CodexCustomVizFeature';
+import CodexOperationsFeature from './pages/CodexOperationsFeature';
+
 // === Batch 08 Gaps & Frontend Mounts ===
 import CfViralContentPredictorScoringOnHooksTrends from './pages/CfViralContentPredictorScoringOnHooksTrends'
 import CfMultiPlatformOptimizerGeneratingPlatformSpecificVersions from './pages/CfMultiPlatformOptimizerGeneratingPlatformSpecificVersions'
@@ -77,6 +80,9 @@ function App() {
       <ToastProvider>
         <ConfirmProvider>
           <Routes>
+        <Route path="/codex/custom-viz" element={<ProtectedRoute><CodexCustomVizFeature /></ProtectedRoute>} />
+        <Route path="/codex/operations" element={<ProtectedRoute><CodexOperationsFeature /></ProtectedRoute>} />
+
             {/* Public routes */}
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
