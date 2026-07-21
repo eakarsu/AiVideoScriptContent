@@ -3,11 +3,12 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import rateLimit from 'express-rate-limit';
+import jwt from 'jsonwebtoken';
 
 // Load environment variables
 dotenv.config({ path: path.join(__dirname, '../../.env') });
 
-import { connectDatabase, syncDatabase } from './config/database';
+import { connectDatabase } from './config/database';
 import { errorHandler, notFoundHandler } from './middleware/error.middleware';
 
 // Import routes
@@ -42,9 +43,20 @@ import trendforecasterRoutes from './routes/trend-forecaster.routes';
 import audiencesentimentanalyzerRoutes from './routes/audience-sentiment-analyzer.routes';
 import contentgapanalyzerRoutes from './routes/content-gap-analyzer.routes';
 import platformpublishingRoutes from './routes/platform-publishing.routes';
+const governanceRouter = require('../governance');
 
 const app = express();
 const PORT = process.env.BACKEND_PORT || 3001;
+const signedAccess = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const secret = process.env.JWT_SECRET || '';
+  const token = req.headers.authorization && req.headers.authorization.match(/^Bearer (.+)$/)?.[1];
+  if (secret.length < 32) return res.status(503).json({ error: 'secure JWT configuration required' });
+  try {
+    const claims = jwt.verify(token || '', secret, { algorithms: ['HS256'] }) as any;
+    if (!claims.tenantId || !claims.role || !Array.isArray(claims.subjectIds)) throw new Error('claims');
+    (req as any).user = claims; next();
+  } catch (_) { res.status(401).json({ error: 'signed tenant, role, and subject scope required' }); }
+};
 
 // Rate limiters
 const generalLimiter = rateLimit({
@@ -82,8 +94,10 @@ app.use('/api/', generalLimiter);
 // Apply stricter rate limit to auth routes
 app.use('/api/auth', authLimiter);
 
-// Routes
+app.get('/api/health', (_req, res) => res.json({ status: 'ok', timestamp: new Date().toISOString() }));
 app.use('/api/auth', authRoutes);
+app.use('/api/governance', governanceRouter);
+app.use('/api', signedAccess);
 app.use('/api/scripts', scriptsRoutes);
 app.use('/api/titles', titlesRoutes);
 app.use('/api/descriptions', descriptionsRoutes);
@@ -118,7 +132,9 @@ app.get('/api/health', (req, res) => {
 });
 
 // Custom Views (mounted BEFORE notFoundHandler so endpoints are reachable)
-app.use('/api/custom-views', require('./routes/customViews'));
+if (process.env.ENABLE_GENERATED_FEATURES === 'true' && process.env.NODE_ENV !== 'production') {
+  app.use('/api/generated/custom-views', require('./routes/customViews'));
+}
 
 // Error handling
 app.use(notFoundHandler);
@@ -128,25 +144,13 @@ app.use(errorHandler);
 const startServer = async () => {
   try {
     await connectDatabase();
-    await syncDatabase();
-
-    
-// === Batch 08 Gaps & Frontend Mounts ===
-app.use('/api/gap-tsv-reports-0-ai-but-routes-suggest-under-reported', require('./routes/gapTsvReports0AiButRoutesSuggestUnderReported'));
-app.use('/api/gap-no-vision-based-thumbnail-scoring', require('./routes/gapNoVisionBasedThumbnailScoring'));
-app.use('/api/gap-no-multimodal-script-to-storyboard-generator', require('./routes/gapNoMultimodalScriptToStoryboardGenerator'));
-app.use('/api/gap-limited-platform-api-integration-youtube-tiktok-instagram-beyond-stub', require('./routes/gapLimitedPlatformApiIntegrationYoutubeTiktokInstagramBeyondStub'));
-app.use('/api/gap-no-bulk-content-scheduling-publishing', require('./routes/gapNoBulkContentSchedulingPublishing'));
-app.use('/api/gap-no-collaboration-commenting-on-scripts', require('./routes/gapNoCollaborationCommentingOnScripts'));
-app.use('/api/gap-no-a-b-testing-framework', require('./routes/gapNoABTestingFramework'));
-app.use('/api/gap-no-performance-analytics-dashboard', require('./routes/gapNoPerformanceAnalyticsDashboard'));
-
-app.listen(PORT, () => {
+    // Schema changes are applied only by the explicit migration command.
+    app.listen(PORT, () => {
       console.log(`Server running on http://localhost:${PORT}`);
       console.log(`Health check: http://localhost:${PORT}/api/health`);
     });
   } catch (error) {
-    console.error('Failed to start server:', error);
+    console.error('Database readiness check failed');
     process.exit(1);
   }
 };

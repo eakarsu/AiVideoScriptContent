@@ -1,17 +1,17 @@
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 
 // Load environment variables from root .env
 dotenv.config({ path: path.join(__dirname, '../../../.env') });
 
-const sequelize = new Sequelize({
+if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is required');
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
-  host: process.env.DB_HOST || 'localhost',
-  port: parseInt(process.env.DB_PORT || '5432'),
-  database: process.env.DB_NAME || 'ai_content_creator',
-  username: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || 'postgres',
+  dialectOptions: process.env.PGSSLROOTCERT ? {
+    ssl: { rejectUnauthorized: true, ca: fs.readFileSync(process.env.PGSSLROOTCERT, 'utf8') }
+  } : undefined,
   logging: process.env.NODE_ENV === 'development' ? console.log : false,
   define: {
     timestamps: true,

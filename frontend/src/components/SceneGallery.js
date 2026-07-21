@@ -6,6 +6,7 @@ function authHeaders() {
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
+/** @param {{ scriptId?: number | null }} props */
 export default function SceneGallery({ scriptId = null }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
