@@ -33,8 +33,8 @@ export default function LoginPage() {
   };
 
   const handleDemoLogin = async () => {
-    setEmail('demo@creator.ai');
-    setPassword('demo123');
+    setEmail(import.meta.env.VITE_DEMO_EMAIL || '');
+    setPassword(import.meta.env.VITE_DEMO_PASSWORD || '');
     setError('');
     setLoading(true);
 

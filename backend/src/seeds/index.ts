@@ -47,6 +47,12 @@ const getStatusAndDate = (index: number): { status: 'draft' | 'scheduled' | 'pub
   }
 };
 
+function requireDemoPassword() {
+  const password = process.env.DEMO_PASSWORD || process.env.SEED_DEMO_PASSWORD || process.env.DEMO_SEED_PASSWORD || '';
+  if (password.length < 12 || password.length > 1024) throw new Error('DEMO_PASSWORD must contain 12-1024 characters');
+  return password;
+}
+
 const seedDatabase = async () => {
   try {
     console.log('🌱 Starting database seeding...');
@@ -58,7 +64,7 @@ const seedDatabase = async () => {
     // Create demo user
     const demoUser = await User.create({
       email: 'demo@creator.ai',
-      password: 'demo123',
+      password: requireDemoPassword(),
       name: 'Demo Creator',
       role: 'admin',
     } as any);
@@ -67,7 +73,7 @@ const seedDatabase = async () => {
     // Create regular user
     await User.create({
       email: 'user@creator.ai',
-      password: 'user123',
+      password: requireDemoPassword(),
       name: 'Regular User',
       role: 'user',
     } as any);
@@ -519,7 +525,7 @@ const seedDatabase = async () => {
     console.log('\n🎉 Database seeding completed successfully!');
     console.log('\n📝 Demo credentials:');
     console.log('   Email: demo@creator.ai');
-    console.log('   Password: demo123');
+    console.log('Demo login users provisioned from the local environment.');
 
     process.exit(0);
   } catch (error) {
