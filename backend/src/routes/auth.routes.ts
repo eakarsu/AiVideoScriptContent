@@ -12,6 +12,7 @@ router.post('/reset-password', authController.resetPassword);
 
 // Protected routes
 router.get('/profile', authMiddleware, authController.getProfile);
+router.get('/me', authMiddleware, authController.getProfile);
 router.put('/profile', authMiddleware, authController.updateProfile);
 router.put('/password', authMiddleware, authController.changePassword);
 

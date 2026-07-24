@@ -20,6 +20,7 @@ import ViralPrediction from './ViralPrediction';
 import VideoSummary from './VideoSummary';
 import PodcastTranscript from './PodcastTranscript';
 import ActivityLog from './ActivityLog';
+import AiRuntimeResult from './AiRuntimeResult';
 
 // Set up associations
 User.hasMany(Script, { foreignKey: 'userId', as: 'scripts' });
@@ -108,4 +109,5 @@ export {
   VideoSummary,
   PodcastTranscript,
   ActivityLog,
+  AiRuntimeResult,
 };

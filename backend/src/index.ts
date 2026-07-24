@@ -9,6 +9,7 @@ import jwt from 'jsonwebtoken';
 dotenv.config({ path: path.join(__dirname, '../../.env') });
 
 import { connectDatabase } from './config/database';
+import { User } from './models';
 import { errorHandler, notFoundHandler } from './middleware/error.middleware';
 
 // Import routes
@@ -140,10 +141,30 @@ if (process.env.ENABLE_GENERATED_FEATURES === 'true' && process.env.NODE_ENV !==
 app.use(notFoundHandler);
 app.use(errorHandler);
 
+const ensureConfiguredAdmin = async (): Promise<void> => {
+  const email = (process.env.ADMIN_EMAIL || '').trim().toLowerCase();
+  const password = process.env.ADMIN_PASSWORD || '';
+
+  if (!email && !password) return;
+  if (!email || password.length < 8) {
+    throw new Error('ADMIN_EMAIL and an ADMIN_PASSWORD of at least 8 characters are required together');
+  }
+
+  const existing = await User.findOne({ where: { email } });
+  if (existing) {
+    existing.password = password;
+    existing.role = 'admin';
+    await existing.save();
+    return;
+  }
+  await User.create({ email, password, name: 'Runtime Administrator', role: 'admin' });
+};
+
 // Start server
 const startServer = async () => {
   try {
     await connectDatabase();
+    await ensureConfiguredAdmin();
     // Schema changes are applied only by the explicit migration command.
     app.listen(PORT, () => {
       console.log(`Server running on http://localhost:${PORT}`);

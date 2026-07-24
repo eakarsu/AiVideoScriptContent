@@ -11,6 +11,7 @@
 import { Router, Response } from 'express';
 import { authMiddleware, AuthRequest } from '../middleware/auth.middleware';
 import { generateAIContent, repurposeContent } from '../services/openrouter.service';
+import { AiRuntimeResult } from '../models';
 
 const router = Router();
 
@@ -79,7 +80,8 @@ Return JSON ONLY with shape:
   "watchouts": [string]
 }`;
     const aiOutput = await generateAIContent({ prompt, maxTokens: 1500, temperature: 0.5 });
-    res.json({ aiOutput, horizon: horizonStr });
+    const persisted = await AiRuntimeResult.create({ userId: Number(req.userId), feature: 'trend-forecast', input: { niche, platform, horizon: horizonStr }, output: aiOutput, model: process.env.OPENROUTER_MODEL || '' });
+    res.json({ id: persisted.id, aiOutput, horizon: horizonStr, model: persisted.model });
   } catch (error) {
     console.error('trend-forecast error:', error);
     res.status(500).json({ error: 'Failed to forecast trends' });
