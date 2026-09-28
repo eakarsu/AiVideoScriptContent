@@ -32,20 +32,10 @@ export default function LoginPage() {
     }
   };
 
-  const handleDemoLogin = async () => {
+  const handleDemoLogin = () => {
     setEmail(import.meta.env.VITE_DEMO_EMAIL || '');
     setPassword(import.meta.env.VITE_DEMO_PASSWORD || '');
     setError('');
-    setLoading(true);
-
-    try {
-      await login('demo@creator.ai', 'demo123');
-      navigate('/dashboard');
-    } catch (err: any) {
-      setError(err.message || 'Demo login failed');
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (
@@ -199,7 +189,7 @@ export default function LoginPage() {
                   <svg className="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
-                  Quick Demo Login
+                  Auto Fill Demo Credentials
                 </button>
                 <p className="text-center text-xs text-gray-400 mt-3">
                   demo@creator.ai / demo123
