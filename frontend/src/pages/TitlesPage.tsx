@@ -1,3 +1,4 @@
+import AIOutputDisplay from '../components/AIOutputDisplay';
 import { useState, useEffect } from 'react';
 import PageLayout from '../components/PageLayout';
 import ContentCard from '../components/ContentCard';
@@ -12,7 +13,7 @@ import { useConfirm } from '../components/ConfirmDialog';
 import { useDebounce } from '../hooks/useDebounce';
 import { usePersistedFilters } from '../hooks/usePersistedFilters';
 import { exportToCSV, exportToPDF } from '../utils/export';
-import { api, getFeatureById } from '../services/api';
+import { api, getFeatureById, listRows } from '../services/api';
 
 interface Title {
   id: number;
@@ -35,7 +36,6 @@ export default function TitlesPage() {
   const [showStatusModal, setShowStatusModal] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [totalPages, setTotalPages] = useState(1);
-  const [copiedId, setCopiedId] = useState<number | null>(null);
 
   const { filters, setFilter } = usePersistedFilters();
   const debouncedSearch = useDebounce(filters.searchTerm, 300);
@@ -53,15 +53,15 @@ export default function TitlesPage() {
       const params = new URLSearchParams();
       if (filters.statusFilter !== 'all') params.set('status', filters.statusFilter);
       params.set('page', String(filters.page));
-      params.set('limit', '12');
+      params.set('limit', '15');
       const [sortField, sortDir] = filters.sortBy.split('_');
       params.set('sortBy', sortField);
       params.set('sortOrder', sortDir || 'DESC');
 
       const response = await api.get(`/titles?${params.toString()}`);
       const data = response.data;
-      setTitles(data.data || data);
-      setTotalPages(data.pagination?.totalPages || 1);
+      setTitles(listRows(data));
+      setTotalPages(data?.pagination?.totalPages || 1);
     } catch (error) {
       addToast('Failed to load titles', 'error');
     } finally {
@@ -125,12 +125,6 @@ export default function TitlesPage() {
     setShowForm(true);
   };
 
-  const copyToClipboard = (text: string, id: number) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
-  };
-
   // Bulk operations
   const toggleSelect = (id: number) => {
     setSelectedIds((prev) => prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]);
@@ -174,12 +168,6 @@ export default function TitlesPage() {
       title.aiOutput?.toLowerCase().includes(search)
     );
   });
-
-  // Parse AI output to get title variations
-  const getTitleVariations = (aiOutput: string): string[] => {
-    if (!aiOutput) return [];
-    return aiOutput.split('\n').filter((line) => line.trim().length > 0);
-  };
 
   const exportColumns = [
     { key: 'topic', label: 'Topic' },
@@ -342,34 +330,7 @@ export default function TitlesPage() {
               </div>
             </div>
 
-            {selectedTitle.aiOutput && (
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-gray-500">Title Variations (A/B Testing):</span>
-                  <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
-                    Click to copy
-                  </span>
-                </div>
-                <div className="space-y-2">
-                  {getTitleVariations(selectedTitle.aiOutput).map((variation, idx) => (
-                    <div
-                      key={idx}
-                      onClick={() => copyToClipboard(variation, selectedTitle.id * 100 + idx)}
-                      className={`p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors flex items-center justify-between ${
-                        copiedId === selectedTitle.id * 100 + idx ? 'bg-green-50 border border-green-200' : ''
-                      }`}
-                    >
-                      <span className="text-sm">{variation}</span>
-                      {copiedId === selectedTitle.id * 100 + idx ? (
-                        <span className="text-green-600 text-xs">Copied!</span>
-                      ) : (
-                        <span className="text-gray-400 text-xs">Copy</span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            {selectedTitle.aiOutput && <AIOutputDisplay content={selectedTitle.aiOutput} title="Title Variations" />}
 
             <div className="flex justify-between pt-4 border-t border-gray-100">
               <button

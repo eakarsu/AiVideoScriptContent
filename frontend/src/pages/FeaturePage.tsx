@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { api, getFeatureById } from '../services/api';
+import { api, getFeatureById, listRows } from '../services/api';
 import Modal from '../components/Modal';
 import ItemForm from '../components/ItemForm';
 import ItemDetail from '../components/ItemDetail';
@@ -37,8 +37,8 @@ export default function FeaturePage() {
 
     setLoading(true);
     try {
-      const response = await api.get(feature.endpoint);
-      setItems(response.data);
+      const response = await api.get(`${feature.endpoint}?limit=50`);
+      setItems(listRows(response.data));
     } catch (error) {
       console.error('Error fetching items:', error);
     } finally {

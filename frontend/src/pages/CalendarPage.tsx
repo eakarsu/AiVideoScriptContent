@@ -1,3 +1,4 @@
+import AIOutputDisplay from '../components/AIOutputDisplay';
 import { useState, useEffect } from 'react';
 import PageLayout from '../components/PageLayout';
 import CalendarView, { CalendarItem } from '../components/CalendarView';
@@ -6,7 +7,7 @@ import DraftPublishModal from '../components/DraftPublishModal';
 import { CardGridSkeleton } from '../components/Skeleton';
 import { useToast } from '../components/Toast';
 import { useConfirm } from '../components/ConfirmDialog';
-import { api, FEATURES } from '../services/api';
+import { api, FEATURES, listRows } from '../services/api';
 
 interface ContentItem {
   id: number;
@@ -57,8 +58,8 @@ export default function CalendarPage() {
       await Promise.all(
         FEATURES.map(async (feature) => {
           try {
-            const response = await api.get(feature.endpoint);
-            response.data.forEach((item: ContentItem) => {
+            const response = await api.get(`${feature.endpoint}?limit=50`);
+            listRows<ContentItem>(response.data).forEach((item) => {
               allItems.push({
                 ...item,
                 featureId: feature.id,
@@ -269,9 +270,7 @@ export default function CalendarPage() {
               <div>
                 <label className="text-sm font-medium text-gray-500">AI Output</label>
                 <div className="mt-2 bg-gray-50 rounded-lg p-4 max-h-60 overflow-y-auto">
-                  <pre className="text-sm text-gray-700 whitespace-pre-wrap">
-                    {selectedItem.aiOutput}
-                  </pre>
+                  <AIOutputDisplay content={selectedItem.aiOutput} title="AI report" />
                 </div>
               </div>
             )}

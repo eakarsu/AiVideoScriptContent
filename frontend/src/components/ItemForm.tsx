@@ -26,7 +26,7 @@ interface ItemFormProps {
 }
 
 // Example data for each feature to enable quick testing
-const EXAMPLE_DATA: Record<string, Record<string, any>[]> = {
+export const EXAMPLE_DATA: Record<string, Record<string, any>[]> = {
   scripts: [
     { title: 'Morning Routine Vlog', topic: '5 AM Morning Routine for Productivity', platform: 'YouTube', duration: '10 minutes', tone: 'Inspirational' },
     { title: 'Quick Cooking Tutorial', topic: 'How to Make Perfect Pasta in 5 Minutes', platform: 'TikTok', duration: '1 minute', tone: 'Casual' },
@@ -73,14 +73,14 @@ const EXAMPLE_DATA: Record<string, Record<string, any>[]> = {
     { videoTitle: 'AI Will Replace These Jobs in 2025', videoDescription: 'A deep dive into which careers are most at risk from artificial intelligence and what you can do to future-proof yourself.', platform: 'YouTube', niche: 'Technology', targetAudience: 'Professionals worried about AI impact' },
   ],
   'video-summaries': [
-    { videoTitle: 'The Psychology of Money - Full Summary', videoUrl: '', videoTranscript: 'The book discusses how people think about money differently based on their experiences. Key concepts include the role of luck vs skill in financial success, the importance of saving over earning, and how compounding works over time. The author emphasizes that financial success is not about what you know but how you behave.', summaryLength: 'Medium (2-3 paragraphs)', includeKeyPoints: true },
-    { videoTitle: 'How SpaceX Landed Starship', videoUrl: '', videoTranscript: 'SpaceX achieved a historic milestone by successfully catching the Super Heavy booster with the launch tower chopstick arms. The Starship upper stage performed a controlled belly flop maneuver and engine relight for landing. This represents a major step toward rapid reusability of the largest rocket ever built.', summaryLength: 'Brief (1-2 sentences)', includeKeyPoints: false },
-    { videoTitle: 'Complete React Tutorial 2025', videoUrl: '', videoTranscript: 'This tutorial covers React fundamentals including components, JSX, props, state management with useState and useReducer, side effects with useEffect, context API, React Router for navigation, and building a complete project from scratch. We also cover TypeScript integration and best practices.', summaryLength: 'Detailed (full summary)', includeKeyPoints: true },
+    { videoTitle: 'The Psychology of Money - Animated Book Summary', videoUrl: 'https://www.youtube.com/watch?v=jPPzvuDIr1w', videoTranscript: 'Example notes: the video summarizes how behavior and personal experience affect financial decisions. Review the source video before treating these notes as a transcript.', summaryLength: 'Medium (2-3 paragraphs)', includeKeyPoints: true },
+    { videoTitle: "Starship's Fifth Flight Test", videoUrl: 'https://www.youtube.com/watch?v=hI9HQfCAw64', videoTranscript: 'Example notes: the Super Heavy booster returned to the launch tower and was caught by its arms. Review the source video before treating these notes as a transcript.', summaryLength: 'Brief (1-2 sentences)', includeKeyPoints: false },
+    { videoTitle: 'React Tutorial Full Course - Beginner to Pro', videoUrl: 'https://www.youtube.com/watch?v=TtPXvEcE11E', videoTranscript: 'Example notes: this course covers React fundamentals, routing, a project, and TypeScript. Review the source video before treating these notes as a transcript.', summaryLength: 'Detailed (full summary)', includeKeyPoints: true },
   ],
   'podcast-transcripts': [
-    { podcastTitle: 'The Future of AI with Sam Altman', podcastUrl: '', audioContent: 'Discussion about GPT-5 capabilities, the path to AGI, safety concerns in AI development, how AI will transform education and healthcare, and the economic impact of widespread AI adoption. Sam shares his vision for OpenAI and responds to criticism about AI safety.', outputFormat: 'Blog Post Style', includeTimestamps: true, includeSpeakerLabels: true },
-    { podcastTitle: 'How I Built This: Airbnb', podcastUrl: '', audioContent: 'Brian Chesky tells the story of founding Airbnb from selling cereal boxes to fund the company, to getting rejected by investors, to becoming a $100B company. Key moments include the YCombinator experience, the first international expansion, and dealing with regulatory challenges.', outputFormat: 'Formatted with Headers', includeTimestamps: false, includeSpeakerLabels: true },
-    { podcastTitle: 'Mindset Monday: Building Discipline', podcastUrl: '', audioContent: 'Tips for building discipline including starting small, habit stacking, removing friction, accountability partners, and the two-minute rule. The host shares personal experiences with overcoming procrastination and building a consistent morning routine over 6 months.', outputFormat: 'Social Media Ready', includeTimestamps: false, includeSpeakerLabels: false },
+    { podcastTitle: 'Sam Altman Unfiltered: ChatGPT, AI Risks and What Comes Next', podcastUrl: 'https://podcasts.apple.com/us/podcast/sam-altman-unfiltered-chatgpt-ai-risks-and-whats/id1406728041?i=1000751151728', audioContent: 'Example notes: the interview covers ChatGPT, AI risks, safety, regulation, and future plans. These are notes, not a verbatim transcript; verify details and timestamps against the episode.', outputFormat: 'Blog Post Style', includeTimestamps: true, includeSpeakerLabels: true },
+    { podcastTitle: 'How I Built Resilience: Brian Chesky of Airbnb', podcastUrl: 'https://podcasts.apple.com/us/podcast/how-i-built-resilience-brian-chesky-of-airbnb/id1150510297?i=1000487979890', audioContent: 'Example notes: Brian Chesky discusses Airbnb during the early pandemic and the return of travel. These are notes, not a verbatim transcript; verify details against the episode.', outputFormat: 'Formatted with Headers', includeTimestamps: false, includeSpeakerLabels: true },
+    { podcastTitle: 'A Toolkit for Creating the Perfect Morning Routine', podcastUrl: 'https://podcasts.apple.com/us/podcast/a-toolkit-for-creating-the-perfect-morning-routine/id1646101002?i=1000599266981', audioContent: 'Example notes: Mel Robbins discusses practical morning habits, procrastination, and discipline. These are notes, not a verbatim transcript; verify details against the episode.', outputFormat: 'Social Media Ready', includeTimestamps: false, includeSpeakerLabels: false },
   ],
   calendar: [
     { niche: 'Personal Finance and Investing', platform: 'YouTube', frequency: '3x/week', duration: '1 month', goals: 'Grow subscribers to 10K and increase watch time' },
@@ -113,9 +113,9 @@ const EXAMPLE_DATA: Record<string, Record<string, any>[]> = {
     { platform: 'Instagram', metricType: 'Subscribers', dataInput: 'Started month: 5000 followers, End of month: 6200 followers. Best growth from Reels. Stories average 800 views. Posts average 300 likes', timeframe: 'Last 30 days' },
   ],
   competitors: [
-    { competitorName: 'MrBeast', competitorUrl: '', platform: 'YouTube', analysisType: 'Content Strategy' },
-    { competitorName: 'Charli D\'Amelio', competitorUrl: '', platform: 'TikTok', analysisType: 'Engagement' },
-    { competitorName: 'Gary Vee', competitorUrl: '', platform: 'Instagram', analysisType: 'Full Analysis' },
+    { competitorName: 'MrBeast', competitorUrl: 'https://www.youtube.com/@MrBeast', platform: 'YouTube', analysisType: 'Content Strategy' },
+    { competitorName: 'Charli D\'Amelio', competitorUrl: 'https://www.tiktok.com/@charlidamelio', platform: 'TikTok', analysisType: 'Engagement' },
+    { competitorName: 'Gary Vee', competitorUrl: 'https://www.instagram.com/garyvee/', platform: 'Instagram', analysisType: 'Full Analysis' },
   ],
   personas: [
     { niche: 'Personal Finance and Investing', platform: 'YouTube', demographics: 'Age 25-40, college educated', interests: 'Stocks, crypto, real estate, side hustles' },
@@ -128,6 +128,29 @@ const EXAMPLE_DATA: Record<string, Record<string, any>[]> = {
     { originalContent: 'Our latest podcast episode covered the future of remote work, including how AI tools are changing collaboration, the rise of async communication, and why companies that embrace hybrid work will win the talent war.', sourcePlatform: 'Podcast', targetPlatform: 'LinkedIn', contentType: 'Social Post' },
   ],
 };
+
+// Complete the displayed fields from each scenario while keeping any existing
+// record reference or file supplied by the user. A preset never generates data.
+export function completeExample(fields: Field[], example: Record<string, any>, current: Record<string, any>) {
+  const topic = String(example.topic || example.videoTitle || example.title || example.niche || example.podcastTitle || example.competitorName || 'the example content');
+  const result = { ...current };
+  for (const field of fields) {
+    const key = field.name;
+    if (/id$|^id$|file|upload|attachment/i.test(key)) continue;
+    const supplied = example[key];
+    if (supplied !== undefined && supplied !== '') { result[key] = supplied; continue; }
+    if (/url/i.test(key)) {
+      // A real URL is a source prerequisite; do not present an invented link as evidence.
+      result[key] = current[key] || '';
+    } else if (field.type === 'select') result[key] = field.options?.[0] || '';
+    else if (field.type === 'checkbox') result[key] = false;
+    else if (field.type === 'number') result[key] = 10;
+    else if (/keyword/i.test(key)) result[key] = topic.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(' ').filter(Boolean).slice(0, 4).join(', ');
+    else if (/description|context|goal/i.test(key)) result[key] = `A practical ${topic} example for creators, with clear steps and an audience takeaway.`;
+    else result[key] = `${topic} example`;
+  }
+  return result;
+}
 
 export default function ItemForm({ feature, onSave, onCancel, initialData }: ItemFormProps) {
   const [formData, setFormData] = useState<Record<string, any>>(initialData || {});
@@ -144,9 +167,10 @@ export default function ItemForm({ feature, onSave, onCancel, initialData }: Ite
 
   const loadExample = (exampleIndex: number) => {
     if (examples[exampleIndex]) {
-      setFormData({ ...examples[exampleIndex] });
+      setFormData((current) => completeExample(feature.fields, examples[exampleIndex], current));
       setAiOutput('');
-      setError('');
+      setError(feature.fields.some((field) => /url/i.test(field.name) && !examples[exampleIndex][field.name] && !formData[field.name])
+        ? 'Add a genuine source URL if your report needs one; examples cannot supply that prerequisite.' : '');
     }
   };
 
@@ -233,6 +257,7 @@ export default function ItemForm({ feature, onSave, onCancel, initialData }: Ite
             {examples.map((example, idx) => (
               <button
                 key={idx}
+                type="button"
                 onClick={() => loadExample(idx)}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-primary-200 rounded-lg text-xs font-medium text-primary-700
                            hover:bg-primary-50 hover:border-primary-300 transition-all shadow-sm"

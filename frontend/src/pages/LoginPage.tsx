@@ -32,11 +32,6 @@ export default function LoginPage() {
     }
   };
 
-  const handleDemoLogin = () => {
-    setEmail(import.meta.env.VITE_DEMO_EMAIL || '');
-    setPassword(import.meta.env.VITE_DEMO_PASSWORD || '');
-    setError('');
-  };
 
   return (
     <div className="min-h-screen flex">
@@ -180,7 +175,15 @@ export default function LoginPage() {
                 </div>
 
                 <button
-                  onClick={handleDemoLogin}
+                  type="button"
+                  onClick={() => {
+                    const demoEmail = import.meta.env.VITE_DEMO_EMAIL;
+                    const demoPassword = import.meta.env.VITE_DEMO_PASSWORD;
+                    if (!demoEmail || !demoPassword) { setError('Demo credentials are unavailable in this configuration.'); return; }
+                    setEmail(demoEmail);
+                    setPassword(demoPassword);
+                    setError('');
+                  }}
                   disabled={loading}
                   className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium
                              bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 transition-all"
@@ -189,10 +192,10 @@ export default function LoginPage() {
                   <svg className="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
-                  Auto Fill Demo Credentials
+                  Fill demo credentials
                 </button>
                 <p className="text-center text-xs text-gray-400 mt-3">
-                  demo@creator.ai / demo123
+                  Review the filled credentials, then sign in.
                 </p>
               </div>
 

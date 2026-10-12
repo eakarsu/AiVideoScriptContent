@@ -20,7 +20,7 @@ export default function ScriptPDF() {
       .then((r) => r.json())
       .then((d) => {
         if (cancelled) return;
-        const list = (d && d.data) || [];
+        const list = Array.isArray(d?.data) ? d.data : [];
         setScripts(list);
         if (list.length > 0) setScriptId(String(list[0].id));
       })

@@ -138,6 +138,14 @@ if (process.env.ENABLE_GENERATED_FEATURES === 'true' && process.env.NODE_ENV !==
 }
 
 // Error handling
+
+// Advisory AI reports only; native execution and approval routes stay unchanged.
+const aiWorkspaceSupport = require("../aiWorkspaceAdapters.cjs");
+const aiWorkspaceDatabase = aiWorkspaceSupport.sequelizeQueryClient(require("./config/database"));
+app.use('/api/report-workspace', require("../aiWorkspace.cjs").createAIWorkspaceRouter({
+  pool: aiWorkspaceDatabase, authenticateToken: aiWorkspaceSupport.verifiedActorAuth(require("./middleware/auth.middleware").authMiddleware),
+  aiRateLimiter: aiWorkspaceSupport.createWorkspaceLimiter(), features: require("../aiWorkspaceFeatures.json"),
+}));
 app.use(notFoundHandler);
 app.use(errorHandler);
 

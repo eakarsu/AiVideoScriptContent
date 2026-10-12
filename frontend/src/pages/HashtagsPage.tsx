@@ -1,3 +1,4 @@
+import AIOutputDisplay from '../components/AIOutputDisplay';
 import { useState, useEffect } from 'react';
 import PageLayout from '../components/PageLayout';
 import ContentCard from '../components/ContentCard';
@@ -12,7 +13,7 @@ import { useConfirm } from '../components/ConfirmDialog';
 import { useDebounce } from '../hooks/useDebounce';
 import { usePersistedFilters } from '../hooks/usePersistedFilters';
 import { exportToCSV, exportToPDF } from '../utils/export';
-import { api, getFeatureById } from '../services/api';
+import { api, getFeatureById, listRows } from '../services/api';
 
 interface Hashtag {
   id: number;
@@ -35,7 +36,6 @@ export default function HashtagsPage() {
   const [showStatusModal, setShowStatusModal] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [totalPages, setTotalPages] = useState(1);
-  const [copied, setCopied] = useState(false);
 
   const { filters, setFilter } = usePersistedFilters();
   const debouncedSearch = useDebounce(filters.searchTerm, 300);
@@ -53,15 +53,15 @@ export default function HashtagsPage() {
       const params = new URLSearchParams();
       if (filters.statusFilter !== 'all') params.set('status', filters.statusFilter);
       params.set('page', String(filters.page));
-      params.set('limit', '12');
+      params.set('limit', '15');
       const [sortField, sortDir] = filters.sortBy.split('_');
       params.set('sortBy', sortField);
       params.set('sortOrder', sortDir || 'DESC');
 
       const response = await api.get(`/hashtags?${params.toString()}`);
       const data = response.data;
-      setHashtags(data.data || data);
-      setTotalPages(data.pagination?.totalPages || 1);
+      setHashtags(listRows(data));
+      setTotalPages(data?.pagination?.totalPages || 1);
     } catch (error) {
       addToast('Failed to load hashtags', 'error');
     } finally {
@@ -123,13 +123,6 @@ export default function HashtagsPage() {
     setEditingItem(item);
     setSelectedHashtag(null);
     setShowForm(true);
-  };
-
-  const copyAllHashtags = (text: string) => {
-    const tags = text.match(/#\w+/g) || [];
-    navigator.clipboard.writeText(tags.join(' '));
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
   };
 
   const getHashtagsFromOutput = (output: string): string[] => {
@@ -347,36 +340,7 @@ export default function HashtagsPage() {
               </div>
             </div>
 
-            {selectedHashtag.aiOutput && (
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-gray-500">Generated Hashtags:</span>
-                  <button
-                    onClick={() => copyAllHashtags(selectedHashtag.aiOutput)}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium ${
-                      copied ? 'bg-green-100 text-green-700' : 'bg-pink-100 text-pink-700 hover:bg-pink-200'
-                    }`}
-                  >
-                    {copied ? 'Copied!' : 'Copy All Hashtags'}
-                  </button>
-                </div>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <div className="flex flex-wrap gap-2">
-                    {getHashtagsFromOutput(selectedHashtag.aiOutput).map((tag, idx) => (
-                      <span
-                        key={idx}
-                        className="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-pink-200"
-                        onClick={() => {
-                          navigator.clipboard.writeText(tag);
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
+            {selectedHashtag.aiOutput && <AIOutputDisplay content={selectedHashtag.aiOutput} title="Generated Hashtags" />}
 
             <div className="flex justify-between pt-4 border-t border-gray-100">
               <button

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PageLayout from '../components/PageLayout';
 import { ContentBarChart, ContentPieChart, ContentLineChart, StatCard } from '../components/AnalyticsChart';
-import { api, FEATURES } from '../services/api';
+import { api, FEATURES, listRows } from '../services/api';
 import { format, subDays } from 'date-fns';
 
 interface ContentCounts {
@@ -50,7 +50,7 @@ export default function AnalyticsDashboardPage() {
         FEATURES.map(async (feature) => {
           try {
             const response = await api.get(feature.endpoint);
-            const items = response.data;
+            const items = listRows(response.data);
             counts[feature.id] = items.length;
 
             // Count statuses

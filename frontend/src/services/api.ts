@@ -87,6 +87,15 @@ class ApiService {
 
 export const api = new ApiService();
 
+// List endpoints return { data, pagination }; older fixtures may return an array.
+export function listRows<T = any>(payload: unknown): T[] {
+  if (Array.isArray(payload)) return payload as T[];
+  if (payload && typeof payload === 'object' && Array.isArray((payload as { data?: unknown }).data)) {
+    return (payload as { data: T[] }).data;
+  }
+  return [];
+}
+
 // Feature configuration
 export const FEATURES = [
   {

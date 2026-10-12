@@ -1,3 +1,4 @@
+import AIOutputDisplay from './AIOutputDisplay';
 import { useState } from 'react';
 import { api } from '../services/api';
 
@@ -157,9 +158,7 @@ export default function ItemDetail({ item, feature, onDelete, onClose, onUpdate 
           </button>
         </div>
         <div className="bg-gradient-to-br from-primary-50 to-purple-50 rounded-lg p-4 border border-primary-100">
-          <pre className="whitespace-pre-wrap text-sm text-gray-800 max-h-96 overflow-y-auto">
-            {aiOutput}
-          </pre>
+          <AIOutputDisplay content={aiOutput} title="AI Generated Content" />
         </div>
       </div>
 

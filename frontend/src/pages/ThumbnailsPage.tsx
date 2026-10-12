@@ -1,3 +1,4 @@
+import AIOutputDisplay from '../components/AIOutputDisplay';
 import { useState, useEffect } from 'react';
 import PageLayout from '../components/PageLayout';
 import StatusBadge from '../components/StatusBadge';
@@ -11,7 +12,7 @@ import { useConfirm } from '../components/ConfirmDialog';
 import { useDebounce } from '../hooks/useDebounce';
 import { usePersistedFilters } from '../hooks/usePersistedFilters';
 import { exportToCSV, exportToPDF } from '../utils/export';
-import { api, getFeatureById } from '../services/api';
+import { api, getFeatureById, listRows } from '../services/api';
 import { format } from 'date-fns';
 
 interface Thumbnail {
@@ -60,15 +61,15 @@ export default function ThumbnailsPage() {
       const params = new URLSearchParams();
       if (filters.statusFilter !== 'all') params.set('status', filters.statusFilter);
       params.set('page', String(filters.page));
-      params.set('limit', '12');
+      params.set('limit', '15');
       const [sortField, sortDir] = filters.sortBy.split('_');
       params.set('sortBy', sortField);
       params.set('sortOrder', sortDir || 'DESC');
 
       const response = await api.get(`/thumbnails?${params.toString()}`);
       const data = response.data;
-      setThumbnails(data.data || data);
-      setTotalPages(data.pagination?.totalPages || 1);
+      setThumbnails(listRows(data));
+      setTotalPages(data?.pagination?.totalPages || 1);
     } catch (error) {
       addToast('Failed to load thumbnails', 'error');
     } finally {
@@ -377,7 +378,7 @@ export default function ThumbnailsPage() {
               <div>
                 <span className="text-sm text-gray-500">AI Thumbnail Ideas:</span>
                 <div className="mt-2 bg-gray-50 rounded-lg p-4 max-h-60 overflow-y-auto">
-                  <pre className="text-sm whitespace-pre-wrap">{selectedThumbnail.aiOutput}</pre>
+                  <AIOutputDisplay content={selectedThumbnail.aiOutput} title="AI report" />
                 </div>
               </div>
             )}

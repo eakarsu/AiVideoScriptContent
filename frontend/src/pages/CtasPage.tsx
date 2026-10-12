@@ -13,7 +13,7 @@ import { useConfirm } from '../components/ConfirmDialog';
 import { useDebounce } from '../hooks/useDebounce';
 import { usePersistedFilters } from '../hooks/usePersistedFilters';
 import { exportToCSV, exportToPDF } from '../utils/export';
-import { api, getFeatureById } from '../services/api';
+import { api, getFeatureById, listRows } from '../services/api';
 
 interface Cta {
   id: number;
@@ -54,15 +54,15 @@ export default function CtasPage() {
       const params = new URLSearchParams();
       if (filters.statusFilter !== 'all') params.set('status', filters.statusFilter);
       params.set('page', String(filters.page));
-      params.set('limit', '12');
+      params.set('limit', '15');
       const [sortField, sortDir] = filters.sortBy.split('_');
       params.set('sortBy', sortField);
       params.set('sortOrder', sortDir || 'DESC');
 
       const response = await api.get(`/ctas?${params.toString()}`);
       const data = response.data;
-      setItems(data.data || data);
-      setTotalPages(data.pagination?.totalPages || 1);
+      setItems(listRows(data));
+      setTotalPages(data?.pagination?.totalPages || 1);
     } catch (error) {
       addToast('Failed to load CTAs', 'error');
     } finally {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { api, FEATURES } from '../services/api';
+import { api, FEATURES, listRows } from '../services/api';
 import PageLayout from '../components/PageLayout';
 
 interface FeatureCounts {
@@ -119,7 +119,7 @@ export default function DashboardPage() {
           FEATURES.map(async (feature) => {
             try {
               const response = await api.get(feature.endpoint);
-              countsData[feature.id] = response.data.length;
+              countsData[feature.id] = Number(response.data?.pagination?.total ?? listRows(response.data).length);
             } catch {
               countsData[feature.id] = 0;
             }

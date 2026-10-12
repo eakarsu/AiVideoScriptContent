@@ -22,7 +22,7 @@ export default function CustomViewsPage() {
     fetch('/api/scripts?limit=50', { headers: { Authorization: `Bearer ${token}` } })
       .then((r) => r.json())
       .then((d) => {
-        const list: ScriptRow[] = (d && d.data) || [];
+        const list: ScriptRow[] = Array.isArray(d?.data) ? d.data : [];
         setScripts(list);
         if (list.length > 0) setSelected(String(list[0].id));
       })
