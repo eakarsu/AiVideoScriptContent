@@ -44,6 +44,7 @@ import trendforecasterRoutes from './routes/trend-forecaster.routes';
 import audiencesentimentanalyzerRoutes from './routes/audience-sentiment-analyzer.routes';
 import contentgapanalyzerRoutes from './routes/content-gap-analyzer.routes';
 import platformpublishingRoutes from './routes/platform-publishing.routes';
+import wave50cRoutes from './routes/wave50c';
 const governanceRouter = require('../governance');
 
 const app = express();
@@ -123,6 +124,7 @@ app.use('/api/podcast-transcripts', podcastTranscriptsRoutes);
 app.use('/api/activity-logs', activityRoutes);
 app.use('/api/extras', extrasRoutes);
 app.use('/api/viral-content-predictor', viralcontentpredictorRoutes); app.use('/api/multi-platform-optimizer', multiplatformoptimizerRoutes); app.use('/api/trend-forecaster', trendforecasterRoutes); app.use('/api/audience-sentiment-analyzer', audiencesentimentanalyzerRoutes); app.use('/api/content-gap-analyzer', contentgapanalyzerRoutes); app.use('/api/platform-publishing', platformpublishingRoutes);
+app.use('/api/wave50c', wave50cRoutes);
 
 // Apply AI rate limit to all generate endpoints
 app.use('*/generate', aiLimiter);
